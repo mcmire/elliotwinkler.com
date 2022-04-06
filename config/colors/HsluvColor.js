@@ -2,7 +2,8 @@ const hsluv = require("hsluv");
 const Color = require("color");
 const sass = require("sass");
 
-const HSLUV_REGEXP = /^hsluv\((\d+(?:\.\d+)?)+, (\d+(?:\.\d+)?%?), (\d+(?:\.\d+)?%?)\)$/;
+const HSLUV_REGEXP =
+  /^hsluv\((\d+(?:\.\d+)?)+, (\d+(?:\.\d+)?%?), (\d+(?:\.\d+)?%?)\)$/;
 
 class HsluvColor {
   constructor(h, s, l) {
@@ -34,7 +35,7 @@ class HsluvColor {
   toColor() {
     const rgb = hsluv
       .hsluvToRgb([this.h, this.s, this.l])
-      .map(value => Math.round(value * 255));
+      .map((value) => Math.round(value * 255));
     //console.log("toColor", "h", this.h, "s", this.s, "l", this.l, "rgb", rgb);
     return Color.rgb(rgb);
   }
@@ -42,7 +43,7 @@ class HsluvColor {
   toSassColor() {
     const rgb = hsluv
       .hsluvToRgb([this.h, this.s, this.l])
-      .map(value => Math.round(value * 255));
+      .map((value) => Math.round(value * 255));
     //console.log(
     //"toSassColor",
     //"h",
@@ -58,9 +59,7 @@ class HsluvColor {
   }
 
   toRgbValues() {
-    return this.toColor()
-      .rgb()
-      .array();
+    return this.toColor().rgb().array();
   }
 
   toHex() {
@@ -69,7 +68,7 @@ class HsluvColor {
 }
 module.exports = HsluvColor;
 
-HsluvColor.create = value => {
+HsluvColor.create = (value) => {
   if (Array.isArray(value)) {
     return HsluvColor.fromColor(Color.rgb(value));
   } else if (value instanceof Color) {
@@ -83,22 +82,22 @@ HsluvColor.create = value => {
   }
 };
 
-HsluvColor.fromSassColor = sassColor => {
+HsluvColor.fromSassColor = (sassColor) => {
   const rgb = [sassColor.getR(), sassColor.getG(), sassColor.getB()].map(
-    value => value / 255
+    (value) => value / 255
   );
   return new HsluvColor(...hsluv.rgbToHsluv(rgb));
 };
 
-HsluvColor.fromColor = color => {
+HsluvColor.fromColor = (color) => {
   const rgb = color
     .rgb()
     .array()
-    .map(value => value / 255);
+    .map((value) => value / 255);
   return new HsluvColor(...hsluv.rgbToHsluv(rgb));
 };
 
-HsluvColor.fromHsluvString = value => {
+HsluvColor.fromHsluvString = (value) => {
   const match = HSLUV_REGEXP.exec(value);
 
   if (match) {

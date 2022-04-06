@@ -7,8 +7,10 @@ export default class CodeBlock {
     this.codeModal = codeModal;
     this.element = element;
     this.codeElement = element.querySelector("code");
-    this.horizontalOverflowIndicatorElement = this._createHorizontalOverflowIndicatorElement();
-    this.verticalOverflowIndicatorElement = this._createVerticalOverflowIndicatorElement();
+    this.horizontalOverflowIndicatorElement =
+      this._createHorizontalOverflowIndicatorElement();
+    this.verticalOverflowIndicatorElement =
+      this._createVerticalOverflowIndicatorElement();
     this.overlayElement = this._createOverlayElement();
     this.viewInFullButtonElement = this._createViewInFullButtonElement();
 

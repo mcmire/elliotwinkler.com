@@ -4,8 +4,8 @@
 const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const bourbon = require("bourbon");
 
 const sassFunctions = require("./config/colors/sass-functions.js");
@@ -40,12 +40,12 @@ function determinePlugins() {
     // drop any unreachable code.
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-      }
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
     }),
     new MiniCssExtractPlugin({
-      filename: path.join(PUBLIC_PATH, STYLESHEETS_PATH, "[name].bundle.css")
-    })
+      filename: path.join(PUBLIC_PATH, STYLESHEETS_PATH, "[name].bundle.css"),
+    }),
   ];
 
   return plugins;
@@ -54,11 +54,11 @@ function determinePlugins() {
 function determineMinimizer() {
   if (process.env.NODE_ENV === "production") {
     return [
-      new UglifyJsPlugin({
-        sourceMap: shouldOutputSourceMap(),
-        uglifyOptions: { mangle: false }
+      new TerserPlugin({
+        //sourceMap: shouldOutputSourceMap(),   // this is automatic (?)
+        terserOptions: { mangle: false },
       }),
-      new OptimizeCSSAssetsPlugin({})
+      new CssMinimizerPlugin(),
     ];
   } else {
     return [];
@@ -69,10 +69,10 @@ const postcssLoader = {
   loader: "postcss-loader",
   options: {
     sourceMap: shouldOutputSourceMap(),
-    plugins: function() {
-      return [require("autoprefixer")];
-    }
-  }
+    postcssOptions: {
+      plugins: [require("autoprefixer")],
+    },
+  },
 };
 
 const config = {
@@ -82,35 +82,27 @@ const config = {
   entry: { all: "./" + path.join(JAVASCRIPTS_PATH, "all.js") },
   resolve: {
     alias: {
-      blog: path.resolve(__dirname, "../personal-content--blog/")
+      blog: path.resolve(__dirname, "../personal-content--blog/"),
     },
     modules: [
       path.resolve(CONTEXT_DIR, JAVASCRIPTS_PATH),
       path.resolve(CONTEXT_DIR, STYLESHEETS_PATH),
       path.resolve(CONTEXT_DIR, IMAGES_PATH),
-      "node_modules"
+      "node_modules",
     ],
-    extensions: [
-      ".js",
-      ".css",
-      ".scss",
-      ".eot",
-      ".otf",
-      ".ttf",
-      ".woff",
-      ".woff2"
-    ]
+    extensions: [".js", ".css", ".scss", ".woff", ".woff2"],
   },
   output: {
     path: path.resolve(TMP_DIR, "dist"),
-    filename: path.join(PUBLIC_PATH, JAVASCRIPTS_PATH, "[name].bundle.js")
+    publicPath: "/",
+    filename: path.join(PUBLIC_PATH, JAVASCRIPTS_PATH, "[name].bundle.js"),
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: "babel-loader"
+        use: "babel-loader",
       },
       {
         test: /\.css$/,
@@ -120,11 +112,11 @@ const config = {
             loader: "css-loader",
             options: {
               importLoaders: 1,
-              sourceMap: shouldOutputSourceMap()
-            }
+              sourceMap: shouldOutputSourceMap(),
+            },
           },
-          postcssLoader
-        ]
+          postcssLoader,
+        ],
       },
       {
         test: /\.(scss|sass)$/,
@@ -134,8 +126,8 @@ const config = {
             loader: "css-loader",
             options: {
               importLoaders: 2,
-              sourceMap: shouldOutputSourceMap()
-            }
+              sourceMap: shouldOutputSourceMap(),
+            },
           },
           postcssLoader,
           {
@@ -143,12 +135,12 @@ const config = {
             options: {
               sourceMap: shouldOutputSourceMap(),
               sassOptions: {
-                includePaths: [bourbon.includePaths],
-                functions: sassFunctions
-              }
-            }
-          }
-        ]
+                includePaths: bourbon.includePaths,
+                functions: sassFunctions,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -156,24 +148,15 @@ const config = {
         options: {
           name: "[name].[ext]",
           publicPath: "../images/",
-          outputPath: path.join(PUBLIC_PATH, IMAGES_PATH, "/")
-        }
+          outputPath: path.join(PUBLIC_PATH, IMAGES_PATH, "/"),
+        },
       },
-      {
-        test: /\.(eot|otf|ttf|woff|woff2)$/,
-        loader: "file-loader",
-        options: {
-          name: "[name].[ext]",
-          publicPath: "../fonts/",
-          outputPath: path.join(PUBLIC_PATH, FONTS_PATH, "/")
-        }
-      }
-    ]
+    ],
   },
   plugins: determinePlugins(),
   optimization: {
-    minimizer: determineMinimizer()
-  }
+    minimizer: determineMinimizer(),
+  },
 };
 
 module.exports = config;

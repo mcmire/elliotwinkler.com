@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-nodemon \
+yarn nodemon \
   --watch . \
   --watch bin \
   --watch config \

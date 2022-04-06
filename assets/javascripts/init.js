@@ -15,7 +15,7 @@ function renderGrid() {
   const grid = new Grid({
     windowElement: window,
     bodyElement: document.body,
-    contentElement: document.querySelector("[data-role='content']")
+    contentElement: document.querySelector("[data-role='content']"),
   });
   grid.activate();
   grid.render();
@@ -29,7 +29,7 @@ function buildActivatedCodeModal() {
     const codeModal = new CodeModal({
       bodyElement: document.body,
       modalOverlay: modalOverlay,
-      modalWindow: modalWindow
+      modalWindow: modalWindow,
     });
     codeModal.activate();
     return codeModal;
@@ -38,7 +38,7 @@ function buildActivatedCodeModal() {
 
 function renderCodeBlocks(codeModal) {
   const elements = document.querySelectorAll("pre");
-  const codeBlocks = map(elements, element => {
+  const codeBlocks = map(elements, (element) => {
     return new CodeBlock({ codeModal, element });
   });
   invokeMap(codeBlocks, "activate");
@@ -47,7 +47,7 @@ function renderCodeBlocks(codeModal) {
 
 function renderGithubEmbeds(codeModal) {
   const elements = document.querySelectorAll("[data-role='github-embed']");
-  const codeBlocks = map(elements, element => {
+  const codeBlocks = map(elements, (element) => {
     return new GithubEmbed({ codeModal, element });
   });
   invokeMap(codeBlocks, "render");
@@ -56,7 +56,7 @@ function renderGithubEmbeds(codeModal) {
 function renderMathBlocks() {
   const elements = document.querySelectorAll("script[type='math/katex']");
 
-  elements.forEach(element => {
+  elements.forEach((element) => {
     const mathBlock = new MathBlock({ element });
     mathBlock.render();
   });
@@ -65,20 +65,20 @@ function renderMathBlocks() {
 function initSpoilers() {
   const elements = document.querySelectorAll(".spoiler");
 
-  elements.forEach(element => {
+  elements.forEach((element) => {
     const spoiler = new Spoiler({ element });
     spoiler.activate();
   });
 }
 
 function initIllustrations() {
-  document.querySelectorAll("[data-illustration]").forEach(element => {
+  document.querySelectorAll("[data-illustration]").forEach((element) => {
     const illustrationName = element.getAttribute("data-illustration");
     const illustrationConstructor = illustrationRegistry.find(illustrationName);
     if (illustrationConstructor) {
       const illustrationWrapper = new IllustrationWrapper({
         element,
-        illustrationConstructor
+        illustrationConstructor,
       });
       illustrationWrapper.activate();
       illustrationWrapper.render();
@@ -87,7 +87,7 @@ function initIllustrations() {
 }
 
 function initSvg() {
-  document.querySelectorAll("svg").forEach(element => {
+  document.querySelectorAll("svg").forEach((element) => {
     const svg = new Svg(element);
     svg.activate();
     svg.render();

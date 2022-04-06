@@ -7,10 +7,10 @@ module.exports = {
       {
         // https://prismjs.com/index.html#supported-languages
         languages: ["bash", "css", "html", "js"],
-        plugins: []//,
+        plugins: [], //,
         //theme: "solarizedlight",
         //css: true
-      }
-    ]
-  ]
+      },
+    ],
+  ],
 };

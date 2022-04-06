@@ -1,3 +1,11 @@
-import "typeface-fira-code";
-import "typeface-pt-serif";
-import "typeface-ibm-plex-sans";
+import "@fontsource/fira-code/400.css";
+import "@fontsource/pt-serif/400.css";
+import "@fontsource/pt-serif/400-italic.css";
+import "@fontsource/pt-serif/700.css";
+import "@fontsource/pt-serif/700-italic.css";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/400-italic.css";
+import "@fontsource/ibm-plex-sans/600.css";
+import "@fontsource/ibm-plex-sans/600-italic.css";
+import "@fontsource/ibm-plex-sans/700.css";
+import "@fontsource/ibm-plex-sans/700-italic.css";

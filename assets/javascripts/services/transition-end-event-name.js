@@ -6,12 +6,12 @@ const possibleEventNames = {
   transition: "transitionend",
   OTransition: "oTransitionEnd",
   MozTransition: "transitionend",
-  WebkitTransition: "webkitTransitionEnd"
+  WebkitTransition: "webkitTransitionEnd",
 };
 
 const dummyElement = document.createElement("dummy-element");
 
-const transitionEndEventName = find(possibleEventNames, eventName => {
+const transitionEndEventName = find(possibleEventNames, (eventName) => {
   return dummyElement.style[eventName] != null;
 });
 

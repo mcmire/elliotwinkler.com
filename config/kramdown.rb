@@ -1,4 +1,5 @@
 require_relative "kramdown_katex_engine"
+require 'kramdown-parser-gfm'
 
 KramdownConfig = proc do
   set :markdown_engine, :kramdown

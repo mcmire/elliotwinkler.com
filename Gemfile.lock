@@ -1,21 +1,37 @@
 GIT
-  remote: https://github.com/mcmire/middleman.git
-  revision: e84a1c26d092e91e65fbd6b711e2a9580e2386e5
-  branch: patches
+  remote: https://github.com/mcmire/middleman-s3_sync.git
+  revision: 1b97f4ef6c9b2c0139f61c83145fd9b9e9e1bc56
+  branch: fixes-for-ruby-3-2-0
   specs:
-    middleman (4.3.5)
+    middleman-s3_sync (4.0.3)
+      ansi (~> 1.5.0)
+      fog-aws (>= 0.1.1)
+      map
+      middleman-cli
+      middleman-core (>= 4.0.0)
+      mime-types (~> 3.1)
+      parallel
+      ruby-progressbar
+      unf
+
+GIT
+  remote: https://github.com/mcmire/middleman.git
+  revision: c6fc5b279c6910e82dfa3cc4fd8d6a400921dfc6
+  branch: patches--rebased-20220405
+  specs:
+    middleman (4.4.2)
       coffee-script (~> 2.2)
       haml (>= 4.0.5)
-      kramdown (~> 1.2)
-      middleman-cli (= 4.3.5)
-      middleman-core (= 4.3.5)
-    middleman-cli (4.3.5)
+      kramdown (>= 2.3.0)
+      middleman-cli (= 4.4.2)
+      middleman-core (= 4.4.2)
+    middleman-cli (4.4.2)
       thor (>= 0.17.0, < 2.0)
-    middleman-core (4.3.5)
-      activesupport (>= 4.2, < 5.1)
-      addressable (~> 2.3)
+    middleman-core (4.4.2)
+      activesupport (>= 6.1, < 7.0)
+      addressable (~> 2.4)
       backports (~> 3.6)
-      bundler
+      bundler (~> 2.0)
       contracts (~> 0.13.0)
       dotenv
       erubis
@@ -24,160 +40,152 @@ GIT
       fastimage (~> 2.0)
       hamster (~> 3.0)
       hashie (~> 3.4)
-      i18n (~> 0.9.0)
+      i18n (~> 1.6.0)
       listen (~> 3.0.0)
       memoist (~> 0.14)
-      padrino-helpers (~> 0.13.0)
+      padrino-helpers (~> 0.15.0)
       parallel
       rack (>= 1.4.5, < 3)
       sassc (~> 2.0)
       servolux
       tilt (~> 2.0.9)
+      toml
       uglifier (~> 3.0)
+      webrick
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.0.7.2)
+    activesupport (6.1.5)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (>= 0.7, < 2)
-      minitest (~> 5.1)
-      tzinfo (~> 1.1)
-    addressable (2.7.0)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+      zeitwerk (~> 2.3)
+    addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ansi (1.5.0)
-    backports (3.15.0)
-    bitters (2.0.3)
-      thor (~> 0.19)
-    bourbon (6.0.0)
-      thor (~> 0.19)
+    backports (3.23.0)
+    bitters (2.0.4)
+      thor (~> 1.0)
+    bourbon (7.2.0)
+      thor (~> 1.0)
     builder (3.2.4)
-    byebug (11.0.1)
-    coderay (1.1.2)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.10)
     contracts (0.13.0)
-    dotenv (2.7.5)
-    em-websocket (0.5.1)
+    dotenv (2.7.6)
+    em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
-      http_parser.rb (~> 0.6.0)
+      http_parser.rb (~> 0)
     erubis (2.7.0)
     eventmachine (1.2.7)
-    excon (0.71.1)
-    execjs (2.7.0)
-    fast_blank (1.0.0)
-    fastimage (2.1.7)
-    ffi (1.12.1)
-    fog-aws (3.5.2)
+    excon (0.92.2)
+    execjs (2.8.1)
+    fast_blank (1.0.1)
+    fastimage (2.2.6)
+    ffi (1.15.5)
+    fog-aws (3.13.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
       fog-xml (~> 0.1)
-      ipaddress (~> 0.8)
-    fog-core (2.2.0)
+    fog-core (2.3.0)
       builder
       excon (~> 0.71)
-      formatador (~> 0.2)
+      formatador (>= 0.2, < 2.0)
       mime-types
     fog-json (1.2.0)
       fog-core
       multi_json (~> 1.10)
-    fog-xml (0.1.3)
+    fog-xml (0.1.4)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
-    formatador (0.2.5)
-    haml (5.1.2)
+    formatador (1.1.0)
+    haml (5.2.2)
       temple (>= 0.8.0)
       tilt
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
     hashie (3.6.0)
-    http_parser.rb (0.6.0)
-    i18n (0.9.5)
+    http_parser.rb (0.8.0)
+    i18n (1.6.0)
       concurrent-ruby (~> 1.0)
-    ipaddress (0.8.3)
-    kramdown (1.17.0)
+    kramdown (2.3.2)
+      rexml
+    kramdown-parser-gfm (1.1.0)
+      kramdown (~> 2.0)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     map (6.6.0)
     memoist (0.16.2)
-    method_source (0.9.2)
     middleman-blog (4.0.3)
       addressable (~> 2.3)
       middleman-core (>= 4.0.0)
       tzinfo (>= 0.3.0)
-    middleman-livereload (3.4.6)
+    middleman-livereload (3.4.7)
       em-websocket (~> 0.5.1)
       middleman-core (>= 3.3)
       rack-livereload (~> 0.3.15)
-    middleman-s3_sync (4.0.3)
-      ansi (~> 1.5.0)
-      fog-aws (>= 0.1.1)
-      map
-      middleman-cli
-      middleman-core (>= 4.0.0)
-      parallel
-      ruby-progressbar
-      unf
-    mime-types (3.3.1)
+    mime-types (3.4.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2019.1009)
-    mini_portile2 (2.4.0)
-    minitest (5.14.0)
-    multi_json (1.14.1)
-    nio4r (2.5.2)
-    nokogiri (1.10.7)
-      mini_portile2 (~> 2.4.0)
-    padrino-helpers (0.13.3.4)
-      i18n (~> 0.6, >= 0.6.7)
-      padrino-support (= 0.13.3.4)
+    mime-types-data (3.2022.0105)
+    mini_portile2 (2.8.0)
+    minitest (5.15.0)
+    multi_json (1.15.0)
+    nio4r (2.5.8)
+    nokogiri (1.13.3)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
+    padrino-helpers (0.15.1)
+      i18n (>= 0.6.7, < 2)
+      padrino-support (= 0.15.1)
       tilt (>= 1.4.1, < 3)
-    padrino-support (0.13.3.4)
-      activesupport (>= 3.1)
-    parallel (1.19.1)
-    pry (0.12.2)
-      coderay (~> 1.1.0)
-      method_source (~> 0.9.0)
-    pry-byebug (3.7.0)
-      byebug (~> 11.0)
-      pry (~> 0.10)
-    public_suffix (4.0.3)
-    puma (4.3.1)
+    padrino-support (0.15.1)
+    parallel (1.22.1)
+    parslet (2.0.0)
+    public_suffix (4.0.6)
+    puma (5.6.4)
       nio4r (~> 2.0)
-    rack (2.1.1)
-    rack-contrib (2.1.0)
+    racc (1.6.0)
+    rack (2.2.3)
+    rack-contrib (2.3.0)
       rack (~> 2.0)
     rack-livereload (0.3.17)
       rack
-    rb-fsevent (0.10.3)
+    rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redcarpet (3.5.0)
-    ruby-progressbar (1.10.1)
+    redcarpet (3.5.1)
+    rexml (3.2.5)
+    ruby-progressbar (1.11.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-    sassc (2.2.1)
+    sassc (2.4.0)
       ffi (~> 1.9)
     servolux (0.13.0)
-    svg_optimizer (0.2.5)
+    svg_optimizer (0.2.6)
       nokogiri
     temple (0.8.2)
-    thor (0.20.3)
-    thread_safe (0.3.6)
+    thor (1.2.1)
     tilt (2.0.10)
-    tzinfo (1.2.6)
-      thread_safe (~> 0.1)
+    toml (0.3.0)
+      parslet (>= 1.8.0, < 3.0.0)
+    tzinfo (2.0.4)
+      concurrent-ruby (~> 1.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.6)
+    unf_ext (0.0.8.1)
+    webrick (1.7.0)
+    zeitwerk (2.5.4)
 
 PLATFORMS
   ruby
@@ -188,12 +196,12 @@ DEPENDENCIES
   builder
   haml
   kramdown
+  kramdown-parser-gfm
   middleman!
   middleman-blog
   middleman-livereload
-  middleman-s3_sync
+  middleman-s3_sync!
   mime-types
-  pry-byebug
   puma
   rack-contrib
   redcarpet (>= 3.3.3, < 4.0)
@@ -201,7 +209,7 @@ DEPENDENCIES
   svg_optimizer
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 3.2.0p-1
 
 BUNDLED WITH
-   1.17.3
+   2.4.0.dev

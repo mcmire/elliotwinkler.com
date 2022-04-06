@@ -5,24 +5,24 @@ export default function prompt(Prism) {
       inside: {
         command: {
           pattern: /(> ).+/,
-          lookbehind: true
+          lookbehind: true,
         },
         command_leader: {
-          pattern: />/
-        }
-      }
+          pattern: />/,
+        },
+      },
     },
     response: {
       pattern: /^(< ).+/m,
       inside: {
         response_leader: {
-          pattern: /</
-        }
-      }
-    }
+          pattern: /</,
+        },
+      },
+    },
   };
 
-  Prism.hooks.add("wrap", env => {
+  Prism.hooks.add("wrap", (env) => {
     if (env.type === "command_leader") {
       env.content = "❯";
     } else if (env.type === "response_leader") {

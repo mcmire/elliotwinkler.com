@@ -28,20 +28,20 @@ const COLORS = {
   codeMediumGray: "hsluv(238, 21.5%, 57%)",
   codeAlmostWhite: "hsluv(266, 31.5%, 98.5%)",
   yellow: "hsluv(86, 90%, 95%)",
-  yellowishGray: "hsluv(86, 22%, 53%)"
+  yellowishGray: "hsluv(86, 22%, 53%)",
 };
 
 COLORS.lighterBlue = {
   from: COLORS.blue,
-  transformations: [{ fn: "tint", by: 0.2 }]
+  transformations: [{ fn: "tint", by: 0.2 }],
 };
 
 COLORS.lightReddishGray = {
   from: COLORS.red,
   transformations: [
     { fn: "lighten", by: 0.2 },
-    { fn: "desaturate", by: 0.2 }
-  ]
+    { fn: "desaturate", by: 0.2 },
+  ],
 };
 
 const generatedColors = _.reduce(

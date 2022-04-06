@@ -6,31 +6,31 @@ export default function diff(Prism) {
       // Match "@@ ... @@" coord lines in unified diff.
       /^@@.*@@$/m,
       // Match coord lines in normal diff (starts with a number).
-      /^\d+.*$/m
+      /^\d+.*$/m,
     ],
     // Match inserted and deleted lines. Support both +/- and >/< styles.
     deleted: {
       pattern: /^[-<].*$/m,
       inside: {
-        marker: /^[-<]/
-      }
+        marker: /^[-<]/,
+      },
     },
     inserted: {
       pattern: /^[+>].*$/m,
       inside: {
-        marker: /^[+>]/
-      }
+        marker: /^[+>]/,
+      },
     },
     // Match "different" lines (prefixed with "!") in context diff.
     diff: {
       pattern: /^!(?!!).+$/m,
-      alias: "important"
+      alias: "important",
     },
     unchanged: {
       pattern: /^(.+)$/m,
       inside: {
-        marker: /^[ ]+/
-      }
-    }
+        marker: /^[ ]+/,
+      },
+    },
   };
 }

@@ -11,13 +11,13 @@ export default class GithubEmbed {
   }
 
   render() {
-    fetch(this.url).then(response => {
-      response.text().then(content => {
+    fetch(this.url).then((response) => {
+      response.text().then((content) => {
         const [pre, code] = this._buildPre(content);
         this.element.parentNode.replaceChild(pre, this.element);
         const codeBlock = new CodeBlock({
           codeModal: this.codeModal,
-          element: pre
+          element: pre,
         });
         Prism.highlightElement(code);
         codeBlock.render();

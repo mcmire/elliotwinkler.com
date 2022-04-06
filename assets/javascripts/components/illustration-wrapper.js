@@ -12,7 +12,7 @@ export default class IllustrationWrapper {
   }
 
   activate() {
-    this.element.addEventListener("click", event => {
+    this.element.addEventListener("click", (event) => {
       event.preventDefault();
       if (!this.isPlaying) {
         this.isPlaying = true;

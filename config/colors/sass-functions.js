@@ -5,7 +5,7 @@ const _ = require("lodash");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const sass = require("sass");
-const hsluv = require("hsluv");
+//const hsluv = require("hsluv");
 
 const HsluvColor = require("./HsluvColor");
 
@@ -24,7 +24,7 @@ function readColorsMap() {
 }
 
 function createLimiter(min, max) {
-  return value => Math.max(min, Math.min(value, max));
+  return (value) => Math.max(min, Math.min(value, max));
 }
 
 function validateArgumentType(name, arg, type) {
@@ -160,7 +160,7 @@ const sassFunctions = {
     const changedHsluvColor = hsluvColor.cloneWith({
       h: hsluvColor.h + hue,
       s: hsluvColor.s + saturation,
-      l: hsluvColor.l + lightness
+      l: hsluvColor.l + lightness,
     });
     /*
     console.log(
@@ -180,7 +180,7 @@ const sassFunctions = {
     );
     */
     return changedHsluvColor.toSassColor();
-  }
+  },
 };
 
 module.exports = {
@@ -189,5 +189,5 @@ module.exports = {
   "color($name)": sassFunctions.color,
   "get-colors()": sassFunctions.getColors,
   "adjust-hsluv-color($color, $hue: 0, $saturation: 0, $lightness: 0)":
-    sassFunctions.adjustHsluvColor
+    sassFunctions.adjustHsluvColor,
 };

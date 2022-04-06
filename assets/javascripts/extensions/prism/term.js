@@ -4,9 +4,9 @@ export default function term(Prism) {
       pattern: /^.*?\$.+/m,
       inside: {
         selector: {
-          pattern: /^.*?\$/
-        }
-      }
-    }
+          pattern: /^.*?\$/,
+        },
+      },
+    },
   };
 }

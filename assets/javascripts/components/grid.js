@@ -83,22 +83,22 @@ export default class Grid {
     setPixel({
       imageData: imageData,
       position: { x: 0, y: height - 1 },
-      color: { r: 255, g: 0, b: 0, a: pctToHex(0.2) }
+      color: { r: 255, g: 0, b: 0, a: pctToHex(0.2) },
     });
     setPixel({
       imageData: imageData,
       position: { x: 0, y: height * 0.25 - 1 },
-      color: { r: 255, g: 0, b: 0, a: pctToHex(0.05) }
+      color: { r: 255, g: 0, b: 0, a: pctToHex(0.05) },
     });
     setPixel({
       imageData: imageData,
       position: { x: 0, y: height * 0.5 - 1 },
-      color: { r: 255, g: 0, b: 0, a: pctToHex(0.1) }
+      color: { r: 255, g: 0, b: 0, a: pctToHex(0.1) },
     });
     setPixel({
       imageData: imageData,
       position: { x: 0, y: height * 0.75 - 1 },
-      color: { r: 255, g: 0, b: 0, a: pctToHex(0.05) }
+      color: { r: 255, g: 0, b: 0, a: pctToHex(0.05) },
     });
     ctx.putImageData(imageData, 0, 0);
 
@@ -139,7 +139,7 @@ export default class Grid {
       this._isVisible = false;
       this._backgroundPosition = {
         x: removeUnit(this._contentElement.style.backgroundPositionX),
-        y: removeUnit(this._contentElement.style.backgroundPositionY)
+        y: removeUnit(this._contentElement.style.backgroundPositionY),
       };
       this._save();
     }
@@ -148,7 +148,7 @@ export default class Grid {
   _save() {
     const data = JSON.stringify({
       isVisible: this._isVisible,
-      backgroundPosition: this._backgroundPosition
+      backgroundPosition: this._backgroundPosition,
     });
     localStorage.setItem("lic-grid", data);
   }
