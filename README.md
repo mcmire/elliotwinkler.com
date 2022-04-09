@@ -8,8 +8,9 @@ First, you'll want to run the setup script:
 
     bin/setup
 
-Then you'll want to make sure you clone the [blog content
-repo](git@github.com:mcmire/personal-content--blog.git).
+Then — only if you're me, sorry — you'll want to make sure you clone the
+[writings content
+repo](https://github.com/mcmire/personal-content--writings.git).
 
 ## Previewing posts
 
@@ -31,9 +32,9 @@ or staging.
 You can mark a post as unpublished by adding `published: false` to the post's
 frontmatter. Unpublished posts are always private, and this cannot be overridden.
 
-You can mark a post as future-dated by setting its `date` to, well, something in
-the future. Future-dated posts are also private, but only in production: as long
-as the `PUBLISH_FUTURE_DATED` environment variable is set to `true` in
+You can mark a post as future-dated by setting its `date` to something in the
+future. Future-dated posts are also private, but only in production: as long as
+the `PUBLISH_FUTURE_DATED` environment variable is set to `true` in
 `.env.staging`, they will be public there.
 
 What this means is that if you want to publish a draft of a post, you must
@@ -44,8 +45,8 @@ inaccessible.
 
 The site lives directly on S3, using its static website hosting feature.
 
-There's a staging bucket, which deploys to `http://staging.mcmire.me`, and a
-production bucket, which deploys to `http://mcmire.me`.
+There's a staging bucket, which deploys to `https://staging.elliotwinkler.com`,
+and a production bucket, which deploys to `https://elliotwinkler.com`.
 
 This command will build the site and then upload any modified files to the
 staging bucket:
