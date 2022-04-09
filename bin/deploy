@@ -13,7 +13,7 @@ load-dotenv-file() {
 
   # Source: <https://gist.github.com/judy2k/7656bfe3b322d669ef75364a46327836#gistcomment-2799409>
   if ! [[ -f $file ]]; then
-    echo "ERROR: No $file exists!"
+    echo "ERROR: No $file exists! Please copy .env to $file to get started."
     exit 1
   fi
 
@@ -70,5 +70,4 @@ bundle exec middleman build --verbose
 bundle exec middleman s3_sync --verbose
 aws cloudfront create-invalidation \
   --distribution-id $CDN_DISTRIBUTION_ID \
-  --paths "/*" \
-  --paths "/blog/*" &>/dev/null
+  --paths "/*" "/blog/*"
