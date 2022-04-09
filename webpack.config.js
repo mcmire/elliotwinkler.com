@@ -142,15 +142,17 @@ const config = {
           },
         ],
       },
+      /*
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: "file-loader",
         options: {
           name: "[name].[ext]",
-          publicPath: "../images/",
+          publicPath: "/images/",
           outputPath: path.join(PUBLIC_PATH, IMAGES_PATH, "/"),
         },
       },
+      */
     ],
   },
   plugins: determinePlugins(),
