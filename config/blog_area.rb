@@ -5,7 +5,7 @@ BlogAreaConfig = proc do
   files.watch(
     :source,
     path: File.expand_path(
-      "../../../personal-content--blog/posts",
+      "../../../personal-content--writings/blog/posts",
       __FILE__
     ),
     # This is where the resources will be placed in the sitemap —
@@ -17,7 +17,7 @@ BlogAreaConfig = proc do
   files.watch(
     :source,
     path: File.expand_path(
-      "../../../personal-content--blog/assets",
+      "../../../personal-content--writings/blog/assets",
       __FILE__
     ),
     destination_dir: "blog/assets",
@@ -27,7 +27,7 @@ BlogAreaConfig = proc do
   files.watch(
     :source,
     path: File.expand_path(
-      "../../../personal-content--blog/assets",
+      "../../../personal-content--writings/blog/assets",
       __FILE__
     ),
     destination_dir: "blog/assets",
@@ -36,7 +36,7 @@ BlogAreaConfig = proc do
   files.watch(
     :source,
     path: File.expand_path(
-      "../../../personal-content--blog/demos",
+      "../../../personal-content--writings/blog/demos",
       __FILE__
     ),
     destination_dir: "blog/demos",

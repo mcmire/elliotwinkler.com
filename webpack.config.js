@@ -82,7 +82,7 @@ const config = {
   entry: { all: "./" + path.join(JAVASCRIPTS_PATH, "all.js") },
   resolve: {
     alias: {
-      blog: path.resolve(__dirname, "../personal-content--blog/"),
+      blog: path.resolve(__dirname, "../personal-content--writings/blog"),
     },
     modules: [
       path.resolve(CONTEXT_DIR, JAVASCRIPTS_PATH),
