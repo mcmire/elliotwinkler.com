@@ -9,4 +9,5 @@
 
 @import "home";
 @import "404";
+// See `aliases` section in `webpack.config.js` for how `~` is interpreted
 @import "~blog/assets/index";
