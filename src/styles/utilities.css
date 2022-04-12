@@ -1,0 +1,16 @@
+.pixelated {
+  image-rendering: pixelated;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.no-hyphenation {
+  hyphens: none;
+}
+
+.tab-size-2 {
+  tab-size: 2;
+}
+

@@ -1,0 +1,19 @@
+---
+import TypicalLayout from "../../layouts/TypicalLayout.astro";
+import Link from "@components/Link.astro";
+
+const allPosts = (await Astro.glob('../posts/*.md'))
+  .filter(post => !post.frontmatter.draft)
+  .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+---
+<TypicalLayout>
+  {
+    allPosts.map(post => (
+      <div>
+        <Link href={post.url}>
+          {post.frontmatter.title}
+        </Link>
+      </div>
+    ))
+  }
+</TypicalLayout>

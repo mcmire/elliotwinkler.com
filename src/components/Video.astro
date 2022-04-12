@@ -1,0 +1,15 @@
+---
+import getYouTubeId from "../lib/getYoutubeId";
+
+const { url } = Astro.props;
+const id = getYouTubeId(url);
+console.log('url', url, 'id', id)
+---
+<div class="mb-4 text-center">
+  <iframe
+    id="ytplayer"
+    class="inline-block max-h-72"
+    src={id === null ? '' : `https://www.youtube.com/embed/${id}?autoplay=1&controls=0`}
+    frameBorder="0"
+  />
+</div>

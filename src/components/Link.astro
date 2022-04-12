@@ -1,0 +1,13 @@
+---
+import classnames from "classnames";
+import isAbsoluteUrl from "is-absolute-url";
+
+const { href } = Astro.props;
+const isExternal = href != null && isAbsoluteUrl(href);
+---
+<a
+  href={href}
+  data-before={"\ue905"}
+  class="text-blue-500 border-b border-transparent hover:border-blue-500 visited:text-gray-500 visited:hover:border-gray-500"
+  target={isExternal ? "_blank" : ""}
+><slot /></a>

@@ -1,5 +1,5 @@
 {
-  "name": "@example/blog",
+  "name": "elliotwinkler.com",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,10 +9,21 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/preact": "^0.0.2",
-    "astro": "^1.0.0-beta.5"
+    "@astrojs/tailwind": "^0.1.0",
+    "astro": "^1.0.0-beta.5",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.2",
+    "remark-behead": "^3.0.0",
+    "remark-gfm": "^3.0.1",
+    "stylelint": "^14.6.1",
+    "stylelint-config-recommended": "^7.0.0",
+    "stylelint-config-standard": "^25.0.0"
   },
   "dependencies": {
-    "preact": "^10.7.0"
+    "classnames": "^2.3.1",
+    "is-absolute-url": "^4.0.1",
+    "youtube-id": "^1.0.0"
   }
 }

@@ -1,0 +1,29 @@
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  @apply font-sans mb-5;
+}
+
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  @apply font-bold;
+}
+
+.markdown h3,
+.markdown h4 {
+  @apply mt-5;
+}
+
+.markdown h3 {
+  @apply text-2xl;
+}
+
+.markdown h4 {
+  @apply text-xl;
+}
+
+.markdown h5 {
+  @apply text-lg;
+}

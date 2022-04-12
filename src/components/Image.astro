@@ -1,0 +1,21 @@
+---
+import classnames from "classnames";
+
+const { style = "centeredWithMaxHeight", url } = Astro.props;
+---
+<div
+  class={classnames({
+    "mb-4 text-center": style === "centeredWithMaxHeight",
+    "m-8 text-center lg:float-right lg:mt-0 ml-4 mb-4":
+      style === "floating",
+  })}
+>
+  <img
+    class={classnames("inline-block", {
+      "max-h-72 pb-4":
+        style === "centeredWithMaxHeight" || style === "floating",
+      "lg:max-w-[10em]": style === "floating",
+    })}
+    src={url}
+  />
+</div>

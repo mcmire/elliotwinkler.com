@@ -1,0 +1,11 @@
+---
+import Layout from "./Layout.astro";
+
+const { content } = Astro.props;
+---
+<Layout class="p-4">
+  <h2 class="font-semibold text-3xl font-sans text-center mb-8">{content.title}</h2>
+  <div class="markdown">
+    <slot />
+  </div>
+</Layout>
