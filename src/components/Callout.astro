@@ -1,0 +1,32 @@
+---
+import classnames from "classnames";
+
+type CalloutType = "note" | "warning";
+type Callout = {
+  before: string;
+  className: string;
+};
+
+const calloutsByPageIcon: Record<CalloutType, Callout> = {
+  note: {
+    before: "\ue901",
+    className: "bg-blue-50 border border-blue-200 before:text-blue-800",
+  },
+  warning: {
+    before: "\uf071",
+    className: "bg-amber-50 border border-amber-200 before:text-amber-800",
+  },
+};
+
+const { type } = Astro.props;
+const { before, className } = calloutsByPageIcon[type];
+---
+<div
+  data-before={before}
+  class={classnames(
+    className,
+    "p-4 text-sm leading-6 mb-4 first-child:inline-block before:content-[attr(data-before)] before:inline-block before:mr-2 before:font-icon before:relative before:top-[0.05rem]"
+  )}
+>
+  <slot />
+</div>

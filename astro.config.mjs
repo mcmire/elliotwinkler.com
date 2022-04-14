@@ -1,8 +1,10 @@
 import { defineConfig } from "astro/config";
 
 import tailwind from "@astrojs/tailwind";
-import remarkGfm from "remark-gfm";
+//import remarkGfm from "remark-gfm";
 import remarkBehead from "remark-behead";
+//import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,7 +16,9 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [[remarkGfm], [remarkBehead, { depth: 1 }]],
+    //remarkPlugins: [[remarkBehead, { depth: 1 }], [remarkGfm], [remarkMath]],
+    remarkPlugins: [[remarkBehead, { depth: 1 }]],
+    rehypePlugins: [[rehypeKatex]],
     shikiConfig: {
       theme: "one-dark-pro",
     },

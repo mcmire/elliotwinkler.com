@@ -1,0 +1,6 @@
+---
+const node = parseFileTreeLinesAsNode(
+  parseFileTreeContentAsLines(content.trim())
+);
+---
+<FileTreeEntries className="mb-4" entries={node.children} />

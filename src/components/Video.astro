@@ -3,7 +3,6 @@ import getYouTubeId from "../lib/getYoutubeId";
 
 const { url } = Astro.props;
 const id = getYouTubeId(url);
-console.log('url', url, 'id', id)
 ---
 <div class="mb-4 text-center">
   <iframe

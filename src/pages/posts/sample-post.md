@@ -1,8 +1,11 @@
 ---
 layout: ../../layouts/BlogPostLayout.astro
 setup: |
+  import Callout from "@components/Callout.astro"
+  import FileTree from "@components/FileTree.astro"
   import Image from "@components/Image.astro"
   import Video from "@components/Video.astro"
+  const foo = "foo";
 title: Test blog post
 teaser: A simple blog post for testing purposes.
 date: 2022-04-10
@@ -164,3 +167,57 @@ Some HTML:
   </body>
 </html>
 ```
+
+## Callouts
+
+<Callout type="note">
+  This is a note!
+
+  This is also a note!
+</Callout>
+
+<Callout type="warning">
+  This is a **warning**!
+
+  Here we can go *really* crazy.
+</Callout>
+
+## Rare things
+
+## Quotes
+
+Here's a quote from some famous dude:
+
+> Know when to hold 'em, know when to fold 'em.
+>
+> *— Billy Ray Cyrus or whatever*
+>
+
+## Math
+
+Euler's identity (sort of — we have to figure this out):
+
+$$
+e^i + 1 = 0
+$$
+
+## Custom components
+
+We can put a photo in a post without anything additional, but normally we would
+want an image that would be centered and has a max height, like this:
+
+<Image
+  style="centeredWithMaxHeight"
+  url="https://dogtime.com/assets/uploads/2011/03/puppy-development.jpg" />
+
+<Image
+  style="floating"
+  url="https://dogtime.com/assets/uploads/2011/03/puppy-development.jpg" />
+
+However, we can also have an inline image that floats to the right.
+
+Just putting some more text here so the image will have enough room.
+
+This is a file tree:
+
+<FileTree content={foo} />

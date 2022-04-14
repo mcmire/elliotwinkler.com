@@ -1,0 +1,3 @@
+.markdown blockquote {
+  @apply border-l-4 border-gray-300 text-gray-600 ml-4 pl-4;
+}
