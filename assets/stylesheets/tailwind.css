@@ -1,0 +1,55 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer components {
+  .link {
+    @apply text-blue-600 border-b border-gray-200 hover:border-blue-700 active:border-blue-700 visited:text-gray-500 visited:hover:border-gray-500 visited:active:border-gray-500 dark:text-yellow-600 dark:border-gray-700 dark:hover:border-yellow-600 dark:active:border-yellow-600;
+  }
+
+  .link--on-medium {
+    @apply border-transparent visited:hover:border-gray-500;
+  }
+}
+
+@layer utilities {
+  .anchor-middle {
+    text-anchor: middle;
+  }
+
+  .dominant-baseline-alphabetic {
+    dominant-baseline: alphabetic;
+  }
+
+  .dominant-baseline-central {
+    dominant-baseline: central;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .pixelated {
+    image-rendering: pixelated;
+  }
+
+  .no-hyphens {
+    hyphens: none;
+  }
+
+  .stroke-dasharray-2 {
+    stroke-dasharray: 2px;
+  }
+
+  .tab-size-2 {
+    tab-size: 2;
+  }
+
+  .text-anchor-start {
+    text-anchor: start;
+  }
+
+  .wrap-normal {
+    word-wrap: normal;
+  }
+}

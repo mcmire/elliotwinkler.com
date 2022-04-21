@@ -3,7 +3,7 @@ module SvgHelpers
   def embed_svg(path, attributes = {})
     given_attributes = attributes.dup
     given_class = extract_class_from_attributes(given_attributes)
-    css_class = build_css_class(given_class, ["image"])
+    css_class = build_css_class(given_class, ["media media--image"])
     final_attributes = { class: css_class }
     content_tag(:div, generate_svg(path, attributes), final_attributes)
   end

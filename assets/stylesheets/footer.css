@@ -1,0 +1,7 @@
+.footer {
+  @apply px-4 py-2 bg-gray-300 text-xs text-center leading-5 text-gray-500 dark:bg-gray-700 bp4:border bp4:text-sm bp4:bg-gray-100 bp4:px-4 bp4:py-4 bp4:row-start-3 bp4:row-end-4 bp4:col-start-1 bp4:col-end-3 bp5:col-start-2 dark:bp4:bg-gray-700 dark:bp4:border-none;
+
+  &--with-toc {
+    @apply bp4:mr-12;
+  }
+}

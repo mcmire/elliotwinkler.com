@@ -1,0 +1,7 @@
+.post-header {
+  @apply font-bold text-2xl mb-8 text-center bp1:text-3xl;
+
+  &--with-toc {
+    @apply bp4:row-start-1 bp4:row-end-2 bp4:col-start-2 bp4:col-end-2;
+  }
+}

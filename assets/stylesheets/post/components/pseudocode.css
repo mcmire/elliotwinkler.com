@@ -1,0 +1,18 @@
+.post {
+  .pseudocode {
+    @apply bg-blue-50 text-sm leading-5 p-4 my-5 m-0 dark:bg-[rgb(30,58,138,0.25)];
+
+    &,
+    ul {
+      @apply list-none;
+    }
+
+    code {
+      @apply text-xs;
+    }
+
+    ul {
+      @apply ml-4;
+    }
+  }
+}

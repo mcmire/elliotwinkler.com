@@ -1,0 +1,13 @@
+.post {
+  pre {
+    @apply bg-gray-100 p-4 no-hyphens my-5 relative tab-size-2 whitespace-pre break-normal wrap-normal max-h-96 overflow-y-scroll text-sm leading-6 tracking-tight bp2:text-xs bp2:max-h-80 bp3:text-sm bp3:leading-6 dark:bg-gray-900;
+
+    > code {
+      @apply text-inherit-font-size tracking-[inherit];
+    }
+  }
+
+  code {
+    @apply text-sm;
+  }
+}

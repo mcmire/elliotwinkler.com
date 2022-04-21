@@ -1,0 +1,28 @@
+.post {
+  figcaption {
+    @apply text-sm italic;
+  }
+
+  img,
+  picture,
+  svg,
+  iframe {
+    @apply mx-auto;
+  }
+
+  img,
+  picture,
+  svg {
+    @apply max-w-[60%];
+  }
+
+  img,
+  picture,
+  iframe {
+    @apply border border-gray-200 dark:border-gray-500;
+  }
+
+  iframe {
+    @apply my-5 w-full bp1:max-w-[80%];
+  }
+}

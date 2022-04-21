@@ -1,0 +1,124 @@
+.post {
+  code[class*="language-"],
+  pre[class*="language-"] {
+    color: var(--solarized-base00);
+  }
+
+  code[class*="language-"]::selection,
+  pre[class*="language-"]::selection,
+  code[class*="language-"] ::selection,
+  pre[class*="language-"] ::selection {
+    background: var(--solarized-base2);
+  }
+
+  .token.comment,
+  .token.doctype {
+    color: var(--solarized-base1);
+  }
+
+  .token.constant,
+  .token.string,
+  .token.attr-value,
+  .token.number {
+    color: var(--solarized-cyan);
+  }
+
+  .token.function,
+  .token.class-name,
+  .token.assign-left,
+  .token.tag,
+  .token.selector {
+    color: var(--solarized-blue);
+  }
+
+  .token.variable {
+    color: var(--solarized-orange);
+  }
+
+  .token.builtin,
+  .token.operator {
+    color: var(--solarized-green);
+  }
+
+  .token.property,
+  .token.keyword {
+    color: var(--solarized-yellow);
+  }
+
+  .token.punctuation {
+    color: var(--solarized-base00);
+  }
+
+  .token.namespace {
+    opacity: 0.7;
+  }
+
+  /*
+  .token.important,
+  .token.bold {
+    font-weight: bold;
+  }
+  .token.italic {
+    font-style: italic;
+  }
+
+  .token.entity {
+    cursor: help;
+  }
+  */
+
+  /* Language: Diff */
+
+  /* TODO: Necessary? */
+  .language-diff {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .language-diff .token.marker {
+    padding-right: 1em;
+  }
+
+  .language-diff .token.unchanged,
+  .language-diff .token.inserted,
+  .language-diff .token.deleted {
+    padding-right: var(--small-spacing);
+    display: inline-block;
+    width: 100%;
+  }
+
+  .language-diff .token.inserted {
+    background-color: color("code-light-green");
+  }
+
+  .language-diff .token.deleted {
+    background-color: color("code-light-red");
+  }
+
+  /* Language: Prompt */
+
+  .language-prompt .token.command_leader,
+  .language-prompt .token.response_leader {
+    color: var(--solarized-base1);
+    position: relative;
+    top: 1px;
+  }
+
+  .language-prompt .token.response_leader {
+    left: -1px;
+  }
+
+  .language-prompt .token.response {
+    color: var(--solarized-cyan);
+  }
+
+  /* Language: Term */
+
+  .language-term {
+    color: color("code-medium-gray");
+  }
+
+  .language-term .token.prompt {
+    color: var(--base-font-color);
+  }
+}

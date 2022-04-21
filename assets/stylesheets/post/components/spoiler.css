@@ -1,0 +1,9 @@
+.post {
+  .spoiler {
+    @apply blur-sm cursor-pointer transition-[filter] duration-75;
+
+    &.revealed {
+      @apply blur-none cursor-default;
+    }
+  }
+}

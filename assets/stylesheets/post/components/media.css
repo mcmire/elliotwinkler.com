@@ -1,0 +1,41 @@
+.post {
+  .media {
+    @apply my-5;
+
+    &--floating {
+      @apply mt-8 ml-8 mb-8 text-center bp2:float-right bp2:mt-0 bp2:ml-8 bp2:mb-8;
+
+      img,
+      picture,
+      svg {
+        @apply bp2:max-w-none;
+      }
+    }
+
+    &--sm {
+      img,
+      picture,
+      svg,
+      iframe {
+        @apply max-w-none max-h-64;
+      }
+    }
+
+    &--xl {
+      img,
+      picture,
+      svg,
+      iframe {
+        @apply max-h-96;
+      }
+    }
+  }
+
+  .embed {
+    @apply text-center mb-4;
+  }
+
+  .embed.video iframe {
+    @apply aspect-video max-w-[80%] bp2:max-w-[50%] bp4:max-w-[80%] w-full;
+  }
+}

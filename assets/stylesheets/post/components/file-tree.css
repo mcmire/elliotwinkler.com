@@ -1,0 +1,31 @@
+.post {
+  .file-tree {
+    @apply p-4 ml-0 my-5 font-mono text-sm tracking-tight border border-dashed border-gray-400 clear-both leading-6 dark:border-gray-600;
+
+    &,
+    ul {
+      @apply list-none;
+    }
+
+    ul {
+      @apply mt-1 ml-6 last:mb-0;
+    }
+
+    &__directory > span,
+    &__file > span {
+      @apply before:font-icon before:align-middle before:mr-2 mb-1;
+    }
+
+    &__directory {
+      @apply ml-1;
+
+      > span {
+        @apply text-blue-600 before:text-blue-600 before:content-['\e904'] dark:text-emerald-600 dark:before:text-emerald-600;
+      }
+    }
+
+    &__file > span {
+      @apply before:content-['\e900'] before:ml-1;
+    }
+  }
+}

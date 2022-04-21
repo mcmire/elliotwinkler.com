@@ -1,0 +1,6 @@
+.post {
+  b,
+  strong {
+    @apply font-semibold;
+  }
+}

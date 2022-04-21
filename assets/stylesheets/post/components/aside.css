@@ -1,0 +1,13 @@
+.post {
+  .aside {
+    @apply p-4 my-5 text-sm leading-6 border-2 before:relative before:top-[0.1em] before:font-icon;
+
+    &--heads-up {
+      @apply bg-red-100 border-red-300 before:content-['\f071'] before:mr-3 dark:bg-[rgba(127,29,29,0.25)] dark:border-[rgb(153,27,27,0.25)];
+    }
+
+    &--tip {
+      @apply bg-amber-100 border-amber-300 before:content-['\e901'] before:mr-2 dark:bg-[rgb(120,53,15,0.25)] dark:border-[rgb(146,64,14,0.25)];
+    }
+  }
+}

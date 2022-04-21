@@ -5,9 +5,9 @@ set -euo pipefail
 ### PROJECT SETUP ##############################################################
 
 provision-project() {
-  if ! type ngrok &>/dev/null; then
+  if ! has-executable ngrok; then
     banner "Installing ngrok"
-    brew cask install ngrok
+    brew install ngrok/ngrok/ngrok
   fi
 }
 

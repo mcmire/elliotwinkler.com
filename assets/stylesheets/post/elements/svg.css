@@ -1,0 +1,82 @@
+/* TODO: We shouldn't have SVG with classes in it */
+svg {
+  .cell text,
+  .cell-text,
+  .small-text,
+  .centered-text {
+    @apply anchor-middle dominant-baseline-central;
+  }
+
+  .vertically-centered-text {
+    @apply dominant-baseline-central;
+  }
+
+  .cell text,
+  .cell-text {
+    @apply text-[23px];
+  }
+
+  .small-text {
+    @apply text-[15px];
+  }
+
+  .paragraph-text {
+    @apply dominant-baseline-alphabetic text-anchor-start fill-gray-700;
+  }
+
+  .monospace-text {
+    @apply font-mono text-sm;
+  }
+
+  .black-stroke {
+    @apply stroke-black;
+  }
+
+  .white-stroke {
+    @apply stroke-white;
+  }
+
+  .red-stroke {
+    @apply stroke-red-500;
+  }
+
+  .dashed {
+    @apply stroke-dasharray-2;
+  }
+
+  .white-fill {
+    @apply fill-white;
+  }
+
+  .black-fill {
+    @apply fill-black;
+  }
+
+  .grey-fill {
+    @apply fill-gray-300;
+  }
+
+  .dark-grey-fill {
+    @apply fill-gray-500;
+  }
+
+  .red-fill {
+    @apply fill-red-500;
+  }
+
+  .blue-fill {
+    @apply fill-blue-500;
+  }
+
+  .pink-fill {
+    @apply fill-stone-500;
+  }
+
+  .medium-text {
+    @apply font-normal;
+  }
+
+  use {
+    @apply fill-inherit stroke-inherit;
+  }
+}

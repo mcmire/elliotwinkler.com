@@ -1,0 +1,7 @@
+.post-body {
+  @apply mb-8 bp4:row-start-2 bp4:row-end-3 bp4:col-start-2 bp4:col-end-3;
+
+  &--with-toc {
+    @apply bp4:mr-12;
+  }
+}

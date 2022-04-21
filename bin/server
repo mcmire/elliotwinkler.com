@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
 
+# To turn on Middleman logging, add `--verbose` to the command below
 yarn nodemon \
   --watch . \
   --watch bin \
   --watch config \
-  --ext rb,js,scss \
+  --ext rb,erb \
   --exec "bundle exec middleman"

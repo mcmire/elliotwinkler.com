@@ -72,7 +72,7 @@ export default class Grid {
   _generate() {
     const width = 1;
     const bodyStyle = window.getComputedStyle(this._bodyElement);
-    const height = removeUnit(bodyStyle.lineHeight);
+    const height = removeUnit(bodyStyle.lineHeight) || 16;
 
     const canvas = document.createElement("canvas");
     canvas.width = width;
@@ -102,7 +102,7 @@ export default class Grid {
     });
     ctx.putImageData(imageData, 0, 0);
 
-    canvas.toDataURL("image/png");
+    return canvas.toDataURL("image/png");
   }
 
   _shift(event) {

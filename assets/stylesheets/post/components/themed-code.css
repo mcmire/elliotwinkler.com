@@ -1,0 +1,91 @@
+.post {
+  .token.comment,
+  .token.doctype {
+    @apply text-gray-500;
+  }
+
+  .token.string,
+  .token.attr-value {
+    @apply text-emerald-600 dark:text-[rgb(56,157,126)];
+  }
+
+  .token.number {
+    @apply text-cyan-500 dark:text-[rgb(78,164,179)];
+  }
+
+  .token.assign-left,
+  .token.tag,
+  .token.selector {
+    @apply text-indigo-600 dark:text-[rgb(131,127,208)];
+  }
+
+  .token.variable {
+    @apply text-pink-600 dark:text-[rgb(70,109,186)];
+  }
+
+  .token.builtin,
+  .token.operator,
+  .token.punctuation {
+    @apply text-gray-500;
+  }
+
+  .token.keyword {
+    @apply text-rose-500 dark:text-[rgb(215,126,141)];
+  }
+
+  .token.script {
+    /* Note: dark color should be the same color as the body */
+    @apply text-black dark:text-gray-400;
+  }
+
+  /* Diff */
+
+  .language-diff {
+    @apply pl-0;
+
+    .token.marker {
+      @apply px-4;
+    }
+
+    .token.unchanged,
+    .token.inserted,
+    .token.deleted {
+      @apply pr-4 inline-block w-full;
+    }
+
+    .token.inserted {
+      @apply bg-green-100;
+    }
+
+    .token.deleted {
+      @apply bg-red-100;
+    }
+  }
+
+  /* Language: Prompt */
+
+  .language-prompt {
+    .token.command_leader,
+    .token.response_leader {
+      @apply text-gray-700;
+    }
+
+    .token.response_leader {
+      @apply -left-px;
+    }
+
+    .token.response {
+      @apply text-cyan-500;
+    }
+  }
+
+  /* Language: Term */
+
+  .language-term {
+    @apply text-gray-500;
+  }
+
+  .token.prompt {
+    @apply text-black;
+  }
+}

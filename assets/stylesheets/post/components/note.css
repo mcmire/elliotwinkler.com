@@ -1,0 +1,5 @@
+.post {
+  .note {
+    @apply bg-yellow-100 p-4 text-sm dark:bg-gray-900;
+  }
+}

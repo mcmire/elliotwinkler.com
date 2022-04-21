@@ -70,7 +70,7 @@ const postcssLoader = {
   options: {
     sourceMap: shouldOutputSourceMap(),
     postcssOptions: {
-      plugins: [require("autoprefixer")],
+      config: path.resolve(__dirname, "postcss.config.js"),
     },
   },
 };

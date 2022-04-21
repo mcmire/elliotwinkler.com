@@ -1,25 +1,56 @@
-%p.avatar
-  = image_tag "mcmire.gif"
+%div(class="h-screen flex")
+  %div(class="mx-auto")
+    %div(class="p-8")
+      %div(class="max-w-xl")
+        %div(class="w-32 h-32 relative group mx-auto mb-8")
+          = image_tag "elliot.jpg",
+            class: 'absolute top-0 left-0 w-full rounded-full border border-gray-200 backface-hidden transform transition-transform duration-300 ease-in-out group-hover:rotate-y-0 -rotate-y-180 dark:border-gray-700'
+          = image_tag "mcmire.gif",
+            class: 'absolute top-0 left-0 w-full rounded-full border border-gray-200 backface-hidden transform transition-transform duration-300 ease-in-out group-hover:rotate-y-180 pixelated dark:border-gray-700'
 
-%p
-  Hi, I'm <b>Elliot Winkler</b>, a full-stack web developer with over 15 years
-  of experience at product companies and consultancies. I work with a bunch of
-  talented folks at <a href="https://metamask.io" target="_blank">MetaMask</a>,
-  where we're making web3 accessible to all.
+        %div(class="text-center text-lg")
+          %div(class="mb-8")
+            %p(class="mb-4")
+              I'm <strong>Elliot Winkler</strong>,
+              a full-stack web developer based out of Denver, Colorado,
+              with over 15 years of experience at product companies and consultancies.
+            </p>
+            %p(class="mb-4")
+              = succeed '.' do
+                Presently I work on the core team at
+                %a(href="https://metamask.io" class="link")<
+                  MetaMask
+            %p(class="mb-4")
+              = succeed '.' do
+                I post long-form thoughts and ideas on my
+                %a(href="/blog" class="link")<
+                  blog
+              %br
+              = succeed '.' do
+                I also frequently
+                %a(href="https://twitter.com/mcmire" class="link")<
+                  tweet
+            %p(class="mb-4")
+              = succeed '.' do
+                Contact me at
+                %a(href="https://twitter.com/mcmire" class="link")
+                  @mcmire
+                or
+                %a(href="mailto:elliot.winkler@gmail.com" class="link")<
+                  elliot.winkler@gmail.com
 
-.links
-  %ul
-    %li
-      %a(href="/blog/") Blog
-    %li
-      %a(href="http://github.com/mcmire" target="_blank") Opensource code
-    %li
-      %a(href="https://observablehq.com/@mcmire" target="_blank")
-        Interactive experiments
-  %ul
-    %li
-      %a(href="https://www.linkedin.com/in/elliot-winkler/") Career
-    %li
-      %a(href="http://twitter.com/mcmire" target="_blank") Twitter
-    %li
-      %a(href="mailto:elliot.winkler@gmail.com" target="_blank") Contact
+      %hr(class="border-none h-px bg-gray-300 my-8 sm:my-12 w-2/5 mx-auto")
+
+      %ul(class="text-xl list-none text-center")
+        %li(class="mb-2 sm:inline-block sm:mr-2 sm:after:content-['•'] sm:after:ml-2 sm:after:inline-block")
+          %a(href="/blog" class="link")
+            Blog
+        %li(class="mb-2 sm:inline-block mr-2 sm:after:content-['•'] sm:after:ml-2 sm:after:inline-block")
+          %a(href="https://github.com/mcmire" target="_blank" class="link")
+            Code
+        %li(class="mb-2 sm:inline-block sm:mr-2 sm:after:content-['•'] sm:after:ml-2 sm:after:inline-block")
+          %a(href="https://observablehq.com/@mcmire" target="_blank" class="link")
+            Interactive Experiments
+        %li(class="sm:inline-block")
+          %a(href="https://www.linkedin.com/in/elliot-winkler/" target="_blank" class="link")
+            Curriculum Vitae

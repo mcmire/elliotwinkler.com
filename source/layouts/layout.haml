@@ -1,15 +1,18 @@
-= wrap_layout :skeleton do
-  - content_for :head do
-    %link{ rel: "icon", type: "image/gif", href: image_path("favicon.gif") }
-  - content_for :header do
-    %h1
-      %a(href="/") Elliot Winkler
-    %nav
-      %ul
-        %li
-          %a(href="/blog/") Blog
-        %li
-          %a(href="http://github.com/mcmire" target="_blank") Code
-        %li
-          %a(href="http://twitter.com/mcmire" target="_blank") Tweets
-  ~ yield
+!!! 5
+%html
+  %head
+    %meta(charset="utf-8")
+    %meta(content="IE=edge,chrome=1" http-equiv="X-UA-Compatible")
+    %meta(name="viewport" content="width=device-width,initial-scale=1")
+    %meta{name: "description",
+      content: yield_content(:description)&.strip || "The personal site of Elliot Winkler."}
+    %title= page_title(default: yield_content(:default_title))
+    = stylesheet_link_tag "all.bundle.css"
+    - if build?
+      = partial "shared/google_analytics"
+    %link{rel: "icon", type: "image/gif", href: image_path("favicon.gif")}
+    = yield_content :head
+  %body(class="invisible dark:bg-gray-800 dark:text-gray-400")
+    ~ yield
+    = yield_content :javascript
+    = javascript_include_tag "all.bundle.js"

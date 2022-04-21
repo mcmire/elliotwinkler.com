@@ -1,0 +1,5 @@
+.post {
+  blockquote {
+    @apply border-l-4 border-gray-300 pl-4 mb-4 text-gray-600 dark:text-gray-500 dark:border-gray-500;
+  }
+}

@@ -1,8 +1,7 @@
 import init from "./init";
 
 import "./vendor/prism";
-import "./fonts";
-import "all.scss";
+import "../stylesheets/index.css";
 
 // DOMContentLoaded needed on mobile
 window.addEventListener("DOMContentLoaded", init);

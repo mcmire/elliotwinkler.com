@@ -1,0 +1,41 @@
+= wrap_layout :article_area do
+  - if current_article
+    - content_for :description, current_article.data.teaser, flush: true
+  %h2.post-header(data-article-header)
+    %span
+    - if current_article
+      = current_article.title
+    - else
+      = current_page.data.title
+    - if current_article
+      - if current_article.date.future?
+        %span(class="text-sm bg-gray-500 p-1 uppercase text-white leading-none inline-block align-middle ml-2 dark:bg-gray-700 dark:text-gray-500")
+          draft
+      - elsif current_article.data.published == false
+        %span(class="text-sm bg-gray-500 p-1 uppercase text-white leading-none inline-block align-middle ml-2 dark:bg-gray-700 dark:text-gray-500")
+          hidden
+  .post-body(data-article-body)
+    .post(class="relative #{current_article && "post--#{current_article.slug}"}")
+      ~ yield
+    - if current_article
+      - if current_article.data.last_updated
+        %p.post-last-updated
+          = surround '(Last updated: ', ')' do
+            = current_article.data.last_updated.strftime("%B %d, %Y")
+      - if current_article.data.previous_post || current_article.data.next_post || current_article.data.next_post_coming_soon
+        %div(class="flex font-bold text-lg my-8")
+          - if current_article.data.previous_post
+            %div(class="flex-1 text-left")
+              = link_to "← Go back",
+                current_article.data.previous_post,
+                class: "link"
+          - if current_article.data.next_post
+            %div(class="flex-1 text-right")
+              = link_to "Continue →",
+                current_article.data.next_post,
+                class: "link"
+          - elsif current_article.data.next_post_coming_soon
+            %div(class="flex-1 text-right cursor-not-allowed")
+              %s Continue
+              (Coming soon!)
+              →

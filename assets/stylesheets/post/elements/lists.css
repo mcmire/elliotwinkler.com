@@ -1,0 +1,23 @@
+.post {
+  ul,
+  ol {
+    @apply ml-8 mb-4 last:mb-0;
+
+    ul,
+    ol {
+      @apply mt-1;
+    }
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  li {
+    @apply mb-1 last:mb-0;
+  }
+}

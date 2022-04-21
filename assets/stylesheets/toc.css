@@ -1,0 +1,29 @@
+#markdown-toc {
+  @apply hidden bp4:block bp4:row-start-2 bp4:row-end-3 bp4:col-start-3 bp4:col-end-4 bp4:ml-0 bp4:before:content-['Table_of_Contents'] bp4:before:text-xl bp4:before:font-bold bp4:before:mb-4 bp4:before:block;
+
+  &,
+  ul {
+    @apply mb-4 last:mb-0;
+
+    ul {
+      @apply mt-1;
+    }
+  }
+
+  &,
+  ul {
+    @apply bp4:list-disc;
+  }
+
+  li {
+    @apply ml-4 mb-1 last:mb-0;
+  }
+
+  a {
+    @apply link;
+  }
+
+  &.sticky {
+    @apply fixed;
+  }
+}
