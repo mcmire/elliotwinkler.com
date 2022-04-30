@@ -1,7 +1,7 @@
 .article-area-container {
-  @apply bp4:grid-cols-[auto_auto] bp4:min-h-screen bp4:p-8 bp4:grid bp5:grid-cols-[max-content_auto];
+  @apply bp4:grid-cols-[auto_auto] bp4:grid-rows-[auto_auto_min-content] bp4:min-h-screen bp4:p-8 bp4:grid;
 
   &--with-toc {
-    @apply bp4:grid-cols-[25%_50%_25%];
+    @apply bp4:grid-cols-[15rem_minmax(0,48rem)_minmax(25%,max-content)];
   }
 }

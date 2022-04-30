@@ -1,5 +1,5 @@
 = wrap_layout :article_area do
-  .posts
+  .pt-1
     - if blog.articles.any?
       - blog.articles.sort_by(&:title).each_with_index do |article, i|
         - 3.times do
@@ -16,5 +16,5 @@
             .post
               = render_markdown(article.data.teaser)
     - else
-      %p.text-center
+      %p
         There isn't anything here just yet.
