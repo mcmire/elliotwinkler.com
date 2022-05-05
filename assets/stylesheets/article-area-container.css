@@ -1,5 +1,5 @@
 .article-area-container {
-  @apply bp4:grid-cols-[15rem_minmax(0,48rem)] bp4:grid-rows-[auto_auto_min-content] bp4:min-h-screen bp4:p-8 bp4:grid;
+  @apply flex flex-col min-h-screen bp4:grid-cols-[15rem_minmax(0,48rem)] bp4:grid-rows-[auto_auto_min-content] bp4:min-h-screen bp4:p-8 bp4:grid;
 
   &--with-toc {
     @apply bp4:grid-cols-[15rem_minmax(0,48rem)_minmax(25%,max-content)];

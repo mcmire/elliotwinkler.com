@@ -2,19 +2,18 @@
   .pt-1
     - if blog.articles.any?
       - blog.articles.sort_by(&:title).each_with_index do |article, i|
-        - 3.times do
-          .mb-8
-            %h2.font-bold.text-xl.leading-7.mb-2
-              %a(class="link" href="#{article.url}")
-                = article.title
-              - if article.data.published == false
-                %span(class="text-sm bg-gray-500 p-1 uppercase text-white leading-none inline-block align-middle ml-2 dark:bg-gray-700 dark:text-gray-500")
-                  hidden
-              - if article.data.future?
-                %span(class="text-sm bg-gray-500 p-1 uppercase text-white leading-none inline-block align-middle ml-2 dark:bg-gray-700 dark:text-gray-500")
-                  draft
-            .post
-              = render_markdown(article.data.teaser)
+        .mb-8
+          %h2.font-bold.text-xl.leading-7.mb-2
+            %a(class="link" href="#{article.url}")
+              = article.title
+            - if article.data.published == false
+              %span(class="text-sm bg-gray-500 p-1 uppercase text-white leading-none inline-block align-middle ml-2 dark:bg-gray-700 dark:text-gray-500")
+                hidden
+            - if article.data.future?
+              %span(class="text-sm bg-gray-500 p-1 uppercase text-white leading-none inline-block align-middle ml-2 dark:bg-gray-700 dark:text-gray-500")
+                draft
+          .post
+            = render_markdown(article.data.teaser)
     - else
-      %p
-        There isn't anything here just yet.
+      %p(class="text-center bp1:text-left bp4:leading-7")
+        There isn't anything here just yet!
