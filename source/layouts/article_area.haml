@@ -13,12 +13,12 @@
         %a.modal-close(href="#" data-role="modal-close") Close
       .modal-content.hidden(data-role="modal-content")
   %div.article-area-container(data-container)
-    %header(class="px-4 py-2 border-b bg-gray-500 bp1:flex bp1:justify-between bp4:bg-transparent bp4:border-none bp4:block bp4:p-0 bp4:text-gray-400 bp4:row-start-1 bp4:row-end-3 bp4:col-start-1 bp4:col-end-2 bp4:mr-12 bp4:text-right dark:bg-gray-600 dark:border-gray-900 dark:bp4:text-gray-600")
-      %h1(class="font-bold uppercase bp4:leading-10 bp4:mb-4")
-        %a(class="flex items-center text-white opacity-75 hover:opacity-100 justify-center mb-2 bp1:mb-0 bp1:justify-start bp4:text-inherit bp4:opacity-100 bp4:hover:text-gray-700 bp4:justify-end dark:bp4:hover:text-gray-500" href="/")
+    %header(class="px-4 py-2 border-b bg-gray-500 bp1:leading-none bp1:flex bp1:justify-between bp4:bg-transparent bp4:border-none bp4:block bp4:p-0 bp4:text-gray-400 bp4:row-start-1 bp4:row-end-3 bp4:col-start-1 bp4:col-end-2 bp4:mr-12 bp4:text-right dark:bg-gray-600 dark:border-gray-900 dark:bp4:text-gray-600")
+      %h1(class="font-bold uppercase mb-1 bp1:mb-0 bp4:leading-10 bp4:mb-4")
+        %a(class="flex items-center text-white opacity-75 hover:opacity-100 justify-center bp1:mb-0 bp1:justify-start bp4:text-inherit bp4:opacity-100 bp4:hover:text-gray-700 bp4:justify-end dark:bp4:hover:text-gray-500" href="/")
           = image_tag "mcmire.gif", class: "h-[1.25em] rounded-full mr-2"
           Elliot Winkler
-      %ul(class="flex gap-3 justify-center bp1:justify-start bp4:block")
+      %ul(class="flex gap-3 justify-center text-sm bp1:text-inherit-font-size bp1:justify-start bp4:block")
         %li(class="bp4:mb-2")
           %a(class="text-white opacity-75 hover:opacity-100 bp4:text-inherit bp4:hover:text-gray-700 dark:bp4:hover:text-gray-500" href="/blog/")
             Blog
@@ -32,18 +32,18 @@
         %li(class="bp4:mb-2")
           %a(class="text-white opacity-75 hover:opacity-100 bp4:text-inherit bp4:hover:text-gray-700 dark:bp4:hover:text-gray-500" href="http://twitter.com/mcmire" target="_blank")
             Tweets
-    %main(class="p-8 bp4:p-0")
+    %main(class="p-8 max-w-[48rem] mx-auto bp4:max-w-none bp4:p-0")
       %div(class="mb-8" data-article-area)
         ~ yield
     %footer.footer(data-footer)
       %div
         © #{Date.today.year} Elliot Winkler.
         Powered by
-        %a(class="text-gray-700 border-b border-transparent hover:border-gray-700 dark:text-gray-400 dark:hover:border-gray-400" href="https://middlemanapp.com" target="_blank")<
+        %a(class="text-gray-500 border-b border-transparent hover:border-gray-500 dark:text-gray-400 dark:hover:border-gray-400" href="https://middlemanapp.com" target="_blank")<
           Middleman
         and hosted on S3.
       %div
         Code available on
         = succeed '.' do
-          %a(class="text-gray-700 border-b border-transparent hover:border-gray-700 dark:text-gray-400 dark:hover:border-gray-400" href="https://github.com/mcmire/elliotwinkler.com" target="_blank")<
+          %a(class="text-gray-500 border-b border-transparent hover:border-gray-500 dark:text-gray-400 dark:hover:border-gray-400" href="https://github.com/mcmire/elliotwinkler.com" target="_blank")<
             GitHub
