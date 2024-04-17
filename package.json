@@ -1,0 +1,14 @@
+{
+  "name": "elliotwinkler.com",
+  "private": true,
+  "packageManager": "yarn@4.1.0",
+  "dependencies": {
+    "astro": "^4.6.2"
+  },
+  "scripts": {
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "start": "astro dev"
+  }
+}
