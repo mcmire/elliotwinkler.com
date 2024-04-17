@@ -1,0 +1,49 @@
+.markdown {
+  .callout {
+    @apply border rounded my-8 pb-1 res-text-sm dark:pb-0;
+  }
+
+  .callout__header {
+    @apply flex items-center gap-1 px-3 py-2 font-bold;
+
+    svg {
+      @apply h-[1.25em] -ml-[0.1em];
+    }
+  }
+
+  .callout__body {
+    @apply px-3 py-3;
+  }
+
+  .callout--tip {
+    @apply bg-green-50 border-green-400 dark:bg-green-900/50 dark:border-transparent;
+
+    .callout__header {
+      @apply bg-green-100 text-green-700 dark:bg-green-100/10 dark:text-gray-200;
+    }
+  }
+
+  .callout--warning {
+    @apply bg-amber-50 border-amber-400 dark:bg-amber-900/50 dark:border-transparent;
+
+    .callout__header {
+      @apply bg-amber-100 text-amber-700 dark:bg-amber-100/10 dark:text-gray-200;
+    }
+  }
+
+  .callout--stop {
+    @apply bg-red-50 border-red-400 dark:bg-red-900/50 dark:border-transparent;
+
+    .callout__header {
+      @apply bg-red-100 text-red-700 dark:bg-red-100/10 dark:text-gray-200;
+    }
+  }
+
+  .callout--note {
+    @apply bg-blue-50 border-blue-400 dark:bg-blue-900/50 dark:border-transparent;
+
+    .callout__header {
+      @apply bg-blue-100 text-blue-700 dark:bg-blue-100/10 dark:text-gray-200;
+    }
+  }
+}

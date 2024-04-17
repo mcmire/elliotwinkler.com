@@ -1,0 +1,41 @@
+---
+import { Icon } from "astro-icon/components";
+
+type CalloutType = "tip" | "warning" | "stop" | "note";
+
+type Props = {
+  type?: CalloutType;
+  title?: string;
+};
+
+function determineHeader(calloutType: CalloutType) {
+  switch (calloutType) {
+    case "tip":
+      return { icon: "heroicons:light-bulb-20-solid", text: "Tip" };
+    case "warning":
+      return {
+        icon: "heroicons:exclamation-triangle-20-solid",
+        text: "Warning",
+      };
+    case "stop":
+      return { icon: "heroicons:hand-raised-20-solid", text: "Wait!" };
+    default:
+      return { icon: "heroicons:information-circle-20-solid", text: "Note" };
+  }
+}
+
+const props = Astro.props;
+const type = props.type ?? "note";
+const header = determineHeader(type);
+const title = props.title ?? header.text;
+---
+
+<div class={`callout callout--${type}`}>
+  <div class="callout__header">
+    <Icon name={header.icon} />
+    {title}
+  </div>
+  <div class="callout__body">
+    <slot />
+  </div>
+</div>

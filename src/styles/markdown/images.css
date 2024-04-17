@@ -1,0 +1,7 @@
+.markdown img {
+  @apply border border-slate-200 border rounded shadow-md block dark:border-transparent;
+}
+
+.markdown :not([data-astro-source-file]) img {
+  @apply my-6;
+}

@@ -1,0 +1,15 @@
+{
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ],
+  "plugins": ["prettier-plugin-astro", "prettier-plugin-packagejson"],
+  "quoteProps": "as-needed",
+  "singleQuote": false,
+  "tabWidth": 2,
+  "trailingComma": "all"
+}

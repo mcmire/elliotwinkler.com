@@ -1,0 +1,47 @@
+.markdown {
+  :not(pre) code {
+    @apply text-[0.9em] bg-black/5 px-1 py-0.5 dark:bg-white/5;
+  }
+
+  [data-remark-code-title] {
+    @apply bg-neutral-100 mt-8 px-4 py-1 res-text-sm inline-block text-right border-b border-white dark:bg-slate-800 dark:text-slate-400 dark:border-slate-900;
+  }
+
+  :not([data-remark-code-title]) + .astro-code {
+    @apply mt-6;
+  }
+
+  .astro-code {
+    @apply text-[0.8em] mb-8 py-4 break-normal no-hyphenation overflow-x-hidden overflow-y-hidden relative tab-size-2 whitespace-pre dark:bg-black;
+
+    /* bg-neutral-100 */
+    background-color: #f5f5f5 !important;
+    /* bg-slate-800 */
+    --shiki-dark-bg: #1e293b !important;
+
+    .line {
+      @apply px-4 block;
+    }
+
+    .line.highlighted {
+      @apply bg-black/5 border-l border-blue-500 dark:bg-white/5;
+
+      span {
+        background-color: transparent !important;
+      }
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown {
+    .astro-code,
+    .astro-code .line span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg) !important;
+      font-style: var(--shiki-dark-font-style) !important;
+      font-weight: var(--shiki-dark-font-weight) !important;
+      text-decoration: var(--shiki-dark-text-decoration) !important;
+    }
+  }
+}

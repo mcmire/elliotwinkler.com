@@ -1,0 +1,29 @@
+---
+import classnames from "classnames";
+import type { HeadingNode } from "../utils.ts";
+
+type Props = {
+  tree: HeadingNode;
+};
+
+const { tree } = Astro.props;
+---
+
+<ul
+  class={classnames({
+    "ml-4 mt-2": tree.level > 1,
+  })}
+>
+  {
+    tree.children.map((child) => {
+      return (
+        <li class="mb-2">
+          <a href={`#${child.slug}`} class="link">
+            {child.text}
+          </a>
+          <Astro.self tree={child} />
+        </li>
+      );
+    })
+  }
+</ul>

@@ -1,0 +1,25 @@
+---
+import type { ComponentProps } from "astro/types";
+import { Image as AstroImage } from "astro:assets";
+import classnames from "classnames";
+
+type Props = ComponentProps<typeof AstroImage> & {
+  type?: "normal" | "floating";
+};
+
+const { type = "normal", ...rest } = Astro.props;
+---
+
+<div
+  class={classnames("text-center mb-4", {
+    "ml-4 float-right mt-0 hidden sm:block": type === "floating",
+  })}
+>
+  {/* @ts-expect-error This doesn't work on purpose */}
+  <AstroImage
+    {...rest}
+    class={classnames("inline-block pb-4", {
+      "max-w-[10em]": type === "floating",
+    })}
+  />
+</div>

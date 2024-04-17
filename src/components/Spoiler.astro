@@ -1,0 +1,19 @@
+<span is="x-spoiler" class="blur-sm transition-all cursor-pointer">
+  <slot />
+</span>
+
+<script>
+  class Spoiler extends HTMLSpanElement {
+    // The Astro Prettier plugin incorrectly sees this as an error.
+    // See: <https://github.com/withastro/prettier-plugin-astro/issues/407>
+    // eslint-disable-next-line
+    constructor() {
+      super();
+      this.addEventListener("click", () => {
+        this.classList.remove("blur-sm", "cursor-pointer");
+      });
+    }
+  }
+
+  customElements.define("x-spoiler", Spoiler, { extends: "span" });
+</script>

@@ -1,0 +1,35 @@
+.markdown :is(h2, h3, h4, h5, h6) {
+  @apply font-sans mb-4 clear-both font-medium flex items-center;
+
+  .permalink {
+    @apply opacity-0 absolute translate-x-[-100%] translate-y-[-8%] transition-opacity text-black dark:text-slate-300 w-[1.5em];
+
+    svg {
+      @apply h-[1em] inline;
+    }
+  }
+
+  &:hover .permalink {
+    @apply opacity-50;
+  }
+}
+
+.markdown :not(h2, h3, h4, h5, h6) + :is(h2, h3, h4, h5, h6) {
+  @apply mt-8;
+}
+
+.markdown h2 {
+  @apply res-text-2xl font-semibold;
+}
+
+.markdown h3 {
+  @apply res-text-xl;
+}
+
+.markdown h4 {
+  @apply res-text-lg;
+}
+
+.markdown h5 {
+  @apply res-text-md;
+}

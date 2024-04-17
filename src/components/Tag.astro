@@ -1,0 +1,10 @@
+---
+import classnames from "classnames";
+---
+
+<span
+  class={classnames(
+    "bg-cyan-500 text-white px-2 py-0.5 uppercase text-xs ml-2 rounded-md dark:bg-cyan-500/15 dark:text-slate-300",
+    Astro.props.class,
+  )}><slot /></span
+>

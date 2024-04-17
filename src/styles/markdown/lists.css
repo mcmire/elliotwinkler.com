@@ -1,0 +1,21 @@
+.markdown ul,
+.markdown ol {
+  @apply ml-4 mb-4;
+}
+
+.markdown ul {
+  @apply list-disc;
+}
+
+.markdown ol {
+  @apply list-decimal;
+}
+
+.markdown li {
+  @apply ml-4;
+}
+
+.markdown li ul,
+.markdown li ol {
+  @apply mt-1;
+}
