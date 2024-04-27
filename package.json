@@ -8,6 +8,7 @@
     "lint": "astro check && eslint . && prettier '**/*.{astro,md,json}' --check",
     "lint:fix": "eslint . --fix && prettier '**/*.{astro,md,json}' --write",
     "preview": "astro preview",
+    "setup": "./scripts/setup.sh",
     "start": "astro dev"
   },
   "dependencies": {
