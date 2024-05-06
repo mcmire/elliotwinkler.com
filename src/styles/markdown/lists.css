@@ -12,7 +12,7 @@
 }
 
 .markdown li {
-  @apply ml-4;
+  @apply ml-4 mb-4;
 }
 
 .markdown li ul,
