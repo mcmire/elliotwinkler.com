@@ -16,3 +16,4 @@ src/content/posts
 
 #!.yarn/cache
 .pnp.*
+.vercel

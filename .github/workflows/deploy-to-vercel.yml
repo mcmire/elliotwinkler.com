@@ -1,0 +1,28 @@
+name: Create deployment on Vercel
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: 'The Vercel environment you want to build the site under ("preview" or "production").'
+        required: true
+        type: string
+      writings_repo_ref:
+        description: 'The ref of the "writings" repository you want to check out, e.g. the name of a branch or a commit ID.'
+        required: true
+        type: string
+jobs:
+  deploy-to-vercel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pull Vercel environment information
+        run: yarn vercel pull --yes --environment=${{ inputs.environment }} --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build project artifacts
+        run: yarn vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          WRITINGS_REPO_REF: ${{ inputs.writings_repo_ref }}
+      - name: Deploy project artifacts to Vercel
+        run: yarn vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
