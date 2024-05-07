@@ -8,8 +8,12 @@ if [[ -z "$WRITINGS_REPO_URL" ]]; then
 fi
 
 if [[ -z "$WRITINGS_REPO_REF" ]]; then
-  echo "WRITINGS_REPO_REF is required."
-  exit 1
+  if [[ "$VERCEL_ENV" == "production" ]]; then
+    WRITINGS_REPO_REF=main
+  else
+    echo "WRITINGS_REPO_REF is required."
+    exit 1
+  fi
 fi
 
 git clone --branch "$WRITINGS_REPO_REF" "$WRITINGS_REPO_URL" /tmp/writings &&
