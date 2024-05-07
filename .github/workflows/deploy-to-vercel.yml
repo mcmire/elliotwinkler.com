@@ -23,6 +23,8 @@ jobs:
           node-version: lts/*
       - name: Install Yarn via Corepack
         run: corepack enable
+      - name: Install dependencies
+        run: yarn install --immutable
       - name: Pull Vercel environment information
         run: yarn vercel pull --yes --environment=${{ inputs.environment }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build project artifacts
