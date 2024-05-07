@@ -28,8 +28,14 @@ jobs:
       - name: Pull Vercel environment information
         run: yarn vercel pull --yes --environment=${{ inputs.environment }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build project artifacts
-        run: yarn vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [[ $VERCEL_ENVIRONMENT == "production" ]]; then
+            yarn vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          else
+            yarn vercel build --token=${{ secrets.VERCEL_TOKEN }}
+          fi
         env:
           WRITINGS_REPO_REF: ${{ inputs.writings_repo_ref }}
+          VERCEL_ENVIRONMENT: ${{ inputs.environment }}
       - name: Deploy project artifacts to Vercel
         run: yarn vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
