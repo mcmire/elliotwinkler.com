@@ -1,5 +1,7 @@
 #!/bin/bash
 
+env | sort
+
 if [[ -z "$WRITINGS_REPO_URL" ]]; then
   echo "WRITINGS_REPO_URL is required."
   exit 1
