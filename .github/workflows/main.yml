@@ -9,10 +9,10 @@ on:
       - edited
       - synchronize
 jobs:
-  main:
+  determine-vercel-environment:
     runs-on: ubuntu-latest
     steps:
-      - id: vercel-environment
+      - id: determine-vercel-environment
         name: Determine Vercel environment
         run: |
           if [[ "$GITHUB_REF_NAME" == "main" ]]; then
@@ -20,16 +20,26 @@ jobs:
           else
             echo "VERCEL_ENVIRONMENT=preview" >> "$GITHUB_OUTPUT"
           fi
-      - uses: actions/checkout@v4
-      - uses: ./.github/workflows/deploy-to-vercel.yml
-        with:
-          vercel_environment: ${{ steps.vercel-environment.outputs.VERCEL_ENVIRONMENT }}
-          writings_repo_ref: ${{ github.ref_name }}
+    outputs:
+      VERCEL_ENVIRONMENT: ${{ steps.determine-vercel-environment.outputs.VERCEL_ENVIRONMENT }}
+  deploy-to-vercel:
+    needs:
+      - determine-vercel-environment
+    uses: ./.github/workflows/deploy-to-vercel.yml
+    with:
+      vercel_environment: ${{ needs.determine-vercel-environment.outputs.VERCEL_ENVIRONMENT }}
+      writings_repo_ref: ${{ github.ref_name }}
+  add-post-deployment-comment:
+    needs:
+      - determine-vercel-environment
+      - deploy-to-vercel
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Add comment to pull request (if applicable)
-        if: ${{ github.event_name == 'pull_request' }}
         run: |
           gh pr comment "$PR_NUMBER" --body ":rocket: A $VERCEL_ENVIRONMENT deployment has been created. You can view the status of the deployment here: <https://github.com/mcmire/elliotwinkler.com/actions/workflows/deploy-to-vercel.yml>"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.issue.number }}
-          VERCEL_ENVIRONMENT: ${{ steps.vercel-environment.outputs.VERCEL_ENVIRONMENT }}
+          VERCEL_ENVIRONMENT: ${{ needs.determine-vercel-environment.outputs.VERCEL_ENVIRONMENT }}
