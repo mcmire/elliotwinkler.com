@@ -1,0 +1,34 @@
+name: Main workflow
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - id: vercel-environment
+        name: Determine Vercel environment
+        run: |
+          if [[ "$GITHUB_REF_NAME" == "main" ]]; then
+            echo "VERCEL_ENVIRONMENT=production" >> "$GITHUB_OUTPUT"
+          else
+            echo "VERCEL_ENVIRONMENT=preview" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: ./.github/workflows/deploy-to-vercel.yml
+        with:
+          vercel_environment: ${{ steps.vercel-environment.outputs.VERCEL_ENVIRONMENT }}
+          writings_repo_ref: ${{ github.ref_name }}
+      - name: Add comment to pull request (if applicable)
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          gh pr comment "$PR_NUMBER" --body ":rocket: A $VERCEL_ENVIRONMENT deployment has been created. You can view the status of the deployment here: <https://github.com/mcmire/elliotwinkler.com/actions/workflows/deploy-to-vercel.yml>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+          VERCEL_ENVIRONMENT: ${{ steps.vercel-environment.outputs.VERCEL_ENVIRONMENT }}

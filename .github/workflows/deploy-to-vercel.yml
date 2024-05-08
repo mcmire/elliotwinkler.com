@@ -1,11 +1,8 @@
 name: Create deployment on Vercel
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
-      environment:
+      vercel_environment:
         description: 'The Vercel environment you want to build the site under ("preview" or "production").'
         required: true
         type: string
@@ -13,6 +10,10 @@ on:
         description: 'The ref of the "writings" repository you want to check out, e.g. the name of a branch or a commit ID.'
         required: true
         type: string
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 jobs:
   deploy-to-vercel:
     runs-on: ubuntu-latest
@@ -26,16 +27,16 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
       - name: Pull Vercel environment information
-        run: yarn vercel pull --yes --environment=${{ inputs.environment }} --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Build project artifacts
+        run: yarn vercel pull --yes --environment="${{ inputs.vercel_environment }}" --token="$VERCEL_TOKEN"
+      - name: Build project artifacts (in ${{ inputs.vercel_environment }} mode)
         run: |
-          if [[ $VERCEL_ENVIRONMENT == "production" ]]; then
-            yarn vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          if [[ "$VERCEL_ENVIRONMENT" == "production" ]]; then
+            yarn vercel build --prod --token="$VERCEL_TOKEN"
           else
-            yarn vercel build --token=${{ secrets.VERCEL_TOKEN }}
+            yarn vercel build --token="$VERCEL_TOKEN"
           fi
         env:
           WRITINGS_REPO_REF: ${{ inputs.writings_repo_ref }}
-          VERCEL_ENVIRONMENT: ${{ inputs.environment }}
+          VERCEL_ENVIRONMENT: ${{ inputs.vercel_environment }}
       - name: Deploy project artifacts to Vercel
-        run: yarn vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+        run: yarn vercel deploy --prebuilt --token="$VERCEL_TOKEN"
