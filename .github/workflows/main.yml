@@ -20,6 +20,7 @@ jobs:
           else
             echo "VERCEL_ENVIRONMENT=preview" >> "$GITHUB_OUTPUT"
           fi
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/deploy-to-vercel.yml
         with:
           vercel_environment: ${{ steps.vercel-environment.outputs.VERCEL_ENVIRONMENT }}
