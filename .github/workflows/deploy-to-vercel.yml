@@ -20,6 +20,16 @@ on:
       VERCEL_TOKEN:
         description: 'The Vercel token to use.'
         required: true
+  workflow_dispatch:
+    inputs:
+      vercel_environment:
+        description: 'The Vercel environment you want to build the site under ("preview" or "production").'
+        required: true
+        type: string
+      writings_repo_ref:
+        description: 'The ref of the "writings" repository you want to check out, e.g. the name of a branch or a commit ID.'
+        required: true
+        type: string
 env:
   WRITINGS_REPO_REF: ${{ inputs.writings_repo_ref }}
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
