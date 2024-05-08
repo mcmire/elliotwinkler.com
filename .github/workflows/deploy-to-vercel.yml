@@ -11,9 +11,11 @@ on:
         required: true
         type: string
 env:
+  WRITINGS_REPO_REF: ${{ inputs.writings_repo_ref }}
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  VERCEL_ENVIRONMENT: ${{ inputs.vercel_environment }}
 jobs:
   deploy-to-vercel:
     runs-on: ubuntu-latest
@@ -27,7 +29,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
       - name: Pull Vercel environment information
-        run: yarn vercel pull --yes --environment="${{ inputs.vercel_environment }}" --token="$VERCEL_TOKEN"
+        run: |
+          yarn vercel pull --yes --environment="$VERCEL_ENVIRONMENT" --token="$VERCEL_TOKEN"
       - name: Build project artifacts (in ${{ inputs.vercel_environment }} mode)
         run: |
           if [[ "$VERCEL_ENVIRONMENT" == "production" ]]; then
@@ -35,8 +38,6 @@ jobs:
           else
             yarn vercel build --token="$VERCEL_TOKEN"
           fi
-        env:
-          WRITINGS_REPO_REF: ${{ inputs.writings_repo_ref }}
-          VERCEL_ENVIRONMENT: ${{ inputs.vercel_environment }}
       - name: Deploy project artifacts to Vercel
-        run: yarn vercel deploy --prebuilt --token="$VERCEL_TOKEN"
+        run: |
+          yarn vercel deploy --prebuilt --token="$VERCEL_TOKEN"
