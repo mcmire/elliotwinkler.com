@@ -30,7 +30,7 @@ jobs:
     uses: ./.github/workflows/deploy-to-vercel.yml
     with:
       vercel_environment: ${{ needs.determine-vercel-environment.outputs.VERCEL_ENVIRONMENT }}
-      writings_repo_ref: ${{ github.ref_name }}
+      writings_repo_ref: main
     secrets: inherit
   add-post-deployment-comment:
     name: Add comment to pull request (if applicable)
