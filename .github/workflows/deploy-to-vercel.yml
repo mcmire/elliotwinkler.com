@@ -48,6 +48,10 @@ jobs:
           else
             yarn vercel build --token="$VERCEL_TOKEN"
           fi
-      - name: Deploy project artifacts to Vercel
+      - name: Deploy project artifacts to Vercel (in ${{ inputs.vercel_environment }} mode)
         run: |
-          yarn vercel deploy --prebuilt --token="$VERCEL_TOKEN"
+          if [[ "$VERCEL_ENVIRONMENT" == "production" ]]; then
+            yarn vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+          else
+            yarn vercel deploy --prebuilt --token="$VERCEL_TOKEN"
+          fi

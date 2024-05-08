@@ -10,6 +10,7 @@ on:
       - synchronize
 jobs:
   determine-vercel-environment:
+    name: Determine Vercel environment
     runs-on: ubuntu-latest
     steps:
       - id: determine-vercel-environment
@@ -23,6 +24,7 @@ jobs:
     outputs:
       VERCEL_ENVIRONMENT: ${{ steps.determine-vercel-environment.outputs.VERCEL_ENVIRONMENT }}
   deploy-to-vercel:
+    name: Deploy to Vercel
     needs:
       - determine-vercel-environment
     uses: ./.github/workflows/deploy-to-vercel.yml
@@ -31,13 +33,14 @@ jobs:
       writings_repo_ref: ${{ github.ref_name }}
     secrets: inherit
   add-post-deployment-comment:
+    name: Add comment to pull request (if applicable)
     needs:
       - determine-vercel-environment
       - deploy-to-vercel
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Add comment to pull request (if applicable)
+      - name: Add comment to pull request
         run: |
           gh pr comment "$PR_NUMBER" --body ":rocket: A $VERCEL_ENVIRONMENT deployment has been created. You can view the status of the deployment here: <https://github.com/mcmire/elliotwinkler.com/actions/workflows/deploy-to-vercel.yml>"
         env:
