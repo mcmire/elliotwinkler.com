@@ -29,6 +29,7 @@ jobs:
     with:
       vercel_environment: ${{ needs.determine-vercel-environment.outputs.VERCEL_ENVIRONMENT }}
       writings_repo_ref: ${{ github.ref_name }}
+    secrets: inherit
   add-post-deployment-comment:
     needs:
       - determine-vercel-environment

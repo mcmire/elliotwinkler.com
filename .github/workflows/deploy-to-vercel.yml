@@ -10,6 +10,16 @@ on:
         description: 'The ref of the "writings" repository you want to check out, e.g. the name of a branch or a commit ID.'
         required: true
         type: string
+    secrets:
+      VERCEL_ORG_ID:
+        description: 'The Vercel organization ID to use.'
+        required: true
+      VERCEL_PROJECT_ID:
+        description: 'The Vercel project ID to use.'
+        required: true
+      VERCEL_TOKEN:
+        description: 'The Vercel token to use.'
+        required: true
 env:
   WRITINGS_REPO_REF: ${{ inputs.writings_repo_ref }}
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
