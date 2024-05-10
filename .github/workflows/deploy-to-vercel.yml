@@ -20,6 +20,10 @@ on:
       VERCEL_TOKEN:
         description: 'The Vercel token to use.'
         required: true
+      # This is only here to make actionlint happy
+      UPDATE_DEPLOYMENT_STATUS_TOKEN:
+        description: 'The GitHub token to use to update content repos with deployment statuses.'
+        required: false
   workflow_dispatch:
     inputs:
       vercel_environment:
@@ -30,12 +34,22 @@ on:
         description: 'The ref of the "writings" repository you want to check out, e.g. the name of a branch or a commit ID.'
         required: true
         type: string
+      referring_repo_name:
+        description: 'The name of the repository where this workflow was dispatched from.'
+        required: false
+        type: string
+      referring_repo_issue_number:
+        description: 'The number of the issue or pull request where this workflow was dispatched from.'
+        required: false
+        type: string
 env:
   WRITINGS_REPO_REF: ${{ inputs.writings_repo_ref }}
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   VERCEL_ENVIRONMENT: ${{ inputs.vercel_environment }}
+  REFERRING_REPO_NAME: ${{ inputs.referring_repo_name }}
+  REFERRING_REPO_ISSUE_NUMBER: ${{ inputs.referring_repo_issue_number }}
 jobs:
   deploy-to-vercel:
     runs-on: ubuntu-latest
@@ -59,9 +73,26 @@ jobs:
             yarn vercel build --token="$VERCEL_TOKEN"
           fi
       - name: Deploy project artifacts to Vercel (in ${{ inputs.vercel_environment }} mode)
+        id: deploy
         run: |
           if [[ "$VERCEL_ENVIRONMENT" == "production" ]]; then
-            yarn vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+            yarn vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN" | tee deploy.log
           else
-            yarn vercel deploy --prebuilt --token="$VERCEL_TOKEN"
+            yarn vercel deploy --prebuilt --token="$VERCEL_TOKEN" | tee deploy.log
           fi
+          echo DEPLOYMENT_URL="$(tail -n 1 < deploy.log)" >> "$GITHUB_OUTPUT"
+        shell: bash
+      - name: Add comment to pull request (if applicable)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.referring_repo_name && inputs.referring_repo_issue_number }}
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: process.env.REFERRING_REPO_ISSUE_NUMBER,
+              owner: context.repo.owner,
+              repo: process.env.REFERRING_REPO_NAME,
+              body: `:rocket: This branch has been successfully deployed at: <${process.env.DEPLOYMENT_URL}>`
+            })
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.DEPLOYMENT_URL }}
