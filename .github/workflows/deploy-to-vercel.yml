@@ -41,7 +41,7 @@ on:
       referring_repo_issue_number:
         description: 'The number of the issue or pull request where this workflow was dispatched from.'
         required: false
-        type: string
+        type: number
 env:
   WRITINGS_REPO_REF: ${{ inputs.writings_repo_ref }}
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
