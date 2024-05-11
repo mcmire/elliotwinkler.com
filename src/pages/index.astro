@@ -46,10 +46,10 @@ const posts = await getPosts();
       </nav>
     </div>
     <nav>
-      <h2 class="text-xl font-semibold mb-6">What I've written</h2>
+      <h2 class="text-xl font-semibold mb-4">What I've written</h2>
       {
         posts.map((post) => (
-          <div class="flex w-full justify-between mb-4 flex-row gap-4 mb-2">
+          <div class="flex w-full justify-between flex-row gap-4 mb-2">
             <span class="relative">
               {post.collection === "sample-posts" ? (
                 <Tag class="absolute top-[1px] right-[calc(100%+15px)]">sample</Tag>

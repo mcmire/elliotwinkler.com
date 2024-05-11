@@ -6,7 +6,7 @@ import "../styles/index.css";
 const { title } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="res-text-base">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,17 +16,17 @@ const { title } = Astro.props;
     </title>
   </head>
   <body
-    class="res-text-base py-4 md:py-12 md:px-20 dark:bg-slate-900 dark:text-slate-300"
+    class="py-4 md:py-12 md:px-20 dark:bg-slate-900 dark:text-slate-300"
   >
     {/* Note: items-start is necessary to get TOC in right place */}
     {
       /* See: <https://element.how/css-debugging-position-sticky-not-working/#:~:text=This%20issue%20is%20usually%20because,to%20be%20'sticky'%20in.> */
     }
     <div
-      class="flex flex-col gap-4 md:gap-12 md:flex-row lg:gap-32 xl:items-start"
+      class="flex flex-col gap-4 md:gap-12 md:flex-row lg:gap-20 xl:items-start"
     >
       <nav
-        class="px-8 text-center md:sticky md:top-[3rem] md:h-[calc(100vh-6rem)]"
+        class="text-center md:sticky md:top-[3rem] md:h-[calc(100vh-6rem)]"
       >
         <a href="/">
           <img

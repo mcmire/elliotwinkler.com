@@ -1,4 +1,4 @@
-const baseFontSize = 14;
+//const baseFontSize = 14;
 const fontSize = [
   "xs",
   "sm",
@@ -16,10 +16,20 @@ const fontSize = [
   //   y = 14 * 1.1^(9x/8)
   //   y = x^1.4 + 14
   //   y = 0.75 * sqrt(x) * x^1.05 + 14   <-- the winner
-  const thisFontSize = Math.sqrt(i) * 0.75 * Math.pow(i, 1.05) + baseFontSize;
+  //const thisFontSize = Math.sqrt(i) * 0.75 * Math.pow(i, 1.05) + baseFontSize;
+  const thisFontSize = Math.pow(i + 5, 2) / 10 + 13.5;
+
+  /*
+  if (key === "lg") {
+    return {
+      ...obj,
+      [key]: ["1.3rem", "1.75rem"],
+    };
+  */
+
   return {
     ...obj,
-    [key]: [`${thisFontSize}px`, `${thisFontSize * 1.5}px`],
+    [key]: [`${thisFontSize}px`, `${thisFontSize * 1.7}px`],
   };
 }, {});
 
