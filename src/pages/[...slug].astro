@@ -1,14 +1,14 @@
 ---
 import { YouTube } from "astro-embed";
-import Callout from "../../components/Callout.astro";
-import HeadingTree from "../../components/HeadingTree.astro";
-import Image from "../../components/Image.astro";
-import Main from "../../components/Main.astro";
-import Spoiler from "../../components/Spoiler.astro";
-import Tag from "../../components/Tag.astro";
-import SiteLayout from "../../layouts/SiteLayout.astro";
-import { getPosts } from "../../posts.ts";
-import { buildHeadingTree } from "../../utils.ts";
+import Callout from "../components/Callout.astro";
+import HeadingTree from "../components/HeadingTree.astro";
+import Image from "../components/Image.astro";
+import Main from "../components/Main.astro";
+import Spoiler from "../components/Spoiler.astro";
+import Tag from "../components/Tag.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { getPosts } from "../posts.ts";
+import { buildHeadingTree } from "../utils.ts";
 
 export async function getStaticPaths() {
   const posts = await getPosts();

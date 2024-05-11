@@ -53,7 +53,7 @@ const posts = await getPosts();
               {post.collection === "sample-posts" ? (
                 <Tag class="absolute top-[1px] right-[calc(100%+15px)]">sample</Tag>
               ) : null}
-              <a href={`/posts/${post.slug}`} class="font-semibold link">
+              <a href={`/${post.slug}`} class="font-semibold link">
                 {post.data.title}
               </a>
             </span>
