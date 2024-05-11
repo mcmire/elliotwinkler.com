@@ -23,33 +23,36 @@ const posts = await getPosts();
         >, the leading web3 wallet, building foundational libraries that power
         our core experiences for 40 million users.
       </p>
-      <ul class="flex flex-row gap-2 justify-center">
-        <li class="after:content-['•'] after:pl-1">
-          <a href="https://github.com/mcmire" class="link" target="_blank"
-            >GitHub</a
-          >
-        </li>
-        <li class="after:content-['•'] after:pl-1">
-          <a
-            href="https://www.linkedin.com/in/elliot-winkler/"
-            class="link"
-            target="_blank">LinkedIn</a
-          >
-        </li>
-        <li>
-          <a href="https://twitter.com/mcmire" class="link" target="_blank"
-            >Twitter</a
-          >
-        </li>
-      </ul>
+      <nav>
+        <ul class="flex flex-row gap-2 justify-center">
+          <li class="after:content-['•'] after:pl-1">
+            <a href="https://github.com/mcmire" class="link" target="_blank"
+              >GitHub</a
+            >
+          </li>
+          <li class="after:content-['•'] after:pl-1">
+            <a
+              href="https://www.linkedin.com/in/elliot-winkler/"
+              class="link"
+              target="_blank">LinkedIn</a
+            >
+          </li>
+          <li>
+            <a href="https://twitter.com/mcmire" class="link" target="_blank"
+              >Twitter</a
+            >
+          </li>
+        </ul>
+      </nav>
     </div>
     <nav>
+      <h2 class="text-xl font-semibold mb-6">What I've written</h2>
       {
         posts.map((post) => (
           <div class="flex w-full justify-between mb-4 flex-row gap-4 mb-2">
-            <span>
+            <span class="relative">
               {post.collection === "sample-posts" ? (
-                <Tag class="mr-2">sample</Tag>
+                <Tag class="absolute top-[1px] right-[calc(100%+15px)]">sample</Tag>
               ) : null}
               <a href={`/posts/${post.slug}`} class="font-semibold link">
                 {post.data.title}
