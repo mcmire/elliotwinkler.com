@@ -14,6 +14,18 @@ const { title } = Astro.props;
     <title>
       {!title && title !== 0 ? "Elliot Winkler" : `${title} | Elliot Winkler`}
     </title>
+    {
+      import.meta.env.PROD ?
+      <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-FGFP8BJDRG"></script>
+      <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FGFP8BJDRG');
+      </script> :
+      null
+    }
   </head>
   <body
     class="py-4 md:py-12 md:px-20 dark:bg-slate-900 dark:text-slate-300"
