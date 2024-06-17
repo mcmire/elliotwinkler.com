@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "path";
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
-import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeKatex from "rehype-katex";
@@ -18,6 +17,7 @@ import { fromHtml } from "hast-util-from-html";
 import remarkCallout from "./config/remarkCallout.ts";
 import rehypeCallout from "./config/rehypeCallout.ts";
 import icon from "astro-icon";
+import solidJs from "@astrojs/solid-js";
 const dirname = import.meta.dirname;
 const linkIcon = fs.readFileSync(
   path.resolve(dirname, "./public/icons/heroicons/mini/link.svg"),
@@ -104,13 +104,13 @@ export default defineConfig({
     },
   },
   integrations: [
-    react(),
     tailwind({
       applyBaseStyles: false,
       nesting: true,
     }),
     mdx(),
     icon(),
+    solidJs(),
   ],
   vite: {
     resolve: {

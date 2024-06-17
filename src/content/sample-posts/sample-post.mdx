@@ -2,6 +2,9 @@
 title: Sample Post and This is a Really Long Line or Whatever
 publishDate: 2023-04-17
 ---
+import dog from './sample-post/dog.webp';
+import cat from './sample-post/cat.jpg';
+import horse from './sample-post/horse.jpg';
 
 <p class="res-text-4xl"><b>(4xl)</b> Wilma Fox’s lazy susan held quince jam, butter, pickles, olives, mustard, and vinegar.</p>
 
@@ -70,7 +73,7 @@ This section demonstrates what an H5 looks like.
 
 ### Simple images
 
-![Who likes dogs??](https://dogtime.com/wp-content/uploads/sites/12/2024/03/GettyImages-1285465107-e1710251441662.jpg?w=1024)
+![Who likes dogs??](./sample-post/dog.webp)
 
 ![Some SVG](https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg)
 
@@ -80,17 +83,36 @@ We can put a photo in a post without anything additional, but normally we would
 want an image that would be centered and has a max height, like this:
 
 <Image
-  src="https://dogtime.com/wp-content/uploads/sites/12/2024/03/GettyImages-1285465107-e1710251441662.jpg?w=1024"
-  inferSize
+  src={dog}
   alt="A dog" />
+
+<Row>
+  However, we can also have an inline image that floats to the right:
+
+  <Image
+    type="floating"
+    src={dog}
+    alt="A dog" />
+</Row>
+
+We can also add a caption:
 
 <Image
-  type="floating"
-  src="https://dogtime.com/wp-content/uploads/sites/12/2024/03/GettyImages-1285465107-e1710251441662.jpg?w=1024"
-  inferSize
-  alt="A dog" />
+  src={dog}
+  alt="A dog"
+  caption="A picture of a really nice dog" />
 
-However, we can also have an inline image that floats to the right:
+Finally, we can also show a gallery of images:
+
+<Gallery
+  images={
+    [
+      { src: dog, caption: "A picture of a really nice dog" },
+      { src: cat, caption: "A picture of a really nice cat" },
+      { src: horse, caption: "A picture of a really nice horse" },
+    ]
+  }
+/>
 
 ### Videos
 

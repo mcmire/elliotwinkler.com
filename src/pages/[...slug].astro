@@ -1,9 +1,11 @@
 ---
 import { YouTube } from "astro-embed";
 import Callout from "../components/Callout.astro";
+import Gallery from "../components/Gallery.astro";
 import HeadingTree from "../components/HeadingTree.astro";
 import Image from "../components/Image.astro";
 import Main from "../components/Main.astro";
+import Row from "../components/Row.astro";
 import Spoiler from "../components/Spoiler.astro";
 import Tag from "../components/Tag.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
@@ -26,10 +28,10 @@ const headingTree = buildHeadingTree(headings);
 
 <SiteLayout title={post.data.title}>
   <Main>
-    <header
-      class="mb-10"
-    >
-      <h1 class="res-text-4xl !leading-10 font-bold font-display mb-3 dark:text-slate-300">
+    <header class="mb-10">
+      <h1
+        class="res-text-4xl !leading-10 font-bold font-display mb-3 dark:text-slate-300"
+      >
         {post.data.title}
       </h1>
       <div class="flex items-center text-sm">
@@ -50,7 +52,16 @@ const headingTree = buildHeadingTree(headings);
       </div>
     </header>
     <article class="markdown">
-      <Content components={{ Callout, Image, Spoiler, YouTube }} />
+      <Content
+        components={{
+          Callout,
+          Gallery,
+          Image,
+          Row,
+          Spoiler,
+          YouTube,
+        }}
+      />
     </article>
   </Main>
   {

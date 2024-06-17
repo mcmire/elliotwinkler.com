@@ -1,25 +1,45 @@
 ---
 import type { ComponentProps } from "astro/types";
-import { Image as AstroImage } from "astro:assets";
+import { getImage } from "astro:assets";
+import type { Image as AstroImage } from "astro:assets";
 import classnames from "classnames";
+import LinkOrNoLink from "./LinkOrNoLink.astro";
 
-type Props = ComponentProps<typeof AstroImage> & {
+type Props = ComponentProps<AstroImage> & {
+  caption?: string;
+  linkToRawVersion?: boolean;
   type?: "normal" | "floating";
 };
 
-const { type = "normal", ...rest } = Astro.props;
+const {
+  caption,
+  alt = caption,
+  linkToRawVersion = false,
+  src,
+  type = "normal",
+  ...rest
+} = Astro.props;
+
+const image = await getImage({ src });
 ---
 
-<div
-  class={classnames("text-center mb-4", {
-    "ml-4 float-right mt-0 hidden sm:block": type === "floating",
+<figure
+  class={classnames("text-center my-6", {
+    "md:ml-4 md:mt-0 md:max-w-[10em] md:w-[50%]": type === "floating",
   })}
 >
-  {/* @ts-expect-error This doesn't work on purpose */}
-  <AstroImage
-    {...rest}
-    class={classnames("inline-block pb-4", {
-      "max-w-[10em]": type === "floating",
-    })}
-  />
-</div>
+  <LinkOrNoLink linkToRawVersion={linkToRawVersion} href={image.src}>
+    {/* @ts-expect-error This doesn't work on purpose */}
+    <img
+      {...rest}
+      src={image.src}
+      alt={alt}
+      class="inline-block border border-slate-200 border rounded shadow-md block dark:border-transparent"
+    />
+  </LinkOrNoLink>
+  {
+    caption ? (
+      <figcaption class="text-sm mt-4 italic">{caption}</figcaption>
+    ) : null
+  }
+</figure>

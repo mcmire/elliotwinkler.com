@@ -38,7 +38,7 @@ const { title } = Astro.props;
       class="flex flex-col gap-4 md:gap-12 md:flex-row lg:gap-20 xl:items-start"
     >
       <nav
-        class="text-center md:sticky md:top-[3rem] md:h-[calc(100vh-6rem)]"
+        class="text-center flex-none md:sticky md:top-[3rem] md:h-[calc(100vh-6rem)]"
       >
         <a href="/">
           <img
@@ -54,3 +54,18 @@ const { title } = Astro.props;
     </div>
   </body>
 </html>
+
+<script>
+  import { createEffect } from "solid-js";
+  import { isGalleryOpen } from "../signals/isGalleryOpen.ts";
+
+  const overflowY = document.body.style.overflowY;
+
+  createEffect(() => {
+    if (isGalleryOpen()) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = overflowY;
+    }
+  });
+</script>

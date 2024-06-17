@@ -1,0 +1,31 @@
+---
+import { getImage } from "astro:assets";
+import Gallery from "./Gallery.tsx";
+
+type Props = {
+  images: {
+    src: string;
+    caption?: string;
+  }[];
+  caption?: string;
+};
+
+const { images, ...rest } = Astro.props;
+
+const galleryImages = await Promise.all(
+  images.map(async (image, index) => {
+    const getImageResult = await getImage(image);
+    return {
+      src: getImageResult.src,
+      width: getImageResult.attributes.width,
+      height: getImageResult.attributes.height,
+      caption: image.caption,
+      index,
+    };
+  }),
+);
+---
+
+<Gallery client:load {...rest} images={galleryImages}>
+  <slot />
+</Gallery>
