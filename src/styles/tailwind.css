@@ -1,3 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Figtree Variable";
+  --font-mono: "IBM Plex Mono";
+  --font-display: "Figtree Variable";
+
+  /* font size: Math.pow(i + 5, 2) / 10 + 13.5 */
+  /* line height: font size * 1.7 */
+  --text-xs: 16px;
+  --text-sm: 17.1px;
+  --text-base: 18.4px;
+  --text-md: 19.9px;
+  --text-lg: 21.6px;
+  --text-xl: 23.5px;
+  --text-2xl: 25.6px;
+  --text-3xl: 27.9px;
+  --text-4xl: 30.4px;
+  --text-5xl: 33.1px;
+}
+
+@theme inline {
+  --text-xs--line-height: calc(var(--text-xs) * 1.7);
+  --text-sm--line-height: calc(var(--text-sm) * 1.7);
+  --text-base--line-height: calc(var(--text-base) * 1.7);
+  --text-md--line-height: calc(var(--text-md) * 1.7);
+  --text-lg--line-height: calc(var(--text-lg) * 1.7);
+  --text-xl--line-height: calc(var(--text-xl) * 1.7);
+  --text-2xl--line-height: calc(var(--text-2xl) * 1.7);
+  --text-3xl--line-height: calc(var(--text-3xl) * 1.7);
+  --text-4xl--line-height: calc(var(--text-4xl) * 1.7);
+  --text-5xl--line-height: calc(var(--text-5xl) * 1.7);
+}

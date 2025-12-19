@@ -11,7 +11,15 @@ export default [
     },
   },
   {
-    ignores: [".astro/**", "**/*.astro"],
+    ignores: [
+      ".astro/**",
+      "**/*.astro",
+      // This is key as <script>s in Astro files are assigned a virtual filename
+      // Source: <https://github.com/withastro/prettier-plugin-astro/issues/407#issuecomment-2498306376>
+      "**/*.astro/*.js",
+      "**/*.astro/*.ts",
+      "dist/**",
+    ],
     ...js.configs.recommended,
     ...eslintPluginPrettierRecommended,
   },

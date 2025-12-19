@@ -1,6 +1,6 @@
 ---
 import { getImage } from "astro:assets";
-import Gallery from "./Gallery.tsx";
+import GalleryComponent from "./GalleryComponent.tsx";
 
 type Props = {
   images: {
@@ -26,6 +26,6 @@ const galleryImages = await Promise.all(
 );
 ---
 
-<Gallery client:load {...rest} images={galleryImages}>
+<GalleryComponent client:load {...rest} images={galleryImages}>
   <slot />
-</Gallery>
+</GalleryComponent>

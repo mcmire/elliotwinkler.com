@@ -17,8 +17,11 @@ const posts = await getPosts();
         I've been making computers do things with code since 2005.
       </p>
       <p class="mb-6">
-        I'm currently a staff engineer at <a href="https://metamask.io"
-        class="link" target="_blank">MetaMask</a>.
+        I'm currently a staff engineer at <a
+          href="https://metamask.io"
+          class="link"
+          target="_blank">MetaMask</a
+        >.
       </p>
       <nav>
         <ul class="flex flex-row gap-2 justify-center">
@@ -49,9 +52,11 @@ const posts = await getPosts();
           <div class="flex w-full justify-between flex-row gap-4 mb-2">
             <span class="relative">
               {post.collection === "sample-posts" ? (
-                <Tag class="absolute top-[1px] right-[calc(100%+15px)]">sample</Tag>
+                <Tag class="absolute top-[1px] right-[calc(100%+15px)]">
+                  sample
+                </Tag>
               ) : null}
-              <a href={`/${post.slug}`} class="font-semibold link">
+              <a href={`/${post.id}`} class="font-semibold link">
                 {post.data.title}
               </a>
             </span>

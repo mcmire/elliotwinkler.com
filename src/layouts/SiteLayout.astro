@@ -4,6 +4,7 @@ import "@fontsource-variable/figtree";
 import "../styles/index.css";
 
 const { title } = Astro.props;
+const googleAnalyticsId = "G-FGFP8BJDRG";
 ---
 
 <html lang="en" class="res-text-base">
@@ -15,21 +16,32 @@ const { title } = Astro.props;
       {!title && title !== 0 ? "Elliot Winkler" : `${title} | Elliot Winkler`}
     </title>
     {
-      import.meta.env.PROD ?
-      <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-FGFP8BJDRG"></script>
-      <script is:inline>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-FGFP8BJDRG');
-      </script> :
-      null
+      import.meta.env.PROD ? (
+        <>
+          <script
+            is:inline
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-FGFP8BJDRG"
+          />
+          {/*
+            Note the use of set:html.
+            We are doing this because otherwise we get a Prettier error.
+            Source: <https://github.com/withastro/prettier-plugin-astro/issues/337#issuecomment-2961980527>
+          */}
+          <script
+            is:inline
+            set:html={`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${googleAnalyticsId}');
+`}
+          />
+        </>
+      ) : null
     }
   </head>
-  <body
-    class="py-4 md:py-12 md:px-20 dark:bg-slate-900 dark:text-slate-300"
-  >
+  <body class="py-4 md:py-12 md:px-20 dark:bg-slate-900 dark:text-slate-300">
     {/* Note: items-start is necessary to get TOC in right place */}
     {
       /* See: <https://element.how/css-debugging-position-sticky-not-working/#:~:text=This%20issue%20is%20usually%20because,to%20be%20'sticky'%20in.> */

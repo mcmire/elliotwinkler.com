@@ -1,57 +1,55 @@
-@layer utilities {
-  .pixelated {
-    image-rendering: pixelated;
-  }
+@utility pixelated {
+  image-rendering: pixelated;
+}
 
-  .backface-hidden {
-    backface-visibility: hidden;
-  }
+@utility backface-hidden {
+  backface-visibility: hidden;
+}
 
-  .no-hyphenation {
-    hyphens: none;
-  }
+@utility no-hyphenation {
+  hyphens: none;
+}
 
-  .tab-size-2 {
-    tab-size: 2;
-  }
+@utility tab-size-2 {
+  tab-size: 2;
+}
 
-  .link {
-    @apply text-blue-700 hover:underline dark:text-blue-400;
-  }
+@utility link {
+  @apply text-blue-700 hover:underline dark:text-blue-400;
+}
 
-  .res-text-xs {
-    @apply text-xs md:text-sm;
-  }
+@utility res-text-xs {
+  @apply text-xs md:text-sm;
+}
 
-  .res-text-sm {
-    @apply text-sm md:text-base;
-  }
+@utility res-text-sm {
+  @apply text-sm md:text-base;
+}
 
-  .res-text-base {
-    @apply text-base md:text-md;
-  }
+@utility res-text-base {
+  @apply text-base md:text-md;
+}
 
-  .res-text-md {
-    @apply text-md md:text-lg;
-  }
+@utility res-text-md {
+  @apply text-md md:text-lg;
+}
 
-  .res-text-lg {
-    @apply text-lg md:text-xl;
-  }
+@utility res-text-lg {
+  @apply text-lg md:text-xl;
+}
 
-  .res-text-xl {
-    @apply text-xl md:text-2xl;
-  }
+@utility res-text-xl {
+  @apply text-xl md:text-2xl;
+}
 
-  .res-text-2xl {
-    @apply text-2xl md:text-3xl;
-  }
+@utility res-text-2xl {
+  @apply text-2xl md:text-3xl;
+}
 
-  .res-text-3xl {
-    @apply text-3xl md:text-4xl;
-  }
+@utility res-text-3xl {
+  @apply text-3xl md:text-4xl;
+}
 
-  .res-text-4xl {
-    @apply text-4xl md:text-5xl;
-  }
+@utility res-text-4xl {
+  @apply text-4xl md:text-5xl;
 }
