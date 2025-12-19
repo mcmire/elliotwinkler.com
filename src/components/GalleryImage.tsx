@@ -1,6 +1,6 @@
 import { type JSX, type Setter } from "solid-js";
 import type { GalleryImage } from "./GalleryComponent.tsx";
-import { useScreenWidth } from "../hooks/useScreenWidth.ts";
+import { useScreenWidth } from "../hooks/useScreenWidth";
 
 // Source: <https://tailwindcss.com/docs/responsive-design>
 const BREAKPOINTS = {
