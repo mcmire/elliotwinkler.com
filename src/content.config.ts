@@ -19,7 +19,9 @@ const samplePostsCollection = defineCollection({
 const postsCollection = defineCollection({
   loader: glob({
     pattern: "**/[^_]*.{md,mdx}",
-    base: "./src/content/posts",
+    base: import.meta.env.PROD
+      ? "./src/content/posts"
+      : "../personal-content--writings/posts",
   }),
   schema: z.object({
     title: z.string(),
