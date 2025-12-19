@@ -111,8 +111,5 @@ export default defineConfig({
         nesting: true,
       }),
     ],
-    resolve: {
-      preserveSymlinks: true,
-    },
   },
 });
