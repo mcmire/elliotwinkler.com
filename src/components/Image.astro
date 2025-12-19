@@ -5,7 +5,7 @@ import type { Image as AstroImage } from "astro:assets";
 import classnames from "classnames";
 import LinkOrNoLink from "./LinkOrNoLink.astro";
 
-type Props = ComponentProps<AstroImage> & {
+type Props = ComponentProps<typeof AstroImage> & {
   caption?: string;
   linkToRawVersion?: boolean;
   type?: "normal" | "floating";
@@ -29,7 +29,6 @@ const image = await getImage({ src });
   })}
 >
   <LinkOrNoLink linkToRawVersion={linkToRawVersion} href={image.src}>
-    {/* @ts-expect-error This doesn't work on purpose */}
     <img
       {...rest}
       src={image.src}

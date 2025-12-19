@@ -1,6 +1,15 @@
 import { type JSX, type Setter } from "solid-js";
-import type { GalleryImage } from "./Gallery";
-import { useTailwindBreakpoints } from "../hooks/useTailwindBreakpoints";
+import type { GalleryImage } from "./GalleryComponent.tsx";
+import { useScreenWidth } from "../hooks/useScreenWidth.ts";
+
+// Source: <https://tailwindcss.com/docs/responsive-design>
+const BREAKPOINTS = {
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
+  '2xl': 1536,
+};
 
 export default function GalleryImage({
   image,
@@ -10,7 +19,7 @@ export default function GalleryImage({
   image: GalleryImage;
   setSelectedImageIndex: Setter<number | null>;
 }) {
-  const { breakpoints, screenWidth } = useTailwindBreakpoints();
+  const { screenWidth } = useScreenWidth();
 
   const onClick: JSX.EventHandler<HTMLAnchorElement, MouseEvent> = (event) => {
     event.preventDefault();
@@ -31,7 +40,7 @@ export default function GalleryImage({
 
   return (
     <figure class="text-center">
-      {screenWidth() > breakpoints.sm ? (
+      {screenWidth() > BREAKPOINTS.sm ? (
         <a href={image.src} class="block" onClick={onClick}>
           <Image />
         </a>

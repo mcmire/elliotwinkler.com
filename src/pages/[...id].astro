@@ -1,4 +1,5 @@
 ---
+import { render } from "astro:content";
 import { YouTube } from "astro-embed";
 import Callout from "../components/Callout.astro";
 import Gallery from "../components/Gallery.astro";
@@ -16,13 +17,13 @@ export async function getStaticPaths() {
   const posts = await getPosts();
 
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { id: post.id },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
-const { Content, headings } = await post.render();
+const { Content, headings } = await render(post);
 const headingTree = buildHeadingTree(headings);
 ---
 

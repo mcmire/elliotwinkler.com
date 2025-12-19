@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
@@ -103,16 +103,14 @@ export default defineConfig({
       ],
     },
   },
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-      nesting: true,
-    }),
-    mdx(),
-    icon(),
-    solidJs(),
-  ],
+  integrations: [mdx(), icon(), solidJs()],
   vite: {
+    plugins: [
+      tailwindcss({
+        applyBaseStyles: false,
+        nesting: true,
+      }),
+    ],
     resolve: {
       preserveSymlinks: true,
     },
