@@ -22,6 +22,10 @@ if [[ -z "$WRITINGS_REPO_REF" ]]; then
   fi
 fi
 
-git clone --branch "$WRITINGS_REPO_REF" "$WRITINGS_REPO_URL" /tmp/writings &&
-  ln -s /tmp/writings/posts src/content/posts &&
+if [[ -z "$WRITINGS_DIRECTORY_PATH" ]]; then
+  echo "WRITINGS_DIRECTORY_PATH is required."
+  exit 1
+fi
+
+git clone --branch "$WRITINGS_REPO_REF" "$WRITINGS_REPO_URL" "$WRITINGS_DIRECTORY_PATH" &&
   astro build

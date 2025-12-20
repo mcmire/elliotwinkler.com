@@ -16,7 +16,7 @@ const googleAnalyticsId = "G-FGFP8BJDRG";
       {!title && title !== 0 ? "Elliot Winkler" : `${title} | Elliot Winkler`}
     </title>
     {
-      import.meta.env.PROD ? (
+      import.meta.env.MODE === "production" ? (
         <>
           <script
             is:inline
