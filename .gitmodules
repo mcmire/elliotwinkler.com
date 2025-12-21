@@ -1,0 +1,3 @@
+[submodule "submodules/personal-content--writings"]
+	path = submodules/personal-content--writings
+	url = https://github.com/mcmire/personal-content--writings

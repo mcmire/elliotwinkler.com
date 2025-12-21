@@ -1,4 +1,3 @@
-import os from "os";
 import { z, defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 
@@ -19,21 +18,13 @@ function definePostsCollection(directory: string) {
   });
 }
 
-function getWritingsDirectoryPath() {
-  const writingsDirectoryPath = import.meta.env.WRITINGS_DIRECTORY_PATH;
-
-  if (writingsDirectoryPath === undefined || writingsDirectoryPath === "") {
-    throw new Error("WRITINGS_DIRECTORY_PATH must be set");
-  }
-
-  return writingsDirectoryPath.replace("~/", `${os.homedir()}/`);
-}
-
 const samplePostsCollection = definePostsCollection(
   "./src/content/sample-posts",
 );
 
-const postsCollection = definePostsCollection(getWritingsDirectoryPath());
+const postsCollection = definePostsCollection(
+  "./submodules/personal-content--writings/posts",
+);
 
 export const collections = {
   "sample-posts": samplePostsCollection,
