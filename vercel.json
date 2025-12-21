@@ -1,3 +1,4 @@
 {
-  "buildCommand": "yarn build-prod"
+  "buildCommand": "yarn build",
+  "installCommand": "yarn install && git submodule init --update"
 }
