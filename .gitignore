@@ -1,7 +1,6 @@
 .astro
 dist
 node_modules
-src/content/posts
 
 .yarn/*
 !.yarn/patches
