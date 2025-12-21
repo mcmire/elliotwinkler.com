@@ -5,8 +5,8 @@
   "scripts": {
     "build": "astro build",
     "dev": "astro dev",
-    "lint": "astro check && eslint . && prettier '**/*.{astro,md,json}' --check",
-    "lint:fix": "eslint . --fix && prettier '**/*.{astro,md,json}' --write",
+    "lint": "astro check && eslint . && prettier '**/*.{astro,md,mdx,json}' --check",
+    "lint:fix": "eslint . --fix && prettier '**/*.{astro,md,mdx,json}' --write",
     "preview": "astro preview",
     "start": "astro dev"
   },
@@ -49,9 +49,9 @@
     "eslint-plugin-astro": "^0.34.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-prettier": "^5.1.3",
-    "prettier": "^3.2.5",
+    "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.13.0",
-    "prettier-plugin-packagejson": "^2.5.0",
+    "prettier-plugin-packagejson": "^2.5.20",
     "typescript": "^5.4.5",
     "vercel": "^34.1.8",
     "vite": "^6.4.1"
