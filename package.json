@@ -65,7 +65,8 @@
       "astro>esbuild": true,
       "astro>sharp": true,
       "vercel>@vercel/node>esbuild": false,
-      "vercel>@vercel/static-build>@vercel/gatsby-plugin-vercel-builder>esbuild": false
+      "vercel>@vercel/static-build>@vercel/gatsby-plugin-vercel-builder>esbuild": false,
+      "vite>esbuild": false
     }
   }
 }
