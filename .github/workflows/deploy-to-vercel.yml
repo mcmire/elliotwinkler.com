@@ -6,11 +6,11 @@ on:
         description: 'The Vercel environment you want to build the site under ("preview" or "production").'
         required: true
         type: string
-      referring-repo-name:
+      subrepo-name:
         description: 'The name of the repository where this workflow was called from.'
         required: false
         type: string
-      referring-repo-issue-number:
+      subrepo-pull-request-number:
         description: 'The number of the issue or pull request where this workflow was called from.'
         required: false
         type: number
@@ -34,44 +34,89 @@ on:
         description: 'The Vercel environment you want to build the site under ("preview" or "production").'
         required: true
         type: string
-      referring-repo-name:
+      subrepo-name:
         description: 'The name of the repository where this workflow was dispatched from.'
         required: false
         type: string
-      referring-repo-issue-number:
+      subrepo-pull-request-number:
         description: 'The number of the issue or pull request where this workflow was dispatched from.'
         required: false
         type: number
+      subrepo-ref:
+        description: 'The ref of the referring repo you want to check out.'
+        required: false
+        type: string
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   VERCEL_ENVIRONMENT: ${{ inputs.vercel-environment }}
-  REFERRING_REPO_NAME: ${{ inputs.referring-repo-name }}
-  REFERRING_REPO_ISSUE_NUMBER: ${{ inputs.referring-repo-issue-number }}
+  SUBREPO_NAME: ${{ inputs.subrepo-name }}
+  SUBREPO_PULL_REQUEST_NUMBER: ${{ inputs.subrepo-pull-request-number }}
+  SUBREPO_REF: ${{ inputs.subrepo-ref }}
 jobs:
   deploy-to-vercel:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Post initial comment to referring pull request
+        id: post-comment
+        if: ${{ env.SUBREPO_NAME && env.SUBREPO_PULL_REQUEST_NUMBER }}
+        uses: actions/github-script@v8
+        with:
+          github-token: ${{ env.SUBREPO_NAME == 'elliotwinkler.com' && github.token || secrets.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
+          script: |
+            const result = await github.rest.issues.createComment({
+              issue_number: process.env.SUBREPO_PULL_REQUEST_NUMBER,
+              owner: 'mcmire',
+              repo: process.env.SUBREPO_NAME,
+              body: 'Deploying your branch, please wait...\n\n(This comment will automatically update when complete.)'
+            })
+            console.log(result);
+            return result;
+      - uses: actions/checkout@v6
+      - name: Check out subrepo
+        if: ${{ env.SUBREPO_REF }}
+        run: |
+          subrepo_directory=
+          path=
+          url=
+
+          git submodule --quiet foreach 'echo $sm_path' | \
+            while read -r path; do
+              url="$(git config get "submodule.$path.url")"
+              if [[ "$url" == "https://github.com/mcmire/$SUBREPO_NAME" ]]; then
+                subrepo_directory="$path"
+                break
+              fi
+            done
+
+          if [[ -n "$subrepo_directory" ]]; then
+            cd "$subrepo_directory"
+            git checkout "$SUBREPO_REF"
+          fi
+        shell: bash
+      - uses: actions/setup-node@v6
         with:
           node-version: lts/*
       - name: Install Yarn via Corepack
         run: corepack enable
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: yarn
       - name: Install dependencies
         run: yarn install --immutable
       - name: Pull Vercel environment information
         run: |
           yarn vercel pull --yes --environment="$VERCEL_ENVIRONMENT" --token="$VERCEL_TOKEN"
-      - name: Build project artifacts (in ${{ inputs.vercel-environment }} mode)
+      - name: Build project artifacts (in ${{ env.VERCEL_ENVIRONMENT }} mode)
         run: |
           if [[ "$VERCEL_ENVIRONMENT" == "production" ]]; then
             yarn vercel build --prod --token="$VERCEL_TOKEN"
           else
             yarn vercel build --token="$VERCEL_TOKEN"
           fi
-      - name: Deploy project artifacts to Vercel (in ${{ inputs.vercel-environment }} mode)
+      - name: Deploy project artifacts to Vercel (in ${{ env.VERCEL_ENVIRONMENT }} mode)
         id: deploy
         run: |
           if [[ "$VERCEL_ENVIRONMENT" == "production" ]]; then
@@ -81,31 +126,19 @@ jobs:
           fi
           echo DEPLOYMENT_URL="$(tail -n 1 < deploy.log)" >> "$GITHUB_OUTPUT"
         shell: bash
-      - name: Add comment to pull request where this workflow was called from
-        if: ${{ env.REFERRING_REPO_NAME == 'elliotwinkler.com' && env.REFERRING_REPO_NAME }}
+      - name: Update comment on referring pull request
+        if: ${{ env.SUBREPO_NAME && steps.deploy.outputs.DEPLOYMENT_URL }}
         uses: actions/github-script@v7
         with:
+          github-token: ${{ env.SUBREPO_NAME == 'elliotwinkler.com' && github.token || secrets.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
           script: |
-            github.rest.issues.createComment({
-              issue_number: process.env.REFERRING_REPO_ISSUE_NUMBER,
+            const previousCommentResponse = JSON.parse(process.env.PREVIOUS_COMMENT_RESPONSE);
+            await github.rest.issues.updateComment({
               owner: 'mcmire',
-              repo: process.env.REFERRING_REPO_NAME,
+              repo: process.env.SUBREPO_NAME,
+              comment_id: previousCommentResponse.data.id,
               body: `:rocket: This branch has been successfully deployed at: <${process.env.DEPLOYMENT_URL}>`
             })
         env:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.DEPLOYMENT_URL }}
-      - name: Add comment to pull request where this workflow was dispatched from
-        if: ${{ env.REFERRING_REPO_NAME != 'elliotwinkler.com' && env.REFERRING_REPO_NAME }}
-        uses: actions/github-script@v7
-        with:
-          # This is the difference
-          github-token: ${{ secrets.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
-          script: |
-            github.rest.issues.createComment({
-              issue_number: process.env.REFERRING_REPO_ISSUE_NUMBER,
-              owner: 'mcmire',
-              repo: process.env.REFERRING_REPO_NAME,
-              body: `:rocket: This branch has been successfully deployed at: <${process.env.DEPLOYMENT_URL}>`
-            })
-        env:
-          DEPLOYMENT_URL: ${{ steps.deploy.outputs.DEPLOYMENT_URL }}
+          PREVIOUS_COMMENT_RESPONSE: ${{ steps.post-comment.outputs.result }}

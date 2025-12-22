@@ -21,6 +21,6 @@ jobs:
     uses: ./.github/workflows/deploy-to-vercel.yml
     with:
       vercel-environment: preview
-      referring-repo-name: ${{ needs.extract-repository-name.outputs.GITHUB_REPOSITORY_NAME }}
-      referring-repo-issue-number: ${{ github.event.pull_request.number }}
+      subrepo-name: ${{ needs.extract-repository-name.outputs.GITHUB_REPOSITORY_NAME }}
+      subrepo-pull-request-number: ${{ github.event.pull_request.number }}
     secrets: inherit
