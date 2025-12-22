@@ -1,54 +1,26 @@
 name: Main workflow
 on:
-  push:
-    branches:
-      - main
   pull_request:
     types:
       - opened
       - synchronize
 jobs:
-  determine-vercel-environment:
-    name: Determine Vercel environment
+  extract-repository-name:
+    name: Extract repository name
     runs-on: ubuntu-latest
     steps:
-      - id: determine-vercel-environment
-        name: Determine Vercel environment
+      - id: repository-name
         run: |
-          if [[ "$GITHUB_REF_NAME" == "main" ]]; then
-            echo "VERCEL_ENVIRONMENT=production" >> "$GITHUB_OUTPUT"
-          else
-            echo "VERCEL_ENVIRONMENT=preview" >> "$GITHUB_OUTPUT"
-          fi
+          github_repository_name="${GITHUB_REPOSITORY#"$GITHUB_REPOSITORY_OWNER/"}"
+          echo "GITHUB_REPOSITORY_NAME=$github_repository_name" >> "$GITHUB_OUTPUT"
     outputs:
-      VERCEL_ENVIRONMENT: ${{ steps.determine-vercel-environment.outputs.VERCEL_ENVIRONMENT }}
+      GITHUB_REPOSITORY_NAME: ${{ steps.repository-name.outputs.GITHUB_REPOSITORY_NAME }}
   deploy-to-vercel:
     name: Deploy to Vercel
-    needs:
-      - determine-vercel-environment
+    needs: extract-repository-name
     uses: ./.github/workflows/deploy-to-vercel.yml
     with:
-      vercel_environment: ${{ needs.determine-vercel-environment.outputs.VERCEL_ENVIRONMENT }}
-      writings_repo_ref: main
+      vercel-environment: preview
+      referring-repo-name: ${{ needs.extract-repository-name.outputs.GITHUB_REPOSITORY_NAME }}
+      referring-repo-issue-number: ${{ github.event.pull_request.number }}
     secrets: inherit
-  add-post-deployment-comment:
-    name: Add comment to pull request (if applicable)
-    needs:
-      - determine-vercel-environment
-      - deploy-to-vercel
-    if: ${{ github.event_name == 'pull_request' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Add comment to pull request
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `:rocket: A ${process.env.VERCEL_ENVIRONMENT} deployment has been created. You can view the status of the deployment here: <https://github.com/mcmire/elliotwinkler.com/actions/workflows/deploy-to-vercel.yml>`
-            })
-        env:
-          VERCEL_ENVIRONMENT: ${{ needs.determine-vercel-environment.outputs.VERCEL_ENVIRONMENT }}
