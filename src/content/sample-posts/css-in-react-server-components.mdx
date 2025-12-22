@@ -27,8 +27,7 @@ If you use a CSS-in-JS library, my hope is that this blog post will help clear a
 
 And if you _don’t_ use a CSS-in-JS library, this blog post should still help deepen your understanding of React Server Components. Many of the issues we’ll cover here aren't specific to CSS-in-JS!
 
-<!-- prettier-ignore -->
-:::callout{type="note" title='"Just use ___________"'}
+<Callout type="note" title="Just use ___________">
 When this discussion comes up online, one of the most common suggestions is to switch to a different CSS tool. After all, there are no shortage of options in the React ecosystem!
 
 For many of us, though, this isn't a practical suggestion. I have more than 5,000 styled components across my blog and course platform. Migrating to an entirely different tool is much easier said than done.
@@ -36,7 +35,8 @@ For many of us, though, this isn't a practical suggestion. I have more than 5,00
 And honestly, even if I _could_ snap my fingers and swap in a totally different library, I wouldn't want to. I really like the `styled` API!
 
 Later in this blog post, we will discuss some alternative CSS libraries, but we’ll focus on options with similar APIs to styled-components.
-:::
+
+</Callout>
 
 ## Breaking down React Server Components
 
@@ -153,13 +153,14 @@ Even the `useContext` hook can't be used inside Server Components, because the R
 
 **Here’s how I look at it:** Server Components aren't _really_ React components, at least not as we've traditionally understood them. They're much more like PHP templates, rendered by a server to create the original HTML. The real innovation is that Server Components and Client Components can co-exist in the same application!
 
-:::callout{type="note" title="Going deeper"}
+<Callout type="note" title="Going deeper">
 In this blog post, I want to focus on the most pertinent details of React Server Components, the stuff we need to know in order to understand the compatibility issues with CSS-in-JS frameworks.
 
 If you'd like to learn more about React Server Components, though, I have a separate blog post that explores this new world in much more depth:
 
 [“Making Sense of React Server Components”](https://example.com)
-:::
+
+</Callout>
 
 ## How CSS-in-JS libraries work
 
