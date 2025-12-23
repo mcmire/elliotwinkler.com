@@ -35,15 +35,11 @@ on:
         required: true
         type: string
       subrepo-name:
-        description: 'The name of the repository where this workflow was dispatched from.'
+        description: 'The name of the subrepository that has new changes you want to deploy. (Deprecated.)'
         required: false
         type: string
-      subrepo-pull-request-number:
-        description: 'The number of the issue or pull request where this workflow was dispatched from.'
-        required: false
-        type: number
       subrepo-ref:
-        description: 'The ref of the referring repo you want to check out.'
+        description: 'The ref of the subrepo you want to check out. (Deprecated.)'
         required: false
         type: string
 env:
