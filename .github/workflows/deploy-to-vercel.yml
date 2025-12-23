@@ -127,7 +127,7 @@ jobs:
           echo DEPLOYMENT_URL="$(tail -n 1 < deploy.log)" >> "$GITHUB_OUTPUT"
         shell: bash
       - name: Update comment on referring pull request
-        if: ${{ env.SUBREPO_NAME && steps.deploy.outputs.DEPLOYMENT_URL }}
+        if: ${{ env.SUBREPO_NAME && steps.post-comment.outputs.result && steps.deploy.outputs.DEPLOYMENT_URL }}
         uses: actions/github-script@v7
         with:
           github-token: ${{ env.SUBREPO_NAME == 'elliotwinkler.com' && github.token || secrets.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
