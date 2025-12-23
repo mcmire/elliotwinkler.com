@@ -91,8 +91,13 @@ jobs:
             done
 
           if [[ -n "$subrepo_directory" ]]; then
+            echo "Entering $subrepo_directory..."
             cd "$subrepo_directory"
+            echo "Checking out $SUBREPO_REF..."
             git checkout "$SUBREPO_REF"
+          else
+            echo "ERROR: Could not find directory for 'https://github.com/mcmire/$SUBREPO_NAME'"
+            exit 1
           fi
         shell: bash
       - uses: actions/setup-node@v6
