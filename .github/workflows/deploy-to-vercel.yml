@@ -56,7 +56,7 @@ jobs:
     steps:
       - name: Post initial comment to referring pull request
         id: post-comment
-        if: ${{ env.SUBREPO_NAME && env.SUBREPO_PULL_REQUEST_NUMBER }}
+        if: ${{ env.SUBREPO_NAME && env.SUBREPO_PULL_REQUEST_NUMBER != '0' }}
         uses: actions/github-script@v8
         with:
           github-token: ${{ env.SUBREPO_NAME == 'elliotwinkler.com' && github.token || secrets.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
