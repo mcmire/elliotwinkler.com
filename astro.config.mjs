@@ -6,6 +6,8 @@ import tailwindcss from "@tailwindcss/vite";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
+import rehypeCallouts from "rehype-callouts";
+// import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives";
 import remarkDirective from "remark-directive";
 import remarkMath from "remark-math";
 import remarkCodeTitle from "remark-code-title";
@@ -63,6 +65,7 @@ function transformerRemoveLastEmptyLine() {
 export default defineConfig({
   markdown: {
     remarkPlugins: [
+      // remarkGithubAdmonitionsToDirectives,
       remarkDirective,
       remarkMath,
       remarkCallout,
@@ -89,6 +92,7 @@ export default defineConfig({
           },
         },
       ],
+      rehypeCallouts,
     ],
     shikiConfig: {
       themes: {
