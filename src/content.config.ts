@@ -23,7 +23,7 @@ const samplePostsCollection = definePostsCollection(
 );
 
 const postsCollection = definePostsCollection(
-  "./submodules/personal-content--writings/posts",
+  "./modules/personal-content--writings/posts",
 );
 
 export const collections = {
