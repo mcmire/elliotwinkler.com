@@ -36,14 +36,23 @@ const headingTree = buildHeadingTree(headings);
         {post.data.title}
       </h1>
       <div class="flex items-center text-sm">
-        <span class="text-slate-700 font-italic uppercase dark:text-slate-500">
+        <span class="text-slate-700 dark:text-slate-500">
           {
             post.data.publishDate.toLocaleString("UTC", {
               dateStyle: "long",
               timeZone: "UTC",
             })
           }
-          {post.data.updatedDate ? ` (updated ${post.data.updatedDate})` : null}
+          {
+            post.data.updatedDate ? (
+              <span class="italic">
+                {`(updated ${post.data.updatedDate.toLocaleString("UTC", {
+                  dateStyle: "long",
+                  timeZone: "UTC",
+                })})`}
+              </span>
+            ) : null
+          }
         </span>
         {
           post.collection === "sample-posts" ? (
