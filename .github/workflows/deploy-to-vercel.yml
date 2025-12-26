@@ -77,14 +77,14 @@ jobs:
           path=
           url=
 
-          git submodule --quiet foreach 'echo $sm_path' | \
-            while read -r path; do
-              url="$(git config get "submodule.$path.url")"
-              if [[ "$url" == "https://github.com/mcmire/$SUBREPO_NAME" ]]; then
-                subrepo_directory="$path"
-                break
-              fi
-            done
+          # shellcheck disable=SC2016
+          while read -r path; do
+            url="$(git config get "submodule.$path.url")"
+            if [[ "$url" == "https://github.com/mcmire/$SUBREPO_NAME" ]]; then
+              subrepo_directory="$path"
+              break
+            fi
+          done < <(git submodule --quiet foreach 'echo $sm_path')
 
           if [[ -n "$subrepo_directory" ]]; then
             echo "Entering $subrepo_directory..."
