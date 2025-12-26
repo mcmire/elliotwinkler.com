@@ -8,18 +8,22 @@ import { fromHtml } from "hast-util-from-html";
 const dirname = (import.meta as any).dirname;
 const lightBulbIcon = fs.readFileSync(
   path.resolve(dirname, "../public/icons/heroicons/mini/light-bulb.svg"),
+  "utf8",
 );
 const handRaisedIcon = fs.readFileSync(
   path.resolve(dirname, "../public/icons/heroicons/mini/hand-raised.svg"),
+  "utf8",
 );
 const warningIcon = fs.readFileSync(
   path.resolve(dirname, "../public/icons/heroicons/mini/warning.svg"),
+  "utf8",
 );
 const infoIcon = fs.readFileSync(
   path.resolve(
     dirname,
     "../public/icons/heroicons/mini/information-circle.svg",
   ),
+  "utf8",
 );
 
 function determineHeader(calloutType: string | undefined) {
