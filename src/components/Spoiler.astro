@@ -4,9 +4,6 @@
 
 <script>
   class Spoiler extends HTMLSpanElement {
-    // The Astro Prettier plugin incorrectly sees this as an error.
-    // See: <https://github.com/withastro/prettier-plugin-astro/issues/407>
-    // eslint-disable-next-line
     constructor() {
       super();
       this.addEventListener("click", () => {
