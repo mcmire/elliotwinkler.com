@@ -38,17 +38,15 @@ const headingTree = buildHeadingTree(headings);
       <div class="flex items-center text-sm">
         <span class="text-slate-700 dark:text-slate-500">
           {
-            post.data.publishDate.toLocaleString("UTC", {
+            post.data.publishDate.toLocaleString(undefined, {
               dateStyle: "long",
-              timeZone: "UTC",
             })
           }
           {
             post.data.updatedDate ? (
               <span class="italic">
-                {`(updated ${post.data.updatedDate.toLocaleString("UTC", {
+                {`(updated ${post.data.updatedDate.toLocaleString(undefined, {
                   dateStyle: "long",
-                  timeZone: "UTC",
                 })})`}
               </span>
             ) : null
