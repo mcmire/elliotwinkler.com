@@ -5,7 +5,6 @@ import Callout from "../components/Callout.astro";
 import Gallery from "../components/Gallery.astro";
 import HeadingTree from "../components/HeadingTree.astro";
 import Image from "../components/Image.astro";
-import Main from "../components/Main.astro";
 import Row from "../components/Row.astro";
 import Spoiler from "../components/Spoiler.astro";
 import Tag from "../components/Tag.astro";
@@ -28,56 +27,75 @@ const headingTree = buildHeadingTree(headings);
 ---
 
 <SiteLayout title={post.data.title}>
-  <Main>
-    <header class="mb-10">
-      <h1
-        class="res-text-4xl !leading-10 font-bold font-display mb-3 dark:text-slate-300"
-      >
-        {post.data.title}
-      </h1>
-      <div class="flex items-center text-sm">
-        <span class="text-slate-700 dark:text-slate-500">
+  {
+    /* Not making this sticky because then when jumping to headers the scroll-y needs to be corrected */
+  }
+  <nav
+    class="flex items-center p-2 gap-2 text-xs dark:bg-slate-800 dark:border-b dark:border-slate-700"
+  >
+    <a href="/" class="flex items-center group">
+      <img
+        src="/mcmire.png"
+        width="128"
+        height="128"
+        alt="mcmire avatar"
+        class="h-[1.5em] w-[1.5em] inline-block vertical-align-middle rounded-full pixelated border border-neutral-500 shadow-md dark:border-transparent"
+      />
+      &nbsp; <span class="group-hover:underline">Elliot Winkler</span>
+    </a>
+  </nav>
+  <main class="pl-4 pr-4 py-4 lg:pl-24 lg:py-8 xl:flex xl:gap-12">
+    <div class="overflow-x-auto max-w-[40rem]">
+      <header class="mb-8">
+        <h1
+          class="res-text-4xl !leading-10 font-bold font-display mb-3 dark:text-slate-300"
+        >
+          {post.data.title}
+        </h1>
+        <div class="flex items-center text-sm">
+          <span class="text-slate-700 dark:text-slate-500">
+            {
+              post.data.publishDate.toLocaleString(undefined, {
+                dateStyle: "long",
+              })
+            }
+            {
+              post.data.updatedDate ? (
+                <span class="italic">
+                  {`(updated ${post.data.updatedDate.toLocaleString(undefined, {
+                    dateStyle: "long",
+                  })})`}
+                </span>
+              ) : null
+            }
+          </span>
           {
-            post.data.publishDate.toLocaleString(undefined, {
-              dateStyle: "long",
-            })
-          }
-          {
-            post.data.updatedDate ? (
-              <span class="italic">
-                {`(updated ${post.data.updatedDate.toLocaleString(undefined, {
-                  dateStyle: "long",
-                })})`}
-              </span>
+            post.collection === "sample-posts" ? (
+              <Tag class="ml-2">sample</Tag>
             ) : null
           }
-        </span>
-        {
-          post.collection === "sample-posts" ? (
-            <Tag class="ml-2">sample</Tag>
-          ) : null
-        }
-      </div>
-    </header>
-    <article class="markdown">
-      <Content
-        components={{
-          Callout,
-          Gallery,
-          Image,
-          Row,
-          Spoiler,
-          YouTube,
-        }}
-      />
-    </article>
-  </Main>
-  {
-    post.data.showToc ? (
-      <aside class="flex-none text-xs hidden sticky top-[3rem] overflow-y-scroll h-[calc(100vh-6rem)] xl:block">
-        <header class="text-md font-semibold mb-4">Table of Contents</header>
-        <HeadingTree tree={headingTree} />
-      </aside>
-    ) : null
-  }
+        </div>
+      </header>
+      <article class="markdown">
+        <Content
+          components={{
+            Callout,
+            Gallery,
+            Image,
+            Row,
+            Spoiler,
+            YouTube,
+          }}
+        />
+      </article>
+    </div>
+    {
+      post.data.showToc ? (
+        <aside class="flex-none text-xs hidden sticky top-[5rem] overflow-y-scroll h-[calc(100vh-7rem)] xl:block">
+          <header class="text-md font-semibold mb-4">Table of Contents</header>
+          <HeadingTree tree={headingTree} />
+        </aside>
+      ) : null
+    }
+  </main>
 </SiteLayout>

@@ -1,10 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Figtree Variable";
-  --font-mono: "IBM Plex Mono";
-  --font-display: "Figtree Variable";
-
   /* font size: Math.pow(i + 5, 2) / 10 + 13.5 */
   /* line height: font size * 1.7 */
   --text-xs: 16px;
