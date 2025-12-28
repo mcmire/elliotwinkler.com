@@ -1,10 +1,9 @@
 ---
-import "@fontsource/ibm-plex-mono";
-import "@fontsource-variable/figtree";
+import classnames from "classnames";
 import "../styles/index.css";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 
 const { title } = Astro.props;
-const googleAnalyticsId = "G-FGFP8BJDRG";
 ---
 
 <html lang="en" class="res-text-base">
@@ -15,55 +14,10 @@ const googleAnalyticsId = "G-FGFP8BJDRG";
     <title>
       {!title && title !== 0 ? "Elliot Winkler" : `${title} | Elliot Winkler`}
     </title>
-    {
-      import.meta.env.MODE === "production" ? (
-        <>
-          <script
-            is:inline
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-FGFP8BJDRG"
-          />
-          {/*
-            Note the use of set:html.
-            We are doing this because otherwise we get a Prettier error.
-            Source: <https://github.com/withastro/prettier-plugin-astro/issues/337#issuecomment-2961980527>
-          */}
-          <script
-            is:inline
-            set:html={`
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${googleAnalyticsId}');
-`}
-          />
-        </>
-      ) : null
-    }
+    <GoogleAnalytics />
   </head>
-  <body class="py-4 md:py-12 md:px-20 dark:bg-slate-900 dark:text-slate-300">
-    {/* Note: items-start is necessary to get TOC in right place */}
-    {
-      /* See: <https://element.how/css-debugging-position-sticky-not-working/#:~:text=This%20issue%20is%20usually%20because,to%20be%20'sticky'%20in.> */
-    }
-    <div
-      class="flex flex-col gap-4 md:gap-12 md:flex-row lg:gap-20 xl:items-start"
-    >
-      <nav
-        class="text-center flex-none md:sticky md:top-[3rem] md:h-[calc(100vh-6rem)]"
-      >
-        <a href="/">
-          <img
-            src="/mcmire.png"
-            width="128"
-            height="128"
-            alt="mcmire avatar"
-            class="h-[2.5em] w-[2.5em] inline md:h-[3.5em] md:w-[3.5em] rounded-full pixelated border border-neutral-500 shadow-md dark:border-transparent"
-          />
-        </a>
-      </nav>
-      <slot />
-    </div>
+  <body class="dark:bg-gray-800 dark:text-gray-300">
+    <slot />
   </body>
 </html>
 

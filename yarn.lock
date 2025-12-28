@@ -1425,20 +1425,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource-variable/figtree@npm:^5.0.21":
-  version: 5.0.21
-  resolution: "@fontsource-variable/figtree@npm:5.0.21"
-  checksum: 10c0/e59b272363345481b7098ce7676c20d502cc3948938fd316db02d30177855cae63be91dd21adbccb0e8fc5b7fd045396242b8ab3ccc976d50ee7bbba7895ab00
-  languageName: node
-  linkType: hard
-
-"@fontsource/ibm-plex-mono@npm:^5.0.13":
-  version: 5.0.13
-  resolution: "@fontsource/ibm-plex-mono@npm:5.0.13"
-  checksum: 10c0/dafc1735f8faf488af0a5b28ee08266a64e985710f73dd627301609c2ab40d4a35afc9b30765058a9babbb2a23f99f00da6b5b39589cf31e5dc642aa6e95a1a1
-  languageName: node
-  linkType: hard
-
 "@humanfs/core@npm:^0.19.1":
   version: 0.19.1
   resolution: "@humanfs/core@npm:0.19.1"
@@ -5159,8 +5145,6 @@ __metadata:
     "@astrojs/mdx": "npm:^4.3.13"
     "@astrojs/solid-js": "npm:^5.1.3"
     "@astrojs/ts-plugin": "npm:1.10.6"
-    "@fontsource-variable/figtree": "npm:^5.0.21"
-    "@fontsource/ibm-plex-mono": "npm:^5.0.13"
     "@iconify-json/heroicons": "npm:^1.1.20"
     "@lavamoat/allow-scripts": "npm:^3.4.1"
     "@lavamoat/preinstall-always-fail": "npm:^2.1.1"

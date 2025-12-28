@@ -1,0 +1,29 @@
+---
+const googleAnalyticsId = "G-FGFP8BJDRG";
+---
+
+{
+  import.meta.env.MODE === "production" ? (
+    <>
+      <script
+        is:inline
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-FGFP8BJDRG"
+      />
+      {/*
+            Note the use of set:html.
+            We are doing this because otherwise we get a Prettier error.
+            Source: <https://github.com/withastro/prettier-plugin-astro/issues/337#issuecomment-2961980527>
+          */}
+      <script
+        is:inline
+        set:html={`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${googleAnalyticsId}');
+`}
+      />
+    </>
+  ) : null
+}
