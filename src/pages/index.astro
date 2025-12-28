@@ -7,10 +7,8 @@ const posts = await getPosts();
 ---
 
 <SiteLayout>
-  <main class="max-w-[40rem] mx-auto p-4">
-    <div
-      class="mb-4 text-center border-b border-slate-300 dark:border-slate-700 mb-8 pb-8"
-    >
+  <main class="p-4">
+    <div class="max-w-[40rem] mx-auto mb-8 text-center">
       <p class="mb-4">
         <img
           src="/mcmire.png"
@@ -55,7 +53,8 @@ const posts = await getPosts();
         </ul>
       </nav>
     </div>
-    <nav>
+    <hr class="border-b border-slate-300 mb-8 dark:border-slate-700" />
+    <nav class="max-w-[40rem] mx-auto">
       <h2 class="text-xl font-semibold mb-4">Things I've written</h2>
       {
         posts.map((post) => (
