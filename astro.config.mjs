@@ -112,7 +112,7 @@ export default defineConfig({
     plugins: [
       tailwindcss({
         applyBaseStyles: false,
-        nesting: true,
+        nesting: false,
       }),
     ],
   },
