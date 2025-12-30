@@ -6,6 +6,7 @@ type CalloutType = "tip" | "warning" | "stop" | "note";
 type Props = {
   type?: CalloutType;
   title?: string;
+  hideTitle?: boolean;
 };
 
 function determineHeader(calloutType: CalloutType) {
@@ -28,13 +29,18 @@ const props = Astro.props;
 const type = props.type ?? "note";
 const header = determineHeader(type);
 const title = props.title ?? header.text;
+const hideTitle = props.hideTitle;
 ---
 
 <div class={`callout callout--${type}`}>
-  <div class="callout__header">
-    <Icon name={header.icon} />
-    {title}
-  </div>
+  {
+    hideTitle ? null : (
+      <div class="callout__header">
+        <Icon name={header.icon} />
+        {title}
+      </div>
+    )
+  }
   <div class="callout__body">
     <slot />
   </div>

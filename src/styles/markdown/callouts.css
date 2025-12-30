@@ -1,6 +1,6 @@
 .markdown {
   .callout {
-    @apply border rounded mt-8 mb-8 pb-1 res-text-sm dark:pb-0 first:mt-0;
+    @apply border rounded mt-8 mb-8 pb-1 text-sm dark:pb-0 first:mt-0;
   }
 
   .callout__header, .callout-title {

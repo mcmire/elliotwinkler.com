@@ -1,16 +1,15 @@
+/*
 @theme {
-  /* font size: Math.pow(i + 5, 2) / 10 + 13.5 */
-  /* line height: font size * 1.7 */
-  --text-xs: 16px;
-  --text-sm: 17.1px;
-  --text-base: 18.4px;
-  --text-md: 19.9px;
-  --text-lg: 21.6px;
-  --text-xl: 23.5px;
-  --text-2xl: 25.6px;
-  --text-3xl: 27.9px;
-  --text-4xl: 30.4px;
-  --text-5xl: 33.1px;
+  --text-xs: calc(1px * (pow(0 + 5, 2) / 10 + 11.1));
+  --text-sm: calc(1px * (pow(1 + 5, 2) / 10 + 11.1));
+  --text-base: calc(1px * (pow(2 + 5, 2) / 10 + 11.1));
+  --text-md: calc(1px * (pow(3 + 5, 2) / 10 + 11.1));
+  --text-lg: calc(1px * (pow(4 + 5, 2) / 10 + 11.1));
+  --text-xl: calc(1px * (pow(5 + 5, 2) / 10 + 11.1));
+  --text-2xl: calc(1px * (pow(6 + 5, 2) / 10 + 11.1));
+  --text-3xl: calc(1px * (pow(7 + 5, 2) / 10 + 11.1));
+  --text-4xl: calc(1px * (pow(8 + 5, 2) / 10 + 11.1));
+  --text-5xl: calc(1px * (pow(9 + 5, 2) / 10 + 11.1));
 }
 
 @theme inline {
@@ -24,4 +23,17 @@
   --text-3xl--line-height: calc(var(--text-3xl) * 1.7);
   --text-4xl--line-height: calc(var(--text-4xl) * 1.7);
   --text-5xl--line-height: calc(var(--text-5xl) * 1.7);
+}
+*/
+
+@theme inline {
+  --text-xs--line-height: calc(var(--spacing) * 4);
+  --text-sm--line-height: calc(var(--spacing) * 5);
+  --text-base--line-height: calc(var(--spacing) * 6);
+  --text-lg--line-height: calc(var(--spacing) * 6);
+  --text-xl--line-height: calc(var(--spacing) * 6);
+  --text-2xl--line-height: calc(var(--spacing) * 8);
+  --text-3xl--line-height: calc(var(--spacing) * 9);
+  --text-4xl--line-height: calc(var(--spacing) * 10);
+  --text-5xl--line-height: calc(var(--spacing) * 12);
 }
