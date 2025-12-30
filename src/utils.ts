@@ -8,7 +8,14 @@ export type HeadingNode = {
 };
 
 export function buildHeadingTree(headings: AstroHeading[]): HeadingNode {
-  let tree: HeadingNode = { level: 1, text: "[Root]", slug: "", children: [] };
+  let tree: HeadingNode = {
+    level: 1,
+    text: "[Root]",
+    slug: "",
+    children: [
+      { level: 2, text: "Introduction", slug: "introduction", children: [] },
+    ],
+  };
   const parentStack = [tree];
   const reverseHistory: HeadingNode[] = [];
 
