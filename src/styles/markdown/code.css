@@ -4,7 +4,7 @@
   }
 
   [data-remark-code-title] {
-    @apply bg-neutral-100 px-4 py-1 res-text-sm inline-block text-right border-b border-white dark:bg-slate-900 dark:text-slate-400 dark:border-slate-900;
+    @apply bg-slate-200 px-4 py-1 text-sm inline-block text-right border-b border-white dark:bg-slate-900 dark:text-slate-400 dark:border-slate-900;
   }
 
   :not([data-remark-code-title]) + .astro-code {
@@ -12,9 +12,9 @@
   }
 
   .astro-code {
-    @apply text-[0.8em] mb-8 py-4 break-normal no-hyphenation overflow-x-hidden overflow-y-hidden relative tab-size-2 whitespace-pre dark:bg-black;
+    @apply text-[0.8em] mb-8 py-4 break-normal no-hyphenation overflow-x-hidden overflow-y-hidden relative tab-size-2 whitespace-pre;
 
-    background-color: var(--color-neutral-100) !important;
+    background-color: var(--color-slate-200) !important;
     --shiki-dark-bg: var(--color-slate-900) !important;
 
     .line {
@@ -22,7 +22,7 @@
     }
 
     .line.highlighted {
-      @apply bg-black/5 border-l border-blue-500 dark:bg-white/5;
+      @apply bg-slate-300 border-l border-blue-500 dark:bg-slate-950;
 
       span {
         background-color: transparent !important;

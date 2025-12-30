@@ -1,12 +1,11 @@
 ---
-import classnames from "classnames";
 import "../styles/index.css";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 
 const { title } = Astro.props;
 ---
 
-<html lang="en" class="res-text-base">
+<html lang="en" class="text-[16px] md:text-[17px] 2xl:text-[18px]">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,22 +15,24 @@ const { title } = Astro.props;
     </title>
     <GoogleAnalytics />
   </head>
-  <body class="min-h-screen dark:bg-gray-800 dark:text-gray-300">
+  <body
+    class="min-h-screen bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300"
+  >
     <slot />
+
+    <script>
+      import { createEffect } from "solid-js";
+      import { isGalleryOpen } from "../signals/isGalleryOpen.ts";
+
+      const overflowY = document.body.style.overflowY;
+
+      createEffect(() => {
+        if (isGalleryOpen()) {
+          document.body.style.overflowY = "hidden";
+        } else {
+          document.body.style.overflowY = overflowY;
+        }
+      });
+    </script>
   </body>
 </html>
-
-<script>
-  import { createEffect } from "solid-js";
-  import { isGalleryOpen } from "../signals/isGalleryOpen.ts";
-
-  const overflowY = document.body.style.overflowY;
-
-  createEffect(() => {
-    if (isGalleryOpen()) {
-      document.body.style.overflowY = "hidden";
-    } else {
-      document.body.style.overflowY = overflowY;
-    }
-  });
-</script>

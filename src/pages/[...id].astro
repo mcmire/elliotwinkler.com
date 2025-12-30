@@ -31,7 +31,7 @@ const headingTree = buildHeadingTree(headings);
     /* Not making this sticky because then when jumping to headers the scroll-y needs to be corrected */
   }
   <nav
-    class="flex items-center p-2 gap-2 text-xs dark:bg-slate-800 dark:border-b dark:border-slate-700"
+    class="flex items-center px-4 py-2 gap-2 text-sm border-b border-slate-300 dark:bg-slate-800 dark:border-slate-700"
   >
     <a href="/" class="flex items-center group">
       <img
@@ -41,40 +41,51 @@ const headingTree = buildHeadingTree(headings);
         alt="mcmire avatar"
         class="h-[1.5em] w-[1.5em] inline-block vertical-align-middle rounded-full pixelated border border-neutral-500 shadow-md dark:border-transparent"
       />
-      &nbsp; <span class="group-hover:underline">Elliot Winkler</span>
+      &nbsp;&nbsp; <span class="group-hover:underline">Elliot Winkler</span>
     </a>
   </nav>
-  <main class="pl-4 pr-4 py-4 lg:pl-24 lg:py-8 xl:flex xl:gap-12">
-    <div class="overflow-x-auto max-w-[40rem]">
-      <header class="mb-8">
+  <main
+    class="pl-4 pr-4 pt-8 pb-4 lg:py-8 xl:pl-24 xl:flex xl:justify-center xl:gap-24"
+  >
+    <div class="overflow-x-auto max-w-[40rem] mx-auto xl:mx-[unset]">
+      <header class="mb-8 text-center">
         <h1
-          class="res-text-4xl !leading-10 font-bold font-display mb-3 dark:text-slate-300"
+          class="text-3xl font-semibold font-display mb-3 text-slate-900 dark:text-slate-100"
         >
           {post.data.title}
-        </h1>
-        <div class="flex items-center text-sm">
-          <span class="text-slate-700 dark:text-slate-500">
-            {
-              post.data.publishDate.toLocaleString(undefined, {
-                dateStyle: "long",
-              })
-            }
-            {
-              post.data.updatedDate ? (
-                <span class="italic">
-                  {`(updated ${post.data.updatedDate.toLocaleString(undefined, {
-                    dateStyle: "long",
-                  })})`}
-                </span>
-              ) : null
-            }
-          </span>
           {
             post.collection === "sample-posts" ? (
-              <Tag class="ml-2">sample</Tag>
+              <>
+                <br />
+                <Tag class="text-xl ml-2">sample</Tag>
+              </>
             ) : null
           }
-        </div>
+        </h1>
+        <p class="text-slate-700 text-[0.8rem] italic dark:text-slate-500">
+          {
+            post.data.publishDate.toLocaleString(undefined, {
+              dateStyle: "long",
+            })
+          }
+          <br class="sm:hidden" />
+          {
+            post.data.updatedDate ? (
+              <span class="italic">
+                (Updated{" "}
+                {post.data.updatedDate.toLocaleString(undefined, {
+                  dateStyle: "long",
+                })}
+                )
+              </span>
+            ) : null
+          }
+        </p>
+        <!--
+        <p class="text-slate-700 text-[0.8rem] italic dark:text-slate-500">
+        {post.data.tags}
+        </p>
+        -->
       </header>
       <article class="markdown">
         <Content
@@ -92,10 +103,33 @@ const headingTree = buildHeadingTree(headings);
     {
       post.data.showToc ? (
         <aside class="flex-none text-xs hidden sticky top-[5rem] overflow-y-scroll h-[calc(100vh-7rem)] xl:block">
-          <header class="text-md font-semibold mb-4">Table of Contents</header>
+          <header class="text-base font-semibold mb-4">
+            Table of Contents
+          </header>
           <HeadingTree tree={headingTree} />
         </aside>
       ) : null
     }
   </main>
+  <footer
+    class="p-4 mt-8 text-center border-t border-slate-300 dark:border-slate-700 text-xs"
+  >
+    <p class="opacity-50 mb-2">
+      Content and design © 2025-present <a
+        class="link"
+        href="mailto:elliot.winkler@gmail.com">Elliot Winkler</a
+      >. Code is under the <a
+        class="link"
+        href="https://choosealicense.com/licenses/mit/">MIT license</a
+      > unless stated. Graphics are under the <a
+        class="link"
+        href="https://creativecommons.org/licenses/by/4.0/deed.en"
+        >CC BY license</a
+      >.
+    </p>
+    <p class="opacity-50">
+      Powered by <a class="link" href="https://astro.build">Astro</a> and hosted on
+      <a class="link" href="https://vercel.com">Vercel</a>.
+    </p>
+  </footer>
 </SiteLayout>
