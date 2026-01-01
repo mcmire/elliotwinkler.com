@@ -7,14 +7,24 @@ function definePostsCollection(directory: string) {
       pattern: "**/[^_]*.{md,mdx}",
       base: directory,
     }),
-    schema: z.object({
-      title: z.string(),
-      publishDate: z.date(),
-      published: z.boolean().optional(),
-      showToc: z.boolean().optional(),
-      tags: z.array(z.string()).optional().default([]),
-      updatedDate: z.date().optional(),
-    }),
+    schema: z.union([
+      z.object({
+        title: z.string(),
+        publishDate: z.date(),
+        published: z.literal(true),
+        showToc: z.boolean().optional().default(false),
+        tags: z.array(z.string()).optional().default([]),
+        updatedDate: z.date().optional(),
+      }),
+      z.object({
+        title: z.string(),
+        publishDate: z.date().optional(),
+        published: z.literal(false).optional().default(false),
+        showToc: z.boolean().optional().default(false),
+        tags: z.array(z.string()).optional().default([]),
+        updatedDate: z.date().optional(),
+      }),
+    ]),
   });
 }
 
