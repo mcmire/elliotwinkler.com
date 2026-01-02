@@ -72,16 +72,16 @@ const posts = await getPosts();
                 {post.data.title}
               </a>
             </div>
-            {post.data.publishDate ? (
-              <div class="text-sm flex-none text-slate-500 sm:text-base">
-                {post.data.publishDate.toLocaleDateString(undefined, {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                  timeZone: "UTC",
-                })}
-              </div>
-            ) : null}
+            <div class="text-sm flex-none text-slate-500 sm:text-base">
+              {post.data.publishDate
+                ? post.data.publishDate.toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                    timeZone: "UTC",
+                  })
+                : "????"}
+            </div>
           </div>
         ))
       }
