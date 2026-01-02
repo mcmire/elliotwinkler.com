@@ -57,12 +57,12 @@ const headingTree = buildHeadingTree(headings);
             post.collection === "sample-posts" || !post.data.published ? (
               <div class="flex gap-2 justify-center mt-2">
                 {post.collection === "sample-posts" ? (
-                  <Tag class="bg-amber-500 dark:bg-amber-500/15 text-xl ml-2">
+                  <Tag class="bg-amber-500 dark:bg-amber-500/15 text-lg ml-2">
                     sample
                   </Tag>
                 ) : null}
                 {post.data.published ? null : (
-                  <Tag class="bg-fuchsia-500 dark:bg-fuchsia-500/15 text-xl ml-2">
+                  <Tag class="bg-fuchsia-500 dark:bg-fuchsia-500/15 text-lg ml-2">
                     draft
                   </Tag>
                 )}
