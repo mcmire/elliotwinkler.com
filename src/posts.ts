@@ -15,7 +15,7 @@ export async function getPosts() {
     allPosts
       .filter(
         (post) =>
-          import.meta.env.PUBLIC_VERCEL_ENV !== "production" ||
+          import.meta.env.APP_ENVIRONMENT !== "production" ||
           post.data.published,
       )
       // Sort non-sample posts before sample posts,
