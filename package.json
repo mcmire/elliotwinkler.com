@@ -10,6 +10,12 @@
     "preview": "astro preview",
     "start": "astro dev"
   },
+  "resolutions": {
+    "esbuild@npm:0.14.47": "^0.25.0",
+    "esbuild@npm:~0.23.0": "^0.25.0",
+    "undici@npm:5.28.4": "^5.29.0",
+    "undici@npm:^5.28.4": "^5.29.0"
+  },
   "dependencies": {
     "@astrojs/check": "0.9.6",
     "@astrojs/mdx": "^4.3.13",
