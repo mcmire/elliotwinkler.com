@@ -1,0 +1,203 @@
+---
+title: All About Obsidian
+tags:
+  - obsidian
+---
+
+
+
+
+
+## Questions and answers
+
+- Why did I choose Obsidian over other apps?
+	- Portable, readable format. The use of text files meant that my data would be easy to convert if I wanted to migrate away from Obsidian. I could also own my own data, store them in version control, keep them wherever, forever. And the use of Markdown by default meant that if needed to edit a file outside of Obsidian I could easily do that.
+	- WYSIWYG editor. Even if I wanted file to be in Markdown, I didn't want to write in Markdown all the time; I wanted to work with a "pretty" view by default. This was especially useful on mobile, where I wanted to be able to write quickly.
+	- Fast startup time and overall performance. I really enjoyed this about Simplenote, another tool I used heavily before Obsidian. It meant if I had an idea I could hop in and jot it down fast. 
+	- Extensibility. Most note-taking apps give you a limited amount of customization. Obsidian provides an official API and a plugin directory.
+	- Anonymity. I didn't have to sign up for an account if I didn't want to.
+	- Essentially, I agree with everything the [Obsidian manifesto](https://obsidian.md/about) says, and everything that the CEO of Obsidian, Stephan Go (aka `@kepano`) says, such as [file over app](https://stephango.com/file-over-app).
+- What do I use Obsidian for?
+	- Jot down small and big thoughts and ideas about life and work, so I can search for and reflect on them later 
+	- Plan and track side projects, so I can pause and resume the work freely
+	- Create comparisons of products before making big purchases
+- Why do I think other people should use Obsidian (or some other kind of knowledge management system, like Roam or Logseq)?
+	- Our digital lives are being more and more ephemeral. The rise of social media means that more often than not, some company owns all of the photos, videos, and thoughts you post online — and one day, they can choose to sell it all to someone else, or shut it down completely.
+	- At the same time, our attention is being more and more fragmented. At one point, long-form media (blog posts, forum posts, videos, even articles) were prized, and people spent the time to read or watch them and engage in thoughtful discussion. Now with the rise of feeds, we are bombarded with 15-second shorts and 120-word tweets, and people are used to posting snarky one-liners to grab a piece of the attention pie and leaving.
+	- What you see and hear and read matters. Your thoughts and dreams matter. You matter. Wouldn't it be great if you had your own private space where you could write things down and they wouldn't get scattered across a landfill? 
+- What led me to using Obsidian?
+	- Diaries
+	- Sharp electronic organizer
+	- Handspring
+	- Diaries again 
+	- Blogger
+	- Diary-X / Codexed
+	- Xanga
+	- Diaries again again
+	- Evernote
+	- MultiMarkdown (briefly)
+	- nvALT (briefly)
+	- Simplenote
+	- Typora (briefly)
+	- Workflowy (briefly)
+	- Roam (briefly)
+	- Joplin (briefly)
+	- Logseq (briefly)
+	- Athens (briefly)
+	- Obsidian
+- How do I tend to use Obsidian?
+	- A modicum of built-in plugins: Command palette, Files, Outline, Page preview, Properties view, Quick switcher, Search
+	- A modicum of custom plugins: Commander, Custom File Extensions Plugin, Outliner, QuickAdd, Smart Typography, Vimrc Support
+	- When I first started using Obsidian, I would create notes to represent topics or concepts, as I had done with previous tools. But I was trying out Logseq at the same time, and in Logseq you are encouraged to keep date-based notes, which they call "Journals pages". I began switching to this process consistently after about a year.
+	- I have two types of date-based notes: "log" and "diary". Log entries are usually work– or side project–based, whereas diary entries are personal. I've added two templates for these types of notes, and I've configured the QuickAdd plugin so that I can easily generate a new note from a template. I've also added the Commander plugin so that I can add actions in the ribbon.
+	- At first I didn't use tags. If I wanted to create connections between notes, I would follow a similar process as Logseq and Roam. For instance, if I was talking about Obsidian, I would type `[[Obsidian]]` to create a link to an "Obsidian" page, and I would create that page (even if it didn't have any content). Then, to find all pages that referenced the "Obsidian" topic, I would navigate to that page and view all of the backlinks. Eventually, I realized this was a bit silly. I was already used to using tags with Pinboard, the bookmarking service I use, so I began to switch to that process instead. I don't use properties for tags, instead I will just put a tag on its own line. I even tag sections of notes. For instance, if I'm talking about two side projects on the same day, I will add a tag above one section and then add a tag above another section.
+	- I try to avoid plugins that do too many fancy things. In the past, I tried out Dataview because I was doing research into religion and wanted to build a sort of database of books that I wanted to read. But I began to spend way too much time on it. Maybe Bases would help — I haven't tried it out — but I really like to keep things simple.
+	- I don't use Canvas. If I want a diagram or something, I might use Mermaid, but at the end of the day I really only want to work with text files.
+	- I'm always evolving how I use Obsidian. Recently, I discovered [Maggie Appleton](https://maggieappleton.com/). I like the ["digital garden"](https://maggieappleton.com/garden-history) concept she uses. And although she uses Roam instead of Obsidian, I like how she treats  [evergreen notes](https://maggieappleton.com/roam-garden) (`@kepano` has [similar ideas](https://stephango.com/evergreen-notes).)
+- How do I sync Obsidian?
+	- I don't use Obsidian Sync. I do pay for the VIP Catalyst version, but that's really to help the development team.
+	- Instead, I keep my vault in a private GitHub repo, and I use a script which is located in the vault repo to sync changes.
+		- This script uses some basic locking logic to ensure that only one instance of the script is running at any given time. I also have some helper files in my `dotfiles` repo.
+	- On desktop, it works like this:
+		- I have both `dotfiles` and the Obsidian vault repo cloned in convenient locations. Running `bin/manage install` within `dotfiles` sets up everything automatically.
+		- I use a macOS LaunchAgent to run a daemon which automatically runs the sync script when any file within the Obsidian vault is changed. Actually, what the LaunchAgents runs is a wrapper script which debounces updates so that while a file is being edited, no syncing will occur, but as soon as there are no edits for a minute, then the sync script will be started.
+	- Mobile is a bit more complicated, but it works like this:
+		- To set everything up:
+			- I download [F-Droid](https://f-droid.org/) and [Termux](https://termux.dev/) from the Play Store, and I download [Termux:Tasker](https://wiki.termux.com/wiki/Termux:Tasker) and [Automate](https://llamalab.com/automate/) from F-Droid.
+			- I open Termux and run `termux-setup-storage` to allow access to the SD card.
+			- I use `gh` to clone the Obsidian vault repo in `shared/storage` (`gh` handles authentication for private repos more smoothly).
+			- I create a symlink to the vault repo in the home directory for quicker access.
+			- I use `gh` to clone my `dotfiles` repo, also in the home directory.
+			- I create two Automate workflows:
+				- One workflow runs the sync script automatically whenever any of the vault files are changed.
+					- This works similarly to the LaunchAgent on desktop in that the sync script will not be run as long as edits to the vault are actively taking place, but will run as soon as there is no activity for a minute. Also, when I switch away from Obsidian, the sync script will also run.
+					- The workflow uses a plugin block, using Termux:Tasker, to run the sync command.
+					- This Automate workflow isn't perfect. For instance, the sync script won't run if I make some changes and then immediately press the power button to suspend my phone. I've trained myself to switch away from Obsidian before pressing the power button, but it'd be nice to figure out a way around this.
+				- Another workflow runs the sync script manually.
+
+---
+
+Many "productivity" apps are just scratch pads. They assume the data you are putting into them is ephemeral — useful for now, but irrelevant later.
+
+And at the same time, many people, I feel, do not consider how they as a person might change over time. I've always been fascinated by diaries — and blogs — because this is basically a snapshot of how people think over time. I've tried keeping multiple diaries, and then I tried keeping multiple blogs (Blogger, Diary-X, Xanga). Social media — Facebook, Instagram, Twitter, — have also made data ephemeral. You put personal information out in space and where does it go?
+
+What I'm arguing is that everyone needs their own persisted diary that lives in the cloud. It's not just a blog, it's a whole system. And it's a representation of who I am. And it will live there forever, and I can construct this system, this extension of myself, and I can go back and see how I thought about a thing. And I can focus: I can remember what's important to me and what's not important to me and use that to guide what I do in the future. I can live a better life, have a better future.
+
+I want to own my data. I want it to be in a safe place. And, selfishly, I want to be like a famous author or scientist — when I pass on, I will leave behind a collection of writings, and my name will live on. 
+
+---
+
+With the move to feeds, then tweets, then shorts, our digital lives are becoming increasingly ephemeral, our attention is getting increasingly divided, and our thoughts are getting increasingly fractured. These apps don't teach us how to focus, to think deeply, to reflect.
+
+Who am I? What do I value? Where am I going? Where do I want to go next? These are questions that I ask myself all the time. And as life barrels on — as I experience more and more things — it gets more and more difficult to focus.
+
+I need that focus. And if I can't get it through time, I can record where I am now so I can continue the thread later.
+
+---
+
+Am I just advocating for more writing? Does a tool like Obsidian only appeal to writers? Or do you have to be an organization freak to use a tool like Roam?
+
+I don't think so. You don't have to be good at articulating your thoughts, but you do have to do some level of organizing. But it's _your_ system — you only have to be good at understanding how _you_ think and where _you_ expect things to be. And you will understand that as you go along.
+
+Maybe I'm just advocating for keeping a diary.
+
+---
+
+[Obsidian](https://obsidian.md) is the tool I use to keep digital notes — to jot down thoughts and ideas about life and work, plan side projects, keep a development log, compile research, draft long-form content (such as this post), and more.
+
+I wanted to document why I chose Obsidian over other tools, and how I use it for my needs.
+
+…
+
+I've never been good at remembering details. But since becoming a parent last year, my time has been more fragmented, and it feels like I'm constantly context-switching. Like Guy Pearson's character in _Memento_, I find it very helpful to write things down so I don't forget them.
+
+
+%%Fortunately, computers are very good at remembering things, and%% These days, there are an abundance of solutions for tracking and remembering things, most of which are billed as "productivity" apps. There are memo apps like Apple Notes and Google Keep, to-do apps like Todoist and Microsoft To-Do, and old-school programs like TextEdit and Notepad.
+
+%%iOS and macOS come with Apple Notes, and Android has Google Keep (among others). There are apps that fill niches like . And old-school programs like TextEdit and Notepad have existed for years.%%
+
+I use some of these apps, and they work fine to offload part of my brain and free up some short-term memory. But all of these are designed as scratch pads — places to hold temporary information which will get discarded once it's no longer useful.
+
+What about apps like Notion? What about Google Drive or Dropbox Paper? What about contenders like Evernote, Joplin, Bear, Craft?
+
+
+But jogging my memory in the short-term is not my only goal. I also want to 
+
+If my goal were to keep virtual notes to jog my memory.
+
+
+— to offload parts of my brain so that I can refer back to them later.
+
+%%
+Proponents of digital notetaking apps like to talk about building a "second brain". I don't know if that's completely accurate
+
+That's oversimplifying a bit, though. I do offload parts of my brain. But zooming out, what I'm really doing is 
+
+
+ — but I also find it helpful to use them to work out my thoughts in the present.
+
+messages for myself in the future time-traveling tool to record information that I can reference in the future.%%
+
+## Why I use Obsidian
+
+%%Look briefly and you'll find no shortage of note-taking apps.%% 
+
+Thanks to Apple Notes (and, to a lesser extent, Google Keep), most people have been exposed to some form of digital notes, even if they might not realize it.
+
+Apps like these are convenient for small use cases: jotting down temporary pieces of information, such as a password, someone's address, or a text message you want to send but you need to perfect first. But there are two reasons why they %%aren't suitable for storing different kinds of knowledge long-term%% are limiting in the long run:
+
+1. Lack of searchability. If you have a thousand notes and you're looking for a specific piece of information, how do you find it?
+2. Lack of flexibility. Apple Notes were designed to mimic Post-It notes or index cards, but what about paper? That is, what if you want to capture longer pieces of information? And — going beyond the paper metaphor — what if you want to link one piece of information to another?
+
+A good tool ought to allow for creating a personalized _system_ of digital notes and to provide fundamental ways to organize and search them..
+
+
+
+1. What if you want to 
+
+But the ephemeral nature of these apps make them  long-term knowledge, they're not very scalable. 
+
+---
+
+I don't know about you, but I'm not the best at remembering details. 
+
+If you were to ask me to describe my routine a few days ago, I couldn't tell you what I had for breakfast or whether there were clouds in the sky that day. I have a lot going on
+
+Let's face it: humans suck at remembering things. 
+
+The goal of a "second brain" tool is simple: to keep a persistent record of your thoughts, ideas, and information you've collected.
+
+It's useful for:
+
+- Research
+- Planning
+- Journaling
+- and more 
+
+Examples:
+
+- You're buying new headphones and you want to keep track of which products you're considering and why and which products you've rejected and why.
+- You're reading a book and you want to keep track of your notes. 
+- You're playing a challenging video game and you want to keep track of strategies you've taken and approaches you want to try. 
+- You're looking for a new job and you want to keep track of where you've applied and where you want to apply.
+- You want to keep a diary of important (or everyday) events that have occurred in your life.
+
+## Aside: a brief history of note-taking tools
+
+
+
+
+
+I have always wanted to be able to write on the go.
+
+In 1997, the Palm Pilot came out. I wanted one but my parents wouldn't let me have one. So in 2000 (?) they got me a digital organizer instead, the [Sharp ZQ-700](https://global.sharp/contents/organizer/software/zq-700/index.html). I was interested in writing at the time and I instantly saw this device as a way that I could write while I was in the car, especially on a long road trip. (Later on, in 2001, I ended up getting a Handspring.)
+
+---
+
+- Why I use Obsidian (or a "second brain" / PKM tool at all) and what it can do for you
+- (Aside?) A brief history of other note-taking apps I've used in the past, and how I settled on Obsidian 
+- How I use Obsidian, and how that has changed over time (pros and cons of using a journal approach vs. not)
+	- I might have picked up the journal approach from Logseq
+- What plugins I use (or don't use)
+- How I sync Obsidian between devices 
+- How I've configured my Obsidian vault to make it easy to write and publish blog posts from now on 
