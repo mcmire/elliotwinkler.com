@@ -18,6 +18,7 @@ import {
 import { fromHtml } from "hast-util-from-html";
 import remarkCallout from "./config/remarkCallout.ts";
 import rehypeCallout from "./config/rehypeCallout.ts";
+import remarkComments from "./config/remark-comments.ts";
 import icon from "astro-icon";
 import solidJs from "@astrojs/solid-js";
 const dirname = import.meta.dirname;
@@ -70,6 +71,7 @@ export default defineConfig({
       remarkMath,
       remarkCallout,
       remarkCodeTitle,
+      remarkComments,
     ],
     rehypePlugins: [
       rehypeKatex,
