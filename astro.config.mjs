@@ -17,6 +17,7 @@ import {
 } from "@shikijs/transformers";
 import { fromHtml } from "hast-util-from-html";
 import remarkCallout from "./config/remarkCallout.ts";
+import remarkComments from "./config/remarkComments.ts";
 import rehypeCallout from "./config/rehypeCallout.ts";
 import remarkComments from "./config/remark-comments.ts";
 import icon from "astro-icon";
@@ -69,6 +70,7 @@ export default defineConfig({
       // remarkGithubAdmonitionsToDirectives,
       remarkDirective,
       remarkMath,
+      remarkComments,
       remarkCallout,
       remarkCodeTitle,
       remarkComments,
