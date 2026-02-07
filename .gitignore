@@ -18,3 +18,5 @@ node_modules
 .vercel
 
 .env
+
+modules
