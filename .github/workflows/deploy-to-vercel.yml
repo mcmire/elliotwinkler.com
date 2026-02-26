@@ -44,6 +44,10 @@ on:
         description: 'The ref of the subrepo you want to check out. (Deprecated.)'
         required: false
         type: string
+      subrepo-pull-request-number:
+        description: 'The number of the issue or pull request where this workflow was called from.'
+        required: false
+        type: number
       update-deployment-status-token:
         description: 'The GitHub token to use to update content repos with deployment statuses.'
         required: false
