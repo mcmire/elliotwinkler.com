@@ -44,6 +44,10 @@ on:
         description: 'The ref of the subrepo you want to check out. (Deprecated.)'
         required: false
         type: string
+      update-deployment-status-token:
+        description: 'The GitHub token to use to update content repos with deployment statuses.'
+        required: false
+        type: string
       clone-subrepo-token:
         description: 'The GitHub token to use to clone the subrepo.'
         required: false
@@ -52,7 +56,7 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-  UPDATE_DEPLOYMENT_STATUS_TOKEN: ${{ secrets.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
+  UPDATE_DEPLOYMENT_STATUS_TOKEN: ${{ inputs.update-deployment-status-token || secrets.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
   CLONE_SUBREPO_TOKEN: ${{ inputs.clone-subrepo-token || secrets.CLONE_SUBREPO_TOKEN }}
   VERCEL_ENVIRONMENT: ${{ inputs.vercel-environment }}
   SUBREPO_NAME: ${{ inputs.subrepo-name }}
