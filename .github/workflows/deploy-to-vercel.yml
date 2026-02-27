@@ -24,11 +24,11 @@ on:
       VERCEL_TOKEN:
         description: 'The Vercel token to use.'
         required: true
-      UPDATE_DEPLOYMENT_STATUS_TOKEN:
-        description: 'The GitHub token to use to update content repos with deployment statuses.'
-        required: false
       CLONE_SUBREPO_TOKEN:
         description: 'The GitHub token to use to clone the subrepo.'
+        required: false
+      UPDATE_DEPLOYMENT_STATUS_TOKEN:
+        description: 'The GitHub token to use to update content repos with deployment statuses.'
         required: false
   workflow_dispatch:
     inputs:
@@ -37,23 +37,23 @@ on:
         required: true
         type: string
       subrepo-name:
-        description: 'The name of the subrepository that has new changes you want to deploy. (Deprecated.)'
+        description: 'The name of the subrepository that has new changes you want to deploy.'
         required: false
         type: string
       subrepo-ref:
-        description: 'The ref of the subrepo you want to check out. (Deprecated.)'
+        description: 'The ref of the subrepo you want to check out.'
         required: false
         type: string
       subrepo-pull-request-number:
         description: 'The number of the issue or pull request where this workflow was called from.'
         required: false
         type: number
-      update-deployment-status-token:
-        description: 'The GitHub token to use to update content repos with deployment statuses.'
-        required: false
-        type: string
       clone-subrepo-token:
         description: 'The GitHub token to use to clone the subrepo.'
+        required: false
+        type: string
+      update-deployment-status-token:
+        description: 'The GitHub token to use to update content repos with deployment statuses.'
         required: false
         type: string
 env:
@@ -72,7 +72,7 @@ jobs:
     steps:
       - name: Post initial comment to referring pull request
         id: post-comment
-        if: ${{ env.SUBREPO_NAME && env.SUBREPO_PULL_REQUEST_NUMBER != '0' }}
+        if: ${{ env.SUBREPO_NAME && env.SUBREPO_PULL_REQUEST_NUMBER && env.SUBREPO_PULL_REQUEST_NUMBER != '0' }}
         uses: actions/github-script@v8
         with:
           github-token: ${{ env.SUBREPO_NAME == 'elliotwinkler.com' && github.token || env.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
@@ -92,17 +92,14 @@ jobs:
       # in order to set up the repo
       # Then all we have to really do here is just check out the right ref
       # and re-run `git lfs` again
-      - if: ${{ env.SUBREPO_NAME && env.SUBREPO_REF }}
+      - if: ${{ env.SUBREPO_NAME && env.SUBREPO_REF && env.CLONE_SUBREPO_TOKEN }}
         uses: actions/checkout@v6
         with:
           repository: mcmire/${{ env.SUBREPO_NAME }}
           ref: ${{ env.SUBREPO_REF }}
           token: ${{ env.CLONE_SUBREPO_TOKEN }}
           path: ${{ env.SUBREPO_NAME }}
-      - if: ${{ env.SUBREPO_NAME && env.SUBREPO_REF }}
-        name: Load assets from LFS
-        run: git lfs pull origin ${{ env.SUBREPO_REF }}
-        working-directory: ${{ env.SUBREPO_NAME }}
+          lfs: true
       - uses: actions/setup-node@v6
         with:
           node-version: lts/*
@@ -144,7 +141,7 @@ jobs:
         if: ${{ env.SUBREPO_NAME && steps.post-comment.outputs.result && steps.deploy.outputs.DEPLOYMENT_URL }}
         uses: actions/github-script@v7
         with:
-          github-token: ${{ env.SUBREPO_NAME == 'elliotwinkler.com' && github.token || secrets.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
+          github-token: ${{ env.SUBREPO_NAME == 'elliotwinkler.com' && github.token || env.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
           script: |
             const previousCommentResponse = JSON.parse(process.env.PREVIOUS_COMMENT_RESPONSE);
             await github.rest.issues.updateComment({
