@@ -7,6 +7,9 @@ on:
     types:
       - opened
       - synchronize
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   extract-repository-name:
     name: Extract repository name
