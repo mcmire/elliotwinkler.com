@@ -19,6 +19,7 @@ import { fromHtml } from "hast-util-from-html";
 import remarkCallout from "./config/remarkCallout.ts";
 import rehypeCallout from "./config/rehypeCallout.ts";
 import remarkComments from "./config/remark-comments.ts";
+import rehypeStripMdxSuffix from "./config/rehypeStripMdxSuffix.ts";
 import icon from "astro-icon";
 import solidJs from "@astrojs/solid-js";
 const dirname = import.meta.dirname;
@@ -76,6 +77,7 @@ export default defineConfig({
     rehypePlugins: [
       rehypeKatex,
       rehypeCallout,
+      rehypeStripMdxSuffix,
       // Note that Astro has the ability to assign IDs to headings — but this
       // hasn't happened yet, because its plugin is added later.
       // That said, `rehype-slug` uses `github-slugger`, which is the same thing
