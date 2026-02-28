@@ -2,5 +2,6 @@
 @import "tailwindcss";
 
 @import "./theme-overrides.css";
+@import "./view-transitions.css";
 @import "./utilities.css";
 @import "./markdown.css";

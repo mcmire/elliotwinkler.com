@@ -65,6 +65,10 @@ function transformerRemoveLastEmptyLine() {
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "hover",
+  },
   markdown: {
     remarkPlugins: [
       // remarkGithubAdmonitionsToDirectives,
