@@ -73,6 +73,9 @@ jobs:
       - name: Post initial comment to referring pull request
         id: post-comment
         if: ${{ env.SUBREPO_NAME && env.SUBREPO_PULL_REQUEST_NUMBER && env.SUBREPO_PULL_REQUEST_NUMBER != '0' }}
+        # If e.g. Dependabot creates the PR then the generated GitHub token
+        # won't have write access to the pull request so this step will fail
+        continue-on-error: true
         uses: actions/github-script@v8
         with:
           github-token: ${{ env.SUBREPO_NAME == 'elliotwinkler.com' && github.token || env.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
