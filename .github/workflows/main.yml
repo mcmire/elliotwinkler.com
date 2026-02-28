@@ -10,6 +10,9 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+permissions:
+  contents: read
+  pull-requests: write
 jobs:
   extract-repository-name:
     name: Extract repository name
