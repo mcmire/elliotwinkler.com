@@ -103,6 +103,14 @@ jobs:
           token: ${{ env.CLONE_SUBREPO_TOKEN }}
           path: ${{ env.SUBREPO_NAME }}
           lfs: true
+      - if: ${{ !env.SUBREPO_REF && env.CLONE_SUBREPO_TOKEN }}
+        uses: actions/checkout@v6
+        with:
+          repository: mcmire/personal-content--writings
+          ref: main
+          token: ${{ env.CLONE_SUBREPO_TOKEN }}
+          path: personal-content--writings
+          lfs: true
       - uses: actions/setup-node@v6
         with:
           node-version: lts/*
