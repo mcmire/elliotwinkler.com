@@ -4,19 +4,14 @@
 }
 
 .markdown ul,
-.markdown ol,
-.markdown li {
+.markdown ol {
   @apply mb-4;
 }
 
-/*
-.markdown ul ul,
-.markdown ul ol,
-.markdown ol ul,
-.markdown ol ol {
-  @apply ml-4;
+.markdown li,
+.markdown li p {
+  @apply mb-3;
 }
-*/
 
 .markdown li ul,
 .markdown li ol {

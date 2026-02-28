@@ -47,7 +47,7 @@ const headingTree = buildHeadingTree(headings);
   <main
     class="flex-1 pl-4 pr-4 pt-8 pb-4 lg:py-8 xl:pl-24 xl:flex xl:justify-center xl:gap-24"
   >
-    <div class="overflow-x-auto w-full max-w-[40rem] mx-auto xl:mx-[unset]">
+    <div class="w-full max-w-[40rem] mx-auto xl:mx-[unset]">
       <header class="mb-8 text-center">
         <h1
           class="text-3xl font-semibold font-display mb-3 text-slate-900 dark:text-slate-100"
@@ -72,21 +72,18 @@ const headingTree = buildHeadingTree(headings);
         </h1>
         {
           post.data.publishDate || post.data.updatedDate ? (
-            <p class="text-slate-700 text-[0.8rem] italic dark:text-slate-500">
+            <p class="text-slate-700 text-lg mb-2 font-semibold uppercase dark:text-slate-500">
               {post.data.publishDate
                 ? post.data.publishDate.toLocaleString(undefined, {
                     dateStyle: "long",
                   })
                 : null}
-              <br class="sm:hidden" />
+            </p>
+            <p class="text-slate-700 text-sm italic dark:text-slate-500">
               {post.data.updatedDate ? (
-                <span class="italic">
-                  (Updated{" "}
-                  {post.data.updatedDate.toLocaleString(undefined, {
+                  `(Updated ${post.data.updatedDate.toLocaleString(undefined, {
                     dateStyle: "long",
-                  })}
-                  )
-                </span>
+                  })})`
               ) : null}
             </p>
           ) : null
@@ -134,7 +131,7 @@ const headingTree = buildHeadingTree(headings);
   class="p-4 mt-8 text-center border-t border-slate-300 dark:border-slate-700 text-xs"
 >
   <p class="opacity-50 mb-2">
-    Content and design © 2025-present <a
+  Content and design © <a
       class="link"
       href="mailto:elliot.winkler@gmail.com">Elliot Winkler</a
     >. Code is under the <a
