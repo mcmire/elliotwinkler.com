@@ -10,7 +10,7 @@
 
 .markdown li,
 .markdown li p {
-  @apply mb-3;
+  @apply mb-2;
 }
 
 .markdown li ul,
