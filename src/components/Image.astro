@@ -3,12 +3,15 @@ import type { ComponentProps } from "astro/types";
 import { getImage } from "astro:assets";
 import type { Image as AstroImage } from "astro:assets";
 import classnames from "classnames";
+import { twMerge } from "tailwind-merge";
+
 import LinkOrNoLink from "./LinkOrNoLink.astro";
 
 type Props = ComponentProps<typeof AstroImage> & {
   caption?: string;
   linkToRawVersion?: boolean;
   type?: "normal" | "floating";
+  hasTransparentBackground?: boolean;
 };
 
 const {
@@ -17,6 +20,8 @@ const {
   linkToRawVersion = false,
   src,
   type = "normal",
+  hasTransparentBackground = false,
+  class: className,
   ...rest
 } = Astro.props;
 
@@ -24,17 +29,16 @@ const image = await getImage({ src });
 ---
 
 <figure
-  class={classnames("text-center my-6", {
-    "md:ml-4 md:mt-0 md:max-w-[10em] md:w-[50%]": type === "floating",
-  })}
+  class={twMerge(
+    classnames("text-center my-6", {
+      "md:ml-4 md:mt-0 md:max-w-[10em] md:w-[50%]": type === "floating",
+      "dark:bg-slate-700/50": hasTransparentBackground,
+    }),
+    className,
+  )}
 >
   <LinkOrNoLink linkToRawVersion={linkToRawVersion} href={image.src}>
-    <img
-      {...rest}
-      src={image.src}
-      alt={alt}
-      class="inline-block border border-slate-200 border rounded shadow-md block dark:border-transparent"
-    />
+    <img {...rest} src={image.src} alt={alt} class="inline-block" />
   </LinkOrNoLink>
   {
     caption ? (
