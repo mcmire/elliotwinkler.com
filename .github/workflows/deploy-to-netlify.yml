@@ -1,9 +1,9 @@
-name: Deploy site to Vercel
+name: Deploy site to Netlify
 on:
   workflow_call:
     inputs:
-      vercel-environment:
-        description: 'The Vercel environment you want to build the site under ("preview" or "production").'
+      netlify-environment:
+        description: 'The Netlify environment you want to deploy to ("preview" or "production").'
         required: true
         type: string
       subrepo-name:
@@ -15,14 +15,11 @@ on:
         required: false
         type: number
     secrets:
-      VERCEL_ORG_ID:
-        description: 'The Vercel organization ID to use.'
+      NETLIFY_SITE_ID:
+        description: 'The Netlify site ID to deploy to.'
         required: true
-      VERCEL_PROJECT_ID:
-        description: 'The Vercel project ID to use.'
-        required: true
-      VERCEL_TOKEN:
-        description: 'The Vercel token to use.'
+      NETLIFY_AUTH_TOKEN:
+        description: 'The Netlify auth token to use.'
         required: true
       CLONE_SUBREPO_TOKEN:
         description: 'The GitHub token to use to clone the subrepo.'
@@ -32,8 +29,8 @@ on:
         required: false
   workflow_dispatch:
     inputs:
-      vercel-environment:
-        description: 'The Vercel environment you want to build the site under ("preview" or "production").'
+      netlify-environment:
+        description: 'The Netlify environment you want to deploy to ("preview" or "production").'
         required: true
         type: string
       subrepo-name:
@@ -57,17 +54,16 @@ on:
         required: false
         type: string
 env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+  NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
   UPDATE_DEPLOYMENT_STATUS_TOKEN: ${{ inputs.update-deployment-status-token || secrets.UPDATE_DEPLOYMENT_STATUS_TOKEN }}
   CLONE_SUBREPO_TOKEN: ${{ inputs.clone-subrepo-token || secrets.CLONE_SUBREPO_TOKEN }}
-  VERCEL_ENVIRONMENT: ${{ inputs.vercel-environment }}
+  NETLIFY_ENVIRONMENT: ${{ inputs.netlify-environment }}
   SUBREPO_NAME: ${{ inputs.subrepo-name }}
   SUBREPO_PULL_REQUEST_NUMBER: ${{ inputs.subrepo-pull-request-number }}
   SUBREPO_REF: ${{ inputs.subrepo-ref }}
 jobs:
-  deploy-to-vercel:
+  deploy-to-netlify:
     runs-on: ubuntu-latest
     steps:
       - name: Post initial comment to referring pull request
@@ -125,27 +121,18 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
         working-directory: elliotwinkler.com
-      - name: Pull Vercel environment information
-        run: |
-          yarn vercel pull --yes --environment="$VERCEL_ENVIRONMENT" --token="$VERCEL_TOKEN"
+      - name: Build project
+        run: yarn build
         working-directory: elliotwinkler.com
-      - name: Build project artifacts (in ${{ env.VERCEL_ENVIRONMENT }} mode)
-        run: |
-          if [[ "$VERCEL_ENVIRONMENT" == "production" ]]; then
-            yarn vercel build --prod --token="$VERCEL_TOKEN"
-          else
-            yarn vercel build --token="$VERCEL_TOKEN"
-          fi
-        working-directory: elliotwinkler.com
-      - name: Deploy project artifacts to Vercel (in ${{ env.VERCEL_ENVIRONMENT }} mode)
+      - name: Deploy to Netlify (in ${{ env.NETLIFY_ENVIRONMENT }} mode)
         id: deploy
         run: |
-          if [[ "$VERCEL_ENVIRONMENT" == "production" ]]; then
-            yarn vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN" | tee deploy.log
+          if [[ "$NETLIFY_ENVIRONMENT" == "production" ]]; then
+            yarn netlify deploy --dir dist --prod --json > deploy.json
           else
-            yarn vercel deploy --prebuilt --token="$VERCEL_TOKEN" | tee deploy.log
+            yarn netlify deploy --dir dist --json > deploy.json
           fi
-          echo DEPLOYMENT_URL="$(tail -n 1 < deploy.log)" >> "$GITHUB_OUTPUT"
+          echo DEPLOYMENT_URL="$(jq -r '.deploy_url // .url' < deploy.json)" >> "$GITHUB_OUTPUT"
         shell: bash
         working-directory: elliotwinkler.com
       - name: Update comment on referring pull request
